@@ -31,7 +31,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div id="isi-tes-soal" style="font-size: 15px;">
-                        <?php if(!empty($tes_soal)){ echo $tes_soal; } ?>
+                        <?php if(!empty($tes_soal)){ echo $tes_soal; }?>
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">

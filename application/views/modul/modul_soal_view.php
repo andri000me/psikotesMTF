@@ -56,17 +56,22 @@
                                 <div class="col-sm-4">
                                     <select class="form-control input-sm" id="tambah-subtest" name="tambah-subtest">
                                     <?php
-                                        for ($i = 1;$i <= 10;$i++)
+                                    
+                                        for ($i = 1;$i <= 1;$i++)
                                         {
                                             echo "<option>$i</option>";
                                         }
+                                    
+                                    ?>
+                                    <?php 
+                                    /*if(!empty($dataSubtest)){ echo $dataSubtest; } */
                                     ?>
 
                                         <!-- <option value="1">Pilihan Ganda</option>
                                         <option value="2">Esai</option>
                                         <option value="3">Jawaban Singkat</option>
-                                        <option value="4">DISC</option>
-                                     -->
+                                        <option value="4">DISC</option> -->
+                                    
                                     </select>
                                 </div>
                             </div>
@@ -75,8 +80,6 @@
                                 <div class="col-sm-4">
                                     <select class="form-control input-sm" id="tambah-tipe" name="tambah-tipe">
                                         <option value="1">TIKI</option>
-                                        <!-- <option value="2">Esai</option>
-                                        <option value="3">Jawaban Singkat</option> -->
                                         <option value="2">DISC</option>
                                         <option value="3">EPPS</option>
                                         <option value="4">PAPI</option>
@@ -111,7 +114,7 @@
                                     <p class="help-block">File gambar dapat di copy langsung atau di upload terlebih dahulu. File gambar yang didukung adalah jpg dan png.</p>
                                 </div>
                             </div>
-                            <div class="form-group" style="visibility: hidden;">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">File Audio</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control input-sm" id="tambah-nama-audio" name="tambah-nama-audio" readonly>
@@ -173,7 +176,8 @@
                                     <th>No.</th>
                                     <th>Soal</th>
                                     <th>Jawaban</th>
-                                    <th></th>
+                                    <!-- <th style="text-align: center; padding-left: 0px; padding-right: 0px;">Action</th> -->
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

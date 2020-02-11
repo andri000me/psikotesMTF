@@ -16,7 +16,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <div class="box-title">Data Soal <?php if(!empty($topik)){ echo $topik; } ?></div>
+                    <div class="box-title">Data Soal <?php if(!empty($topik)){ echo $topik; }; echo ' Nomor '; echo  $soal_nomor;?></div>
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
@@ -140,7 +140,7 @@
                                     <th>No.</th>
                                     <th>Soal</th>
                                     <th>Jawaban</th>
-                                    <th></th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

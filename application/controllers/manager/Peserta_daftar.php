@@ -41,14 +41,17 @@ class Peserta_daftar extends Member_Controller {
         $this->form_validation->set_rules('tambah-password', 'Password','required|strip_tags');
         $this->form_validation->set_rules('tambah-nama', 'Nama Lengkap','required|strip_tags');
         $this->form_validation->set_rules('tambah-email', 'Email','strip_tags');
-        $this->form_validation->set_rules('tambah-group', 'Group','required|strip_tags');
+		$this->form_validation->set_rules('tambah-group', 'Group','required|strip_tags');
+		$this->form_validation->set_rules('tambah-kelamin', 'Kelamin','required|strip_tags');
+		
         
         if($this->form_validation->run() == TRUE){
         	$data['user_name'] = $this->input->post('tambah-username', true);
             $data['user_password'] = $this->input->post('tambah-password', true);
             $data['user_email'] = $this->input->post('tambah-email', true);
             $data['user_firstname'] = $this->input->post('tambah-nama', true);
-            $data['user_grup_id'] = $this->input->post('tambah-group', true);
+			$data['user_grup_id'] = $this->input->post('tambah-group', true);
+			$data['user_jenis_kelamin'] = $this->input->post('tambah-kelamin', true);
 
             if($this->cbt_user_grup_model->count_by_kolom('grup_id', $data['user_grup_id'])->row()->hasil>0){
             	if($this->cbt_user_model->count_by_kolom('user_name', $data['user_name'])->row()->hasil>0){
@@ -84,6 +87,7 @@ class Peserta_daftar extends Member_Controller {
 				$data['password'] = $query->user_password;
 				$data['nama'] = $query->user_firstname;
 				$data['email'] = $query->user_email;
+				$data['user_kelamin'] = $query->user_jenis_kelamin;
 				$data['group'] = $query->user_grup_id;
 			}
 		}
@@ -124,7 +128,8 @@ class Peserta_daftar extends Member_Controller {
         $this->form_validation->set_rules('edit-password', 'Password','required|strip_tags');
         $this->form_validation->set_rules('edit-nama', 'Nama Lengkap','required|strip_tags');
         $this->form_validation->set_rules('edit-email', 'Email','strip_tags');
-        $this->form_validation->set_rules('edit-group', 'Group','required|strip_tags');
+		$this->form_validation->set_rules('edit-group', 'Group','required|strip_tags');
+		$this->form_validation->set_rules('edit-kelamin', 'Kelamin','required|strip_tags');
         
         if($this->form_validation->run() == TRUE){
             $pilihan = $this->input->post('edit-pilihan', true);
@@ -139,7 +144,8 @@ class Peserta_daftar extends Member_Controller {
                 $data['user_password'] = $this->input->post('edit-password', true);
                 $data['user_firstname'] = $this->input->post('edit-nama', true);
                 $data['user_email'] = $this->input->post('edit-email', true);
-                $data['user_grup_id'] = $this->input->post('edit-group', true);
+				$data['user_grup_id'] = $this->input->post('edit-group', true);
+				$data['user_jenis_kelamin	'] = $this->input->post('edit-kelamin', true);
 
                 $this->cbt_user_model->update('user_id', $id, $data);
 

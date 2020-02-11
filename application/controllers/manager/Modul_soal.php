@@ -45,7 +45,8 @@ class Modul_soal extends Member_Controller {
         }
 
         $query_user = $this->users_model->get_user_by_username($this->access->get_username());
-        $select = '';
+		$select = '';
+		$dataSubtest = '';
         $counter = 0;
         if($query_user->num_rows()>0){
         	$query_user = $query_user->row();
@@ -61,12 +62,12 @@ class Modul_soal extends Member_Controller {
 
 	        			if(!empty($data['data_topik'])){
         					if($data['data_topik']==$topik->topik_id){
-        						$select = $select.'<option value="'.$topik->topik_id.'" selected>'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
+								$select = $select.'<option value="'.$topik->topik_id.'" selected>'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
         					}else{
-        						$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';	
+								$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
         					}
         				}else{
-        					$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
+							$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
         				}
 	        		}
 	        	}
@@ -74,7 +75,8 @@ class Modul_soal extends Member_Controller {
         		// Jika user tidak dibatasi mengedit soal sesuai topik
         		$query_modul = $this->cbt_modul_model->get_modul();
 		        if($query_modul->num_rows()>0){
-		        	$select = '';
+					$select = '';
+					$dataSubtest = '';
 		        	$query_modul = $query_modul->result();
 		        	foreach ($query_modul as $temp) {
 		        		$query_topik = $this->cbt_topik_model->get_by_kolom_join_modul('topik_modul_id', $temp->modul_id);
@@ -86,12 +88,12 @@ class Modul_soal extends Member_Controller {
 		        				$counter++;
 		        				if(!empty($data['data_topik'])){
 		        					if($data['data_topik']==$topik->topik_id){
-		        						$select = $select.'<option value="'.$topik->topik_id.'" selected>'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
+										$select = $select.'<option value="'.$topik->topik_id.'" selected>'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
 		        					}else{
-		        						$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';	
+										$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';	
 		        					}
 		        				}else{
-		        					$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
+									$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.'</option>';
 		        				}
 		        			}
 
@@ -110,9 +112,12 @@ class Modul_soal extends Member_Controller {
         	$data['data_soal'] = '
         		edit(\''.$id_soal.'\');
         	';
-        }
-        
-        $data['select_topik'] = $select;
+		}
+
+
+		$dataSubtest = $dataSubtest.'<option value="'.$topik->topik_subtest.'" selected>'.$topik->topik_subtest.'</option>';
+		$data['select_topik'] = $select;
+		$data['select_subtes'] = $dataSubtest;
         
         $this->template->display_admin($this->kelompok.'/modul_soal_view', 'Mengelola Soal', $data);
     }

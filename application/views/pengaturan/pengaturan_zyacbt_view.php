@@ -2,7 +2,7 @@
 <section class="content-header">
 	<h1>
 		Pengaturan System
-		<small>Melakukan pengaturan Identitas System</small>
+		<small>Melakukan pengaturan Identitas ZYACBT</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="<?php echo site_url() ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,7 +27,7 @@
                             <div class="col-sm-8">
 								<input type="text" class="form-control input-sm" id="zyacbt-nama" name="zyacbt-nama" >
                                 <p class="help-block">
-									Nama Pelaksana ZYACBT.<br />
+									Nama Pelaksana System.<br />
                                     Digunakan sebagai identitas pelaksanaan Tes.
 								</p>
 							</div>

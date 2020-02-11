@@ -229,6 +229,38 @@ class Tes_kerjakan extends Tes_Controller {
                         $status['status'] = 1;
                         $status['nomor_soal'] = $tes_soal_nomor;
                         $status['pesan'] = 'Jawaban yang dimasukkan berhasil disimpan';
+                    }else if($query_soal->soal_tipe==4){
+                        // Mendapatkan data tes
+                        $query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1)->row();
+
+                        // Mendapatkan data jawaban
+                        $query_jawaban = $this->cbt_tes_soal_jawaban_model->get_by_tessoal_answer($tes_soal_id, $jawaban)->row();
+                        
+                        
+                        
+                        // Mengupdate pilihan jawaban benar
+                        $data_jawaban['soaljawaban_selected']=1;
+                        $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawaban, $data_jawaban);
+                        // Mengupdate pilihan jawaban salah
+                        $data_jawaban['soaljawaban_selected']=0;
+                        $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer_salah($tes_soal_id, $jawaban, $data_jawaban);
+
+                        $data_tes_soal['tessoal_jawaban'] = $jawabanText;
+                        $data_tes_soal['tessoal_jawaban_id'] = $jawaban;
+
+                        // Mengupdate score, change time jika pilihan benar
+                        if($query_jawaban->jawaban_benar==1){
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_right;
+                        }else{
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_wrong;
+                        }
+
+                        $this->cbt_tes_soal_model->update('tessoal_id', $tes_soal_id, $data_tes_soal);
+
+                        $status['status'] = 1;
+                        $status['nomor_soal'] = $tes_soal_nomor;
+                        $status['pesan'] = 'Jawaban yang dipilih berhasil disimpan';
+                        
                     }
 
                     // Menutup transaction mysql
@@ -519,6 +551,39 @@ class Tes_kerjakan extends Tes_Controller {
                                 <br />
                                 <button type="button" onclick="jawab()" class="btn btn-default" style="margin-bottom: 5px;" title="Simpan Jawaban">Simpan Jawaban</button>
                                 ';
+                        }
+                    }else if($query_soal->soal_tipe==4){
+                        $soal ="";
+                        $soal = $soal.'<hr />';       
+                        $soal = $soal.'<div class="form-group">';
+                        $query_jawaban = $this->cbt_tes_soal_jawaban_model->get_by_tessoal($query_soal->tessoal_id);
+
+                        if($query_jawaban->num_rows()>0){
+
+                            $query_jawaban = $query_jawaban->result();
+                            foreach ($query_jawaban as $jawaban) {
+                                // mengganti [baseurl] ke alamat sesungguhnya pada tag img / gambars
+                                $temp_jawaban = $jawaban->jawaban_detail;
+                                $temp_jawaban = str_replace("[base_url]", base_url(), $temp_jawaban);
+
+                                if($jawaban->soaljawaban_selected==1){
+                                    $soal = $soal.'
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" checked> '.$temp_jawaban.'
+                                            <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                        </label>
+                                    </div>';
+                                }else{
+                                    $soal = $soal.'
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" > '.$temp_jawaban.'
+                                            <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                        </label>
+                                    </div>';
+                                }
+                            }
                         }
                     }
                     $soal = $soal.'</div>';

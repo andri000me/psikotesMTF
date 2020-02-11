@@ -19,34 +19,18 @@
             </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-            Teruntuk Putri kami tercinta. Asyfiya Aniqa Putri, 28 Februari 2018 – 1 Maret 2018
         </div><!-- /.box-body -->
     </div><!-- /.box -->
     <div class="box box-primary collapsed-box">
         <div class="box-header with-border">
-            <h3 class="box-title">Perjanjian Penggunaan</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
             </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
-        <div class="box-body">
-            <dl>
-                <dd>
-                    Dengan menggunakan ZYA CBT, maka anda setuju untuk :
-                    <ol>
-                        <li>Tidak mengubah Nama Aplikasi Ujian Online <b>ZYA CBT</b> menjadi nama aplikasi lain</li>
-                        <li>Tidak mengubah footer yang menunjukkan alamat website Aplikasi Ujian Online ZYA CBT</li>
-                        <li>Tidak menjual Aplikasi Ujian Online ZYA CBT. Tetapi anda diperbolehkan untuk mengambil keuntungan dari jasa proses instalasi, konsultasi dan lain sebagainya yang berkaitan dengan Aplikasi Ujian Online ZYA CBT</li>
-                        <li>Tidak menhapus tribute dan Perjanjian Penggunaan</li>
-                    </ol>
-                    Semoga Aplikasi Ujian Online ZYA CBT dapat bermanfaat untuk kita semua.
-                </dd>
-            </dl>
-        </div><!-- /.box-body -->
     </div><!-- /.box -->
 	<div class="callout callout-info">
     	<h4>Informasi</h4>
-        <p>Ini adalah area administratif System, yang memiliki platform dan bahasa user-friendly untuk membuat, mengelola dan melaksanakan ujian online.</p>
+        <p>Ini adalah area administratif ZYA CBT, yang memiliki platform dan bahasa user-friendly untuk membuat, mengelola dan melaksanakan ujian online.</p>
     </div>
     <div class="box">
         <div class="box-header with-border">

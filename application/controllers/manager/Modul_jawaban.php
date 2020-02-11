@@ -62,6 +62,7 @@ class Modul_jawaban extends Member_Controller {
 					$data['topik'] = $query_topik->topik_nama;
 					$data['id_topik'] = $query_topik->topik_id;
 					$data['soal_tipe'] = $query_soal->soal_tipe;
+					$data['soal_nomor'] = $query_soal->soal_nomor;
         		}else{
         			redirect('manager/modul_soal');
         		}
@@ -305,19 +306,25 @@ class Modul_jawaban extends Member_Controller {
 	    // get result after running query and put it in array
 		$i=$start;
 		$query = $query->result();
-	    foreach ($query as $temp) {			
+	    foreach ($query as $temp) {
 			$record = array();
             
 			$record[] = ++$i;
 			$jawaban = $temp->jawaban_detail;
 			$jawaban = str_replace("[base_url]", base_url(), $jawaban);
 
-            $record[] = $jawaban;
-            if($temp->jawaban_benar==1){
-            	$record[] = 'Benar';
-            }else{
-            	$record[] = 'Salah';
-            }
+			$record[] = $jawaban;
+			
+			$jawaban_soals = $temp->jawaban_benar;
+			$jawaban_soal = str_replace("[base_url]", base_url(), $jawaban_soals);
+			$record[] = $jawaban_soal;
+
+
+            // if($temp->jawaban_benar==1){
+            // 	$record[] = 'Benar';
+            // }else{
+            // 	$record[] = 'Salah';
+            // }
 
             $record[] = '<div style="text-align: center;">
             	<a onclick="edit(\''.$temp->jawaban_id.'\')" title="Edit Jawaban" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span></a>

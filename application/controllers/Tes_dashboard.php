@@ -204,12 +204,16 @@ class Tes_dashboard extends Tes_Controller {
 									// Mengambil data soal pada test_log 
 									$query_test_log = $this->cbt_tes_soal_model->get_by_testuser_select($tests_users_id, $subject_set->tset_topik_id, 'tessoal_id, soal_id, soal_tipe')->result();
 									foreach ($query_test_log as $test_log) {
+										// echo $query_test_log;
 										// Jika tipe soal pilihan ganda
-										if($test_log->soal_tipe==1){
+										if($test_log->soal_tipe==1 || $test_log->soal_tipe==4){
 											// Jika jawaban diacak 
 											if($subject_set->tset_acak_jawaban==1){
+
 												// mendapatkan jawaban dari soal yang ada dengan diacak terlebih dahulu
-												$query_jawaban = $this->cbt_jawaban_model->get_by_soal_limit($test_log->soal_id, $subject_set->tset_jawaban);
+												// $query_jawaban = $this->cbt_jawaban_model->get_by_soal_limit($test_log->soal_id, $subject_set->tset_jawaban);
+												$query_jawaban = $this->cbt_jawaban_model->get_by_soal_tanpa_acak($test_log->soal_id);
+
 												// Jika jumlah jawaban lebih dari 0
 												if($query_jawaban->num_rows()>0){
 													$query_jawaban = $query_jawaban->result();
@@ -228,10 +232,12 @@ class Tes_dashboard extends Tes_Controller {
 													$this->cbt_tes_soal_jawaban_model->save_batch($insert_jawaban);
 												}
 											}else{
+												echo $test_log->soal_id;
 												// Mendapatkan jawaban yang tidak diacak
 												$query_jawaban = $this->cbt_jawaban_model->get_by_soal_tanpa_acak($test_log->soal_id);
 												// Jika jumlah jawaban lebih dari 0
 												if($query_jawaban->num_rows()>0){
+													echo "MASUK SINI 5";
 													$query_jawaban = $query_jawaban->result();
 													$i_jawaban = 0;
 													$insert_jawaban = array();

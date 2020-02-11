@@ -135,6 +135,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Jenis Kelamin</label>
+                                <select name="tambah-kelamin" id="tambah-kelamin" class="form-control input-sm">
+                                    <option value="1">Laki-Laki</option>
+                                    <option value="0">Perempuan</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control" id="tambah-email" name="tambah-email" placeholder="Email Peserta (Boleh dikosongkan)">
                             </div>
@@ -185,6 +193,14 @@
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
                                 <input type="text" class="form-control" id="edit-nama" name="edit-nama" placeholder="Nama Lengkap Peserta">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Jenis Kelamin</label>
+                                <select name="edit-kelamin" id="edit-kelamin" class="form-control input-sm">
+                                    <option value="1">Laki-Laki</option>
+                                    <option value="0">Perempuan</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -241,6 +257,7 @@
                 $('#edit-password').val(data.password);
                 $('#edit-nama').val(data.nama);
                 $('#edit-email').val(data.email);
+                $('#edit-kelamin').val(data.user_kelamin);
                 $('#edit-group').val(data.group);
                 
                 $("#modal-edit").modal("show");

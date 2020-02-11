@@ -82,7 +82,8 @@
                             $("#modal-proses").modal('hide');
                             $('#form-pesan').html(pesan_err(obj.pesan));
                         }
-                    },
+                    }
+                    ,
                     statusCode: {
                         500: function(respon) {
                             $("#modal-proses").modal('hide');
