@@ -206,7 +206,7 @@ class Tes_dashboard extends Tes_Controller {
 									foreach ($query_test_log as $test_log) {
 										// echo $query_test_log;
 										// Jika tipe soal pilihan ganda
-										if($test_log->soal_tipe==1 || $test_log->soal_tipe==4){
+										if($test_log->soal_tipe== 1 || $test_log->soal_tipe== 4 || $test_log->soal_tipe== 2){
 											// Jika jawaban diacak 
 											if($subject_set->tset_acak_jawaban==1){
 

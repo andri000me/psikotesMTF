@@ -34,6 +34,10 @@ class Cbt_tes_soal_jawaban_model extends CI_Model{
         $this->db->where('soaljawaban_tessoal_id="'.$tessoal_id.'" AND soaljawaban_jawaban_id!="'.$jawaban_id.'"')
                  ->update($this->table, $data);
     }
+    function update_by_tessoal_answer_salah_arr($tessoal_id, $jawaban_id, $data){
+        $this->db->where('soaljawaban_tessoal_id="'.$tessoal_id.'"')
+                 ->update($this->table, $data);
+    }
     
     function count_by_kolom($kolom, $isi){
         $this->db->select('COUNT(*) AS hasil')

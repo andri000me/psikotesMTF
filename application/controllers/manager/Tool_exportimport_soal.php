@@ -162,7 +162,7 @@ class Tool_exportimport_soal extends Member_Controller {
         if(!empty($_FILES['userfile']['name'])){    
 	        // Cek apakah masih ada topik atau tidak, jika topik masih ada, maka proses digagalkan
 	        if($this->cbt_topik_model->count_all()->row()->hasil>0){
-	        	$data['error'] = 'Data Soal Gagal di Import. Masih ada Topik di ZYA CBT. Silahkan hapus Topik terlebih dahulu.';
+	        	$data['error'] = 'Data Soal Gagal di Import. Masih ada Topik di. Silahkan hapus Topik terlebih dahulu.';
 	        }else{
 	        	$config['upload_path'] = './public/uploads/';
 		        $config['allowed_types'] = 'zip';

@@ -30,7 +30,7 @@
     </div><!-- /.box -->
 	<div class="callout callout-info">
     	<h4>Informasi</h4>
-        <p>Ini adalah area administratif ZYA CBT, yang memiliki platform dan bahasa user-friendly untuk membuat, mengelola dan melaksanakan ujian online.</p>
+        <p>Ini adalah area administratif , yang memiliki platform dan bahasa user-friendly untuk membuat, mengelola dan melaksanakan ujian online.</p>
     </div>
     <div class="box">
         <div class="box-header with-border">

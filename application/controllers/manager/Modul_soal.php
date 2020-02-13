@@ -172,12 +172,12 @@ class Modul_soal extends Member_Controller {
         	// Mengecek apakah tipe soal adalah jawaban singkat
         	$kunci_jawaban_singkat = '';
         	$status_jawaban_singkat = 1;
-        	if($tipe==3){
-        		$kunci_jawaban_singkat = $this->input->post('tambah-kunci-jawaban-singkat', TRUE);
-        		if(empty($kunci_jawaban_singkat)){
-        			$status_jawaban_singkat = 0;
-        		}
-        	}
+        	// if($tipe==33){
+        	// 	$kunci_jawaban_singkat = $this->input->post('tambah-kunci-jawaban-singkat', TRUE);
+        	// 	if(empty($kunci_jawaban_singkat)){
+        	// 		$status_jawaban_singkat = 0;
+        	// 	}
+        	// }
 
         	if($id_topik=='kosong'){
         		$status['status'] = 0;
@@ -425,7 +425,7 @@ class Modul_soal extends Member_Controller {
             	<a onclick="hapus(\''.$temp->soal_id.'\')" style="cursor: pointer;" class="btn btn-default btn-xs">Hapus Soal</a>
             ';*/
 
-            if($temp->soal_tipe!=2 AND $temp->soal_tipe!=3){
+            if($temp->soal_tipe!=333 AND $temp->soal_tipe!=33){
             	$record[] = '<div style="text-align: center;">
 	            	<a onclick="jawaban(\''.$temp->soal_id.'\')" title="Tambah Jawaban" style="cursor: pointer;"><span class="glyphicon glyphicon-question-sign"></span></a>
 	            	<a onclick="edit(\''.$temp->soal_id.'\')" title="Edit Soal" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span></a>

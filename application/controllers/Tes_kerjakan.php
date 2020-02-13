@@ -141,8 +141,19 @@ class Tes_kerjakan extends Tes_Controller {
         $this->form_validation->set_rules('tes-soal-id', 'Soal','required|strip_tags');
         $this->form_validation->set_rules('tes-soal-nomor', 'Nomor Soal','required|strip_tags');
         $this->form_validation->set_rules('soal-jawaban', 'Jawaban','required|strip_tags');
+
+
         
+        $query_subject_set = $this->cbt_tes_topik_set_model->get_by_kolom('tset_tes_id', 'tes-id')->result();
+                
+        // $query_soal = $this->cbt_tes_soal_model->get_by_tessoal_limit(9, 1);
+        // if($query_soal->soal_tipe!=2){
+        //     $this->form_validation->set_rules('soal-jawaban', 'Jawaban','required|strip_tags');
+        // }else{
+        //     $this->form_validation->set_rules('soal-jawaban', 'Jawaban','required|strip_tags');
+        // }
         if($this->form_validation->run() == TRUE){
+            $jawabanMost = $this->input->post('soal-jawaban-most', TRUE);
             $jawaban = $this->input->post('soal-jawaban', TRUE);
             $tes_id = $this->input->post('tes-id', TRUE);
             $tes_user_id = $this->input->post('tes-user-id', TRUE);
@@ -206,13 +217,100 @@ class Tes_kerjakan extends Tes_Controller {
                         
                     }else if($query_soal->soal_tipe==2){
                         // Mengupdate change time, dan jawaban essay
-                        $data_tes_soal['tessoal_jawaban_text'] = $jawaban;
+                        // $data_tes_soal['tessoal_jawaban_text'] = $jawaban;
+                        $data_tes_soal['tessoal_jawaban_text'] = $jawaban.",".$jawabanMost;
                         $data_tes_soal['tessoal_nilai'] = 0;
                         $this->cbt_tes_soal_model->update('tessoal_id', $tes_soal_id, $data_tes_soal);
 
                         $status['status'] = 1;
                         $status['nomor_soal'] = $tes_soal_nomor;
                         $status['pesan'] = 'Jawaban yang dimasukkan berhasil disimpan';
+
+
+                        
+
+                        $query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1)->row();
+
+                        // Mendapatkan data jawaban
+                        $query_jawaban = $this->cbt_tes_soal_jawaban_model->get_by_tessoal_answer($tes_soal_id, $jawaban)->row();
+                        
+                        
+                        $loopJawaban = $jawaban.",".$jawabanMost;
+                        $count = substr_count($loopJawaban, ',') + 1;
+
+
+                        $data_jawaban['soaljawaban_selected']=0;
+                        $data_jawaban['soaljawaban_value']=NULL;
+                        $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer_salah_arr($tes_soal_id, $loopJawaban, $data_jawaban);
+
+
+                        for ($i = 1; $i <= $count; $i++) {
+
+                            if($i == 1){
+                                $jawabanNow = $jawaban;
+                                $jawabanValue = "Least";
+                            }else {
+                                $jawabanNow = $jawabanMost;
+                                $jawabanValue = "Most";
+                            }
+
+                            $data_jawaban['soaljawaban_selected']=1;
+                            $data_jawaban['soaljawaban_value']=$jawabanValue;
+                            $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawabanNow, $data_jawaban);
+                            // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawaban, $data_jawaban);
+
+                        }
+
+
+
+                        // // Mengupdate pilihan jawaban benar
+                        // $data_jawaban['soaljawaban_selected']=1;
+                        // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawaban, $data_jawaban);
+
+
+                        // Mengupdate pilihan jawaban salah
+
+                        // $data_jawaban['soaljawaban_selected']=0;
+                        // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer_salah($tes_soal_id, $jawaban, $data_jawaban);
+
+                        // for ($i = 1; $i <= $count; $i++) {
+                        //     $jawabanNow;
+                            // if($i == 1){
+                            //     $jawabanNow = $jawaban;
+                            // }else {
+                            //     $jawabanNow = $jawabanMost;
+                            // }
+
+                        // $data_jawaban['soaljawaban_selected']=0;
+                        // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer_salah_arr($tes_soal_id, $loopJawaban, $data_jawaban);
+                        // }
+
+
+
+
+                        $data_tes_soal['tessoal_jawaban'] = $jawabanText;
+                        $data_tes_soal['tessoal_jawaban_id'] = $jawaban;
+
+                        // Mengupdate score, change time jika pilihan benar
+                        if($query_jawaban->jawaban_benar==1){
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_right;
+                        }else{
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_wrong;
+                        }
+
+                        $this->cbt_tes_soal_model->update('tessoal_id', $tes_soal_id, $data_tes_soal);
+
+                        $status['status'] = 1;
+                        $status['nomor_soal'] = $tes_soal_nomor;
+                        $status['pesan'] = 'Jawaban yang dipilih berhasil disimpan';
+
+
+
+
+
+
+
+
                     }else if($query_soal->soal_tipe==3){
                         // Mendapatkan data tes
                         $query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1)->row();
@@ -528,7 +626,7 @@ class Tes_kerjakan extends Tes_Controller {
                                 }
                             }
                         }
-                    }else if($query_soal->soal_tipe==2){
+                    }else if($query_soal->soal_tipe==222){
                         if(!empty($query_soal->tessoal_jawaban_text)){
                             $soal = $soal.'<textarea class="textarea" id="soal-jawaban" name="soal-jawaban" style="width: 100%; height: 150px; font-size: 13px; line-height: 25px; border: 1px solid #dddddd; padding: 10px;">'.$query_soal->tessoal_jawaban_text.'</textarea>
                                 <button type="button" onclick="jawab()" class="btn btn-default" style="margin-bottom: 5px;" title="Simpan Jawaban">Simpan Jawaban</button>
@@ -585,9 +683,101 @@ class Tes_kerjakan extends Tes_Controller {
                                 }
                             }
                         }
-                    }
-                    $soal = $soal.'</div>';
+                    }else if($query_soal->soal_tipe==2){
+                        $soal ="";
+                        // $soal = $soal.'<hr />';       
+                        $soal = $soal.'
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label>M &nbsp;&nbsp;L</label>
+                                    </td>
+                                    <td>
+                                        <label>&nbsp;</label>
+                                    </td>
+                                </tr>
+                                ';
+                        $query_jawaban = $this->cbt_tes_soal_jawaban_model->get_by_tessoal($query_soal->tessoal_id);
 
+                        if($query_jawaban->num_rows()>0){
+
+                            $query_jawaban = $query_jawaban->result();
+                            foreach ($query_jawaban as $jawaban) {
+                                // mengganti [baseurl] ke alamat sesungguhnya pada tag img / gambars
+                                $temp_jawaban = $jawaban->jawaban_detail;
+                                $temp_jawaban = str_replace("[base_url]", base_url(), $temp_jawaban);
+
+                                if($jawaban->soaljawaban_selected==1 and $jawaban->soaljawaban_value=='Most'){
+
+                                    $soal = $soal.'
+                                    <tr class="radio">
+                                        <td>
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban-most" value="'.$jawaban->soaljawaban_jawaban_id.'" checked>
+                                                <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                            </label>                                        
+                                        </td>
+                                    ';
+                                }else{
+                                    $soal = $soal.'
+                                    <tr class="radio">
+                                        <td>
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban-most" value="'.$jawaban->soaljawaban_jawaban_id.'">
+                                                <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                            </label>                                
+                                        </td>
+
+                                    ';
+                                }
+
+                                if($jawaban->soaljawaban_selected==1 and $jawaban->soaljawaban_value=='Least'){
+
+                                    $soal = $soal.'
+                                        <td>
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" checked>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                '.$temp_jawaban.'
+                                                <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                            </label>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>';
+                                }else{
+                                    $soal = $soal.'
+
+                                        <td>
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" >
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label>
+                                                '.$temp_jawaban.'
+                                                <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                            </label>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>';
+                                }
+
+
+
+
+
+                            }
+                        }
+                    }
+                    if($query_soal->soal_tipe==2){
+                        $soal = $soal.'</table>';
+                    }else{
+                        $soal = $soal.'</div>';
+                    }
                     $data['tes_soal'] = $soal;
                 }
             }else{

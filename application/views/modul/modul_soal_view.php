@@ -83,6 +83,9 @@
                                         <option value="2">DISC</option>
                                         <option value="3">EPPS</option>
                                         <option value="4">PAPI</option>
+                                        <option value="5">MBTI</option>
+                                        <option value="6">Pilihan Ganda</option>
+                                        <option value="7">Esai</option>
                                     </select>
                                 </div>
                                 <!-- <label class="col-sm-2 control-label">Tingkat Kesulitan</label> -->
@@ -441,15 +444,15 @@
             $("#modal-image").modal("hide");
         });
 
-        $('#tambah-tipe').change(function(e){
-            var tipe = $('#tambah-tipe').val();
+        // $('#tambah-tipe').change(function(e){
+        //     var tipe = $('#tambah-tipe').val();
 
-            if(tipe==3){
-                $('#form-tambah-jawaban').removeClass('hide');
-            }else{
-                $('#form-tambah-jawaban').addClass('hide');
-            }
-        });
+        //     if(tipe==3){
+        //         $('#form-tambah-jawaban').removeClass('hide');
+        //     }else{
+        //         $('#form-tambah-jawaban').addClass('hide');
+        //     }
+        // });
 
         $('#btn-tambah-batal').click(function(){
             batal_tambah();

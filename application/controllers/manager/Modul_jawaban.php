@@ -41,7 +41,7 @@ class Modul_jawaban extends Member_Controller {
         	if($query_soal->num_rows()>0){
         		$query_soal = $query_soal->row();
 
-        		if($query_soal->soal_tipe!=2){
+        		if($query_soal->soal_tipe!=2222){
         			$data['id_soal'] = $query_soal->soal_id;
 	        		$soal = $query_soal->soal_detail;
 					$soal = str_replace("[base_url]", base_url(), $soal);

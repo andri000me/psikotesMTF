@@ -59,7 +59,7 @@
                                         <div class="col-sm-4">
                                             <select class="form-control input-sm" id="tambah-benar" name="tambah-benar">
                                             <?php 
-
+                                                Echo $soal_tipe;
                                                 if( $soal_tipe == 4 ) {
                                                     Echo
                                                     '
@@ -97,7 +97,7 @@
                                                     '
                                                     <option value="D">D</option>
                                                     <option value="I">I</option>
-                                                    <option value="D">S</option>
+                                                    <option value="S">S</option>
                                                     <option value="C">C</option>
                                                     <option value="*">*</option>
                                                     ';
@@ -108,7 +108,15 @@
                                                     <option value="A">A</option>
                                                     <option value="B">B</option>
                                                     ';
-                                                };
+                                                }
+                                                else if( $soal_tipe == 5 ) {
+                                                    Echo
+                                                    '
+                                                    <option value="0">A</option>
+                                                    <option value="1">B</option>
+                                                    <option value="2">C</option>
+                                                    ';
+                                                };;
                                             ?>
                                             </select>
                                         </div>
