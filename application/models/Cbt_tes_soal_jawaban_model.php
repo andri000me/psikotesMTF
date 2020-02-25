@@ -11,7 +11,6 @@ class Cbt_tes_soal_jawaban_model extends CI_Model{
     }
 
     function save_batch($data){
-        //$this->db->query($sql);
         $this->db->insert_batch($this->table, $data);
     }
     
@@ -63,7 +62,7 @@ class Cbt_tes_soal_jawaban_model extends CI_Model{
         $this->db->where('soaljawaban_tessoal_id="'.$tessoal_id.'"')
                  ->from($this->table)
                  ->join('cbt_jawaban', 'cbt_tes_soal_jawaban.soaljawaban_jawaban_id = cbt_jawaban.jawaban_id')
-                 ->order_by('soaljawaban_order', 'ASC');
+                 ->order_by('soaljawaban_jawaban_id', 'DSC');
         return $this->db->get();
     }
 

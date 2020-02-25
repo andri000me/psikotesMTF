@@ -94,11 +94,21 @@ class Modul_jawaban extends Member_Controller {
         	$id_soal = $this->input->post('tambah-soal-id', TRUE);
         	$id_jawaban = $this->input->post('tambah-jawaban-id', TRUE);
 
-        	$jawaban = $this->input->post('tambah-jawaban', FALSE);
+			$jawaban = $this->input->post('tambah-jawaban', FALSE);
+
+			$soalTipe = $this->input->post('tambah-soal-tipe', FALSE);
 
         	$data['jawaban_soal_id'] = $id_soal;
-	        $data['jawaban_benar'] = $this->input->post('tambah-benar', TRUE);
-	        $data['jawaban_aktif'] = 1;
+	        // $data['jawaban_benar'] = $this->input->post('tambah-benar', TRUE);
+			$data['jawaban_aktif'] = 1;
+			
+			if($soalTipe == 2){
+				$tambah_benar_kurang = $this->input->post('tambah-benar-kurang', FALSE);
+				$tambah_benar_lebih = $this->input->post('tambah-benar', FALSE);
+				$data['jawaban_benar'] = $tambah_benar_lebih.','.$tambah_benar_kurang;				
+			}else{
+				$data['jawaban_benar'] = $this->input->post('tambah-benar', TRUE);
+			}
 
 	        $id_topik = $this->cbt_soal_model->get_by_kolom_limit('soal_id', $id_soal, 1)->row()->soal_topik_id;
 	        $posisi = $this->config->item('upload_path').'/topik_'.$id_topik.'';

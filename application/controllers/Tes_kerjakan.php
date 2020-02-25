@@ -256,6 +256,7 @@ class Tes_kerjakan extends Tes_Controller {
 
                             $data_jawaban['soaljawaban_selected']=1;
                             $data_jawaban['soaljawaban_value']=$jawabanValue;
+                            $data_jawaban['soaljawaban_flag']=$jawabanValue;
                             $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawabanNow, $data_jawaban);
                             // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $jawaban, $data_jawaban);
 
@@ -359,6 +360,24 @@ class Tes_kerjakan extends Tes_Controller {
                         $status['nomor_soal'] = $tes_soal_nomor;
                         $status['pesan'] = 'Jawaban yang dipilih berhasil disimpan';
                         
+                    }else if($query_soal->soal_tipe==5){
+                        // Mendapatkan data tes
+                        $query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1)->row();
+                        
+                        // Mengupdate change time, dan jawaban essay
+                        $data_tes_soal['tessoal_jawaban_text'] = $jawaban;
+
+                        if(strtoupper($query_soal->soal_kunci)==strtoupper($jawaban)){
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_right;
+                        }else{
+                            $data_tes_soal['tessoal_nilai'] = $query_tes->tes_score_wrong;
+                        }
+                        $this->cbt_tes_soal_model->update('tessoal_id', $tes_soal_id, $data_tes_soal);
+                        // $data_jawaban['soaljawaban_value']=$jawaban;
+                        // $this->cbt_tes_soal_jawaban_model->update_by_tessoal_answer($tes_soal_id, $tes_id, $data_jawaban);
+                        $status['status'] = 1;
+                        $status['nomor_soal'] = $tes_soal_nomor;
+                        $status['pesan'] = 'Jawaban yang dimasukkan berhasil disimpan';
                     }
 
                     // Menutup transaction mysql
@@ -549,7 +568,6 @@ class Tes_kerjakan extends Tes_Controller {
                 $soal = '';
                 if($query_soal->num_rows()>0){
                     $data['tes_soal_id'] = $tessoal_id;
-
                     $query_soal = $query_soal->row();
 
                     // Soal Ragu-ragu
@@ -626,6 +644,109 @@ class Tes_kerjakan extends Tes_Controller {
                                 }
                             }
                         }
+                    }
+
+                    //MBTI
+                    if($query_soal->soal_tipe==5){
+                        $soal = $soal.'<hr />';       
+                        $soal = $soal.'<div class="form-group">';
+                                    
+                                    if($query_soal->tessoal_jawaban_text == '0'){
+                                        $soal = $soal.'
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="0" checked> Bukan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="0"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="1"> Sedikit mirip dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="1"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="2"> Tepat dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="2"> 
+                                            </label>
+                                        </div>
+                                        ';
+                                    }else if($query_soal->tessoal_jawaban_text == 1){
+                                        $soal = $soal.'
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="0" > Bukan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="0"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="1" checked> Sedikit mirip dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="1"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="2"> Tepat dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="2"> 
+                                            </label>
+                                        </div>
+                                        ';
+                                    }else if($query_soal->tessoal_jawaban_text == 2){
+                                        $soal = $soal.'
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="0" > Bukan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="0"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="1" > Sedikit mirip dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="1"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="2" checked> Tepat dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="2"> 
+                                            </label>
+                                        </div>
+                                        ';
+                                    }else if($query_soal->tessoal_jawaban_text == NULL){
+                                        $soal = $soal.'
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="0" > Bukan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="0"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="1" > Sedikit mirip dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="1"> 
+                                            </label>
+                                        </div>
+    
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" onchange="jawab()" name="soal-jawaban" value="2" > Tepat dengan kepribadian saya
+                                                <input type="hidden" name="soal-jawabanText" value="2"> 
+                                            </label>
+                                        </div>
+                                        ';
+                                    }
+                                    
+                                    
+
                     }else if($query_soal->soal_tipe==222){
                         if(!empty($query_soal->tessoal_jawaban_text)){
                             $soal = $soal.'<textarea class="textarea" id="soal-jawaban" name="soal-jawaban" style="width: 100%; height: 150px; font-size: 13px; line-height: 25px; border: 1px solid #dddddd; padding: 10px;">'.$query_soal->tessoal_jawaban_text.'</textarea>
@@ -637,18 +758,37 @@ class Tes_kerjakan extends Tes_Controller {
                                 ';
                         }
                     }else if($query_soal->soal_tipe==3){
-                        if(!empty($query_soal->tessoal_jawaban_text)){
-                            $soal = $soal.'
-                                <input type="text" class="form-control" style="max-width: 500px;" id="soal-jawaban" name="soal-jawaban" value="'.$query_soal->tessoal_jawaban_text.'" autocomplete="off" />
-                                <br />
-                                <button type="button" onclick="jawab()" class="btn btn-default" style="margin-bottom: 5px;" title="Simpan Jawaban">Simpan Jawaban</button>
-                                ';
-                        }else{
-                            $soal = $soal.'
-                                <input type="text" class="form-control" style="max-width: 500px;" id="soal-jawaban" name="soal-jawaban" autocomplete="off" />
-                                <br />
-                                <button type="button" onclick="jawab()" class="btn btn-default" style="margin-bottom: 5px;" title="Simpan Jawaban">Simpan Jawaban</button>
-                                ';
+                        $soal ="";
+                        $soal = $soal.'<hr />';       
+                        $soal = $soal.'<div class="form-group">';
+                        $query_jawaban = $this->cbt_tes_soal_jawaban_model->get_by_tessoal($query_soal->tessoal_id);
+
+                        if($query_jawaban->num_rows()>0){
+
+                            $query_jawaban = $query_jawaban->result();
+                            foreach ($query_jawaban as $jawaban) {
+                                // mengganti [baseurl] ke alamat sesungguhnya pada tag img / gambars
+                                $temp_jawaban = $jawaban->jawaban_detail;
+                                $temp_jawaban = str_replace("[base_url]", base_url(), $temp_jawaban);
+
+                                if($jawaban->soaljawaban_selected==1){
+                                    $soal = $soal.'
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" checked> '.$temp_jawaban.'
+                                            <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                        </label>
+                                    </div>';
+                                }else{
+                                    $soal = $soal.'
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" onchange="jawab()" name="soal-jawaban" value="'.$jawaban->soaljawaban_jawaban_id.'" > '.$temp_jawaban.'
+                                            <input type="hidden" name="soal-jawabanText" value="'.$temp_jawaban.'"> 
+                                        </label>
+                                    </div>';
+                                }
+                            }
                         }
                     }else if($query_soal->soal_tipe==4){
                         $soal ="";
@@ -690,7 +830,7 @@ class Tes_kerjakan extends Tes_Controller {
                             <table>
                                 <tr>
                                     <td>
-                                        <label>M &nbsp;&nbsp;L</label>
+                                        <label>P &nbsp;&nbsp;K</label>
                                     </td>
                                     <td>
                                         <label>&nbsp;</label>
@@ -706,6 +846,8 @@ class Tes_kerjakan extends Tes_Controller {
                                 // mengganti [baseurl] ke alamat sesungguhnya pada tag img / gambars
                                 $temp_jawaban = $jawaban->jawaban_detail;
                                 $temp_jawaban = str_replace("[base_url]", base_url(), $temp_jawaban);
+
+                                $arrayJawaban = explode(',', $jawaban->jawaban_benar);
 
                                 if($jawaban->soaljawaban_selected==1 and $jawaban->soaljawaban_value=='Most'){
 

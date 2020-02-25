@@ -202,11 +202,11 @@ class Tes_dashboard extends Tes_Controller {
 									$this->cbt_tes_soal_model->save_batch($insert_soal);
 
 									// Mengambil data soal pada test_log 
-									$query_test_log = $this->cbt_tes_soal_model->get_by_testuser_select($tests_users_id, $subject_set->tset_topik_id, 'tessoal_id, soal_id, soal_tipe')->result();
+									$query_test_log = $this->cbt_tes_soal_model->get_by_testuser_select($tests_users_id, $subject_set->tset_topik_id, 'tessoal_id, soal_id, soal_tipe, soal_nomor')->result();
 									foreach ($query_test_log as $test_log) {
 										// echo $query_test_log;
 										// Jika tipe soal pilihan ganda
-										if($test_log->soal_tipe== 1 || $test_log->soal_tipe== 4 || $test_log->soal_tipe== 2){
+										if($test_log->soal_tipe== 1 || $test_log->soal_tipe== 4 || $test_log->soal_tipe== 2 || $test_log->soal_tipe== 3 || $test_log->soal_tipe== 5){
 											// Jika jawaban diacak 
 											if($subject_set->tset_acak_jawaban==1){
 
@@ -221,10 +221,13 @@ class Tes_dashboard extends Tes_Controller {
 													$insert_jawaban = array();
 													foreach ($query_jawaban as $jawaban) {
 														// Menyimpan data soal
+														echo $jawaban->jawaban_id.'</br>';
+														echo $jawaban->soal_nomor.'-'.$jawaban->soal_detail.'</br>';;
 														$data_jawaban['soaljawaban_jawaban_id'] = $jawaban->jawaban_id;
 														$data_jawaban['soaljawaban_order'] = ++$i_jawaban;
 														$data_jawaban['soaljawaban_selected'] = 0;
 														$data_jawaban['soaljawaban_tessoal_id'] = $test_log->tessoal_id;
+														$data_jawaban['soaljawaban_value'] = null;
 
 														$insert_jawaban[] = $data_jawaban;
 													}
@@ -232,12 +235,10 @@ class Tes_dashboard extends Tes_Controller {
 													$this->cbt_tes_soal_jawaban_model->save_batch($insert_jawaban);
 												}
 											}else{
-												echo $test_log->soal_id;
 												// Mendapatkan jawaban yang tidak diacak
 												$query_jawaban = $this->cbt_jawaban_model->get_by_soal_tanpa_acak($test_log->soal_id);
 												// Jika jumlah jawaban lebih dari 0
 												if($query_jawaban->num_rows()>0){
-													echo "MASUK SINI 5";
 													$query_jawaban = $query_jawaban->result();
 													$i_jawaban = 0;
 													$insert_jawaban = array();
@@ -247,6 +248,7 @@ class Tes_dashboard extends Tes_Controller {
 														$data_jawaban['soaljawaban_order'] = ++$i_jawaban;
 														$data_jawaban['soaljawaban_selected'] = 0;
 														$data_jawaban['soaljawaban_tessoal_id'] = $test_log->tessoal_id;
+														$data_jawaban['soaljawaban_value'] = null;
 
 														$insert_jawaban[] = $data_jawaban;
 													}

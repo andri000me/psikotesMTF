@@ -36,7 +36,7 @@
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <button type="button" class="btn btn-default hide" id="btn-sebelumnya">Soal Sebelumnya</button>&nbsp;&nbsp;&nbsp;
-                    <div class="btn btn-warning" id="btn-ragu" onclick="ragu()">
+                    <div class="btn btn-warning" id="btn-ragu" onclick="ragu()" style="display: none;">
                         <input type="checkbox" style="width:10px;height:10px;" name="btn-ragu-checkbox" id="btn-ragu-checkbox" <?php if(!empty($tes_ragu)){ echo "checked"; } ?> /> Ragu-ragu
                     </div>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-default" id="btn-selanjutnya">Soal Selanjutnya</button>

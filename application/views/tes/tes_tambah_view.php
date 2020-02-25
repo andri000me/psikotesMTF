@@ -172,26 +172,26 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Jml Soal</label>
                             <div class="col-sm-9">
-                                <input type="text" name="soal-jml" id="soal-jml" class="form-control input-sm" value="2" >
+                                <input type="text" name="soal-jml" id="soal-jml" class="form-control input-sm" value="90" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Jml Jawaban</label>
                             <div class="col-sm-9">
-                                <input type="text" name="soal-jml-jawaban" id="soal-jml-jawaban" class="form-control input-sm" value="3" >
+                                <input type="text" name="soal-jml-jawaban" id="soal-jml-jawaban" class="form-control input-sm" value="4" >
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label class="col-sm-3 control-label">Acak Soal</label>
                             <div class="col-sm-9">
-                                <input type="checkbox" name="soal-acak-soal" id="soal-acak-soal" class="input-sm" value="1" checked>
+                                <input type="checkbox" name="soal-acak-soal" id="soal-acak-soal" class="input-sm" value="1" >
                                 <p class="help-block">Mengacak Soal Tes</p>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"  style="display: none;">
                             <label class="col-sm-3 control-label">Acak Jawaban</label>
                             <div class="col-sm-9">
-                                <input type="checkbox" name="soal-acak-jawaban" id="soal-acak-jawaban" class="input-sm" value="1" checked>
+                                <input type="checkbox" name="soal-acak-jawaban" id="soal-acak-jawaban" class="input-sm" value="1" >
                                 <p class="help-block">Mengacak Jawaban Tes</p>
                             </div>
                         </div>

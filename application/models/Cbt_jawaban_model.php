@@ -43,7 +43,13 @@ class Cbt_jawaban_model extends CI_Model{
      * mendapatkan jawaban berdasarkan soal dengan diacak
      */
     function get_by_soal_limit($soal, $limit){
-        $sql = '(SELECT jawaban_id FROM cbt_jawaban WHERE cbt_jawaban.jawaban_soal_id='.$soal.' AND cbt_jawaban.jawaban_benar=1 LIMIT 1) UNION (SELECT jawaban_id FROM cbt_jawaban WHERE cbt_jawaban.jawaban_soal_id='.$soal.' AND cbt_jawaban.jawaban_benar=0 LIMIT '.($limit-1).') ORDER BY RAND();';
+        //$sql = '(SELECT jawaban_id FROM cbt_jawaban WHERE cbt_jawaban.jawaban_soal_id='.$soal.' AND cbt_jawaban.jawaban_benar=1 LIMIT 1) UNION (SELECT jawaban_id FROM cbt_jawaban WHERE cbt_jawaban.jawaban_soal_id='.$soal.' AND cbt_jawaban.jawaban_benar=0 LIMIT '.($limit-1).') ORDER BY RAND();';
+        $sql = '(SELECT jawaban_id 
+                FROM cbt_jawaban 
+                WHERE cbt_jawaban.jawaban_soal_id='.$soal.' 
+                AND cbt_jawaban.jawaban_benar=1 LIMIT 1) UNION (SELECT jawaban_id FROM cbt_jawaban WHERE cbt_jawaban.jawaban_soal_id='.$soal.' 
+                AND cbt_jawaban.jawaban_benar=0 LIMIT '.($limit-1).') 
+                ORDER BY RAND();';
 
         return $this->db->query($sql);
     }
@@ -56,12 +62,24 @@ class Cbt_jawaban_model extends CI_Model{
      * @return     <type>  The by soal tanpa acak.
      */
     function get_by_soal_tanpa_acak($soal){
-        $this->db->select('jawaban_id')
-                 ->where('jawaban_soal_id', $soal)
-                 ->from($this->table)
-                 ->order_by('jawaban_id', 'ASC');
+    //     $this->db->select('jawaban_id')
+    //              ->where('jawaban_soal_id', $soal)
+    //              ->from($this->table)
+    //              ->order_by('jawaban_id', 'ASC');
 
+        // $sql = 'SELECT cbt_jawaban.jawaban_id, cbt_soal.soal_nomor FROM cbt_jawaban, cbt_soal where jawaban_soal_id = '.$soal.'AND cbt_soal.soal_id = cbt_jawaban.jawaban_soal_id ORDER BY cbt_soal.soal_nomor ASC' ;
+        
+
+        // return $this->db->get();
+        // return $this->db->query($sql);
+
+        $this->db->where('jawaban_soal_id = '.$soal.'')
+        ->join('cbt_soal', 'cbt_jawaban.jawaban_soal_id = cbt_soal.soal_id')
+        ->from($this->table)
+        ->order_by('cbt_soal.soal_nomor ', 'ASC');
+        // ->limit($limit);
         return $this->db->get();
+
     }
 
 	function get_by_kolom_limit($kolom, $isi, $limit){

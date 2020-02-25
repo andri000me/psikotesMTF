@@ -50,12 +50,13 @@
                                             <input type="hidden" name="tambah-soal-id" id="tambah-soal-id" value="<?php if(!empty($id_soal)){ echo $id_soal; } ?>">
                                             <input type="hidden" name="tambah-jawaban-id" id="tambah-jawaban-id" >
                                             <input type="hidden" name="tambah-jawaban" id="tambah-jawaban" >
+                                            <input type="hidden" name="tambah-soal-tipe" id="tambah-soal-tipe" value="<?php echo $soal_tipe; ?>" >
                                             <textarea class="textarea" id="tambah_jawaban" name="tambah_jawaban" style="width: 100%; height: 100px; font-size: 13px; line-height: 25px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                             <p class="help-block">File gambar dapat di copy langsung atau di upload terlebih dahulu. File gambar yang didukung adalah jpg dan png.</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Jawaban</label>
+                                        <label class="col-sm-2 control-label">Jawaban <?php if( $soal_tipe == 2 ) {echo 'Paling'; } ?></label>
                                         <div class="col-sm-4">
                                             <select class="form-control input-sm" id="tambah-benar" name="tambah-benar">
                                             <?php 
@@ -99,7 +100,7 @@
                                                     <option value="I">I</option>
                                                     <option value="S">S</option>
                                                     <option value="C">C</option>
-                                                    <option value="*">*</option>
+                                                    <option value="♦︎">♦︎</option>
                                                     ';
                                                 }
                                                 else if( $soal_tipe == 3 ) {
@@ -112,15 +113,38 @@
                                                 else if( $soal_tipe == 5 ) {
                                                     Echo
                                                     '
-                                                    <option value="0">A</option>
-                                                    <option value="1">B</option>
-                                                    <option value="2">C</option>
+                                                    <option value="E">E</option>
+                                                    <option value="T">T</option>
+                                                    <option value="I">I</option>
+                                                    <option value="F">F</option>
+                                                    <option value="S">S</option>
+                                                    <option value="J">J</option>
+                                                    <option value="N">N</option>
+                                                    <option value="P">P</option>
                                                     ';
-                                                };;
+                                                };
                                             ?>
                                             </select>
                                         </div>
                                     </div>
+
+                                    <?php 
+                                    if( $soal_tipe == 2 ) {
+                                        echo '
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Jawaban Kurang</label>
+                                                    <div class="col-sm-4">
+                                                        <select class="form-control input-sm" id="tambah-benar-kurang" name="tambah-benar-kurang">
+                                                                <option value="D">D</option>
+                                                                <option value="I">I</option>
+                                                                <option value="S">S</option>
+                                                                <option value="C">C</option>
+                                                                <option value="♦︎">♦︎</option>
+                                                        </select>
+                                                    </div>
+                                                </div>';
+                                        };
+                                    ?>
                                
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
