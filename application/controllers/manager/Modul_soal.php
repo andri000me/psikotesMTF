@@ -139,6 +139,7 @@ class Modul_soal extends Member_Controller {
         	$kesulitan = $this->input->post('tambah-kesulitan', TRUE);
 			$audio = $_FILES['tambah-audio']['name'];
 			$nomor = $this->input->post('tambah-nomor', TRUE);
+			$soal_subtests = $this->input->post('tambah-subtes');
 
         	$posisi = $this->config->item('upload_path').'/topik_'.$id_topik.'';
 
@@ -186,6 +187,7 @@ class Modul_soal extends Member_Controller {
             	$status['status'] = 0;
             	$status['pesan'] = 'Kunci Jawaban untuk Soal Jawaban Singkat tidak boleh kosong !';
         	}else{
+        		$data['soal_subtest'] = $soal_subtests;				
         		$data['soal_topik_id'] = $id_topik;
 	        	$data['soal_detail'] = $soal;
 	        	$data['soal_tipe'] = $tipe;
@@ -415,6 +417,8 @@ class Modul_soal extends Member_Controller {
 
             $record[] = $soal;
 
+			// $soal_subtests = $temp->soal_subtest;
+			// $record[] = $soal_subtests;
 			$query_jawaban = $this->cbt_jawaban_model->count_by_kolom('jawaban_soal_id', $temp->soal_id)->row();
 			
 

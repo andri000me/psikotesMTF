@@ -97,9 +97,11 @@ class Cbt_jawaban_model extends CI_Model{
     }
 	
 	function get_datatable($start, $rows, $kolom, $isi, $soal){
-		$this->db->where('('.$kolom.' LIKE "%'.$isi.'%" AND jawaban_soal_id="'.$soal.'")')
+        $this->db->where('('.$kolom.' LIKE "%'.$isi.'%" AND jawaban_soal_id="'.$soal.'")')
+                // ->join('cbt_soal', 'cbt_jawaban.jawaban_soal_id = cbt_soal.soal_id')
                  ->from($this->table)
-				 ->order_by('jawaban_id', 'ASC')
+                 ->order_by('jawaban_id', 'ASC')
+                //  ->group_by('soal_subtest', 'ASC')
                  ->limit($rows, $start);
         return $this->db->get();
 	}

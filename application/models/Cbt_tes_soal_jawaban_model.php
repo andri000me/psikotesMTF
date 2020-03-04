@@ -15,7 +15,7 @@ class Cbt_tes_soal_jawaban_model extends CI_Model{
     }
     
     function delete($kolom, $isi){
-        $this->db->where($kolom, $isi)
+        $this->db->where($kolom, $isi) 
                  ->delete($this->table);
     }
     

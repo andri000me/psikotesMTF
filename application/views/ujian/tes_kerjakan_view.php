@@ -305,7 +305,10 @@
 
     function jawab(){
         $('#form-kerjakan').submit();
+        
     }
+
+
 
     function hentikan_tes(){
         $("#modal-proses").modal('show');
@@ -338,6 +341,7 @@
     }
 
     $(function () {
+    
         var sisa_detik = <?php if(!empty($detik_sisa)){ echo $detik_sisa; } ?>;
         setInterval(function() {
             var sisa_menit = Math.round(sisa_detik/60);
@@ -436,4 +440,6 @@
             
         });
     });
+
+    
 </script>

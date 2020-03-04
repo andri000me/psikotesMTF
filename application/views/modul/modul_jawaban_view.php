@@ -86,7 +86,7 @@
                                                     <option value="Z">Z</option>
                                                     ';
                                                 }
-                                                else if( $soal_tipe == 1 ) {
+                                                else if( $soal_tipe == 1 || $soal_tipe == 7 ) {
                                                     Echo
                                                     '
                                                     <option value="0">Salah</option>

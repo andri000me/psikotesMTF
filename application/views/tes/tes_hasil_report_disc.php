@@ -108,9 +108,9 @@ $sql = "
 <section class="invoice">
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-<div style="margin: 10px; width:100%; text-align: left; margin-top: 10px;"><H2>Diagram DISC</H2></div>
+<div style="margin: 10px; width:100%; text-align: left; margin-top: 10px; margin-left: 20px; margin-right: 20px;"><H2>Diagram DISC</H2></div>
 <table class="tableWorkDirectionTop">
-        <tr class="tableWorkDirectionTrTop" style="font-size: 20px;">
+        <tr class="tableWorkDirectionTrTop" style="font-size: 20px; margin-left: 20px; margin-right: 20px;">
             <td rowspan="3" class="tableWorkDirectionTdTop"  style="width: 50pt;">
                 &nbsp;
             </td>
@@ -138,12 +138,12 @@ $sql = "
             <td rowspan="3" class="tableWorkDirectionTdTop tableWorkDirectionWidth">
                 &nbsp; &nbsp; &nbsp;
             </td>
-            <td class="tableWorkDirectionTdTop" style="border-bottom: 1px solid white; color:white; -webkit-print-color-adjust: exact;">
-                <sub>Must Equal</sub>
+            <td class="tableWorkDirectionTdTop" style="border-bottom: 1px solid white !important; color:white !important; -webkit-print-color-adjust: exact;">
+                Must Equal
             </td>
         </tr>
         <tr class="tableWorkDirectionTr">
-            <td style="font-size: 20px;  color:white; -webkit-print-color-adjust: exact;" rowspan="2" class="tableWorkDirectionTdTop">
+            <td style="font-size: 20px;  color:white !important; -webkit-print-color-adjust: exact;" rowspan="2" class="tableWorkDirectionTdTop">
                 24
             </td>
         </tr>
@@ -253,7 +253,7 @@ $sql = "
                 <td rowspan="2" class="tableWorkDirectionTd tableWorkDirectionWidth">
                     &nbsp; <?php echo $CT ?> &nbsp;
                 </td>
-                <td rowspan="2"class="tableWorkDirectionTd tableWorkDirectionWidth" style="color: black; background-color: black;  width: 50pt; -webkit-print-color-adjust: exact;">
+                <td rowspan="2"class="tableWorkDirectionTd tableWorkDirectionWidth" style="color: black !important; background-color: black !important;  width: 50pt; -webkit-print-color-adjust: exact;">
                     <!-- sadsadas -->iiiiiiiiiiiiii
                 </td>
                 <!-- <td rowspan="2" class="tableWorkDirectionTd tableWorkDirectionWidth">
@@ -269,7 +269,7 @@ $sql = "
             </tr> -->
     </table>
     
-    <table style="width: -webkit-fill-available; margin: 10px; text-align: center;">
+    <table style="width: -webkit-fill-available; margin: 10px; text-align: center; margin-left: 20px; margin-right: 20px;">
             <tr class="tableWorkDirectionTr" style="font-size: 20px;">
                 <td rowspan="2"  style="width: 50pt;" class="tableWorkDirectionTdTop" >
                     4
@@ -1154,15 +1154,6 @@ $sql = "
 </section>
 </html>
 
-<?php
-
-// $filename ="excelreport.xls";
-// $contents = "testdata1 \t testdata2 \t testdata3 \t \n";
-// header('Content-type: application/ms-excel');
-// header('Content-Disposition: attachment; filename='.$filename);
-// echo $contents;
- ?>
-
 <script>
     function myFunction() {
         window.print();
@@ -1180,6 +1171,8 @@ $sql = "
         border-collapse: collapse;
         width: -webkit-fill-available; 
         margin: 10px; border: 1px solid black;
+        margin-left: 20px; 
+        margin-right: 20px;
     }
 
     .tableWorkDirectionTop{
@@ -1223,8 +1216,8 @@ $sql = "
     }
 
     .tableDISC{
-        background-color: black; 
-        color: white; 
+        background-color: black !important; 
+        color: white !important; 
         width:10%; 
         Text-align: center;
         height: 25pt;

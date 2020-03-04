@@ -3,7 +3,6 @@ $filename ="excelreport.xls";
 $contents = "testdata1 \t testdata2 \t testdata3 \t \n";
 header('Content-type: application/ms-excel');
 header('Content-Disposition: attachment; filename='.$filename);
-echo $contents;
 $mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());

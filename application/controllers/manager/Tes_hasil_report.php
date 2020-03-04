@@ -37,6 +37,13 @@ class Tes_hasil_report extends Member_Controller {
 		}else if($topik_id == 9){
 			$this->template->display_admin($this->kelompok.'/tes_hasil_report_disc', 'Hasil Tes Detail', $data);
 		}
+		else if($topik_id == 12){
+			$this->template->display_admin($this->kelompok.'/tes_hasil_report_mbti', 'Hasil Tes Detail', $data);
+		}
+		else if($topik_id == 8){
+			$this->template->display_admin($this->kelompok.'/tes_hasil_report_tiki', 'Hasil Tes Detail', $data);
+		}
+
 
         // if(!empty($tesuser_id)){
         // 	$query_testuser = $this->cbt_tes_user_model->get_by_kolom_limit('tesuser_id', $tesuser_id, 1);

@@ -73,8 +73,10 @@ class Cbt_soal_model extends CI_Model{
 	function get_datatable($start, $rows, $kolom, $isi, $topik){
 		$this->db->where('('.$kolom.' LIKE "%'.$isi.'%" AND soal_topik_id="'.$topik.'")')
                  ->from($this->table)
-				 ->order_by('soal_nomor', 'ASC')
+                 ->order_by('soal_subtest ASC, soal_nomor ASC')
+                //  ->order_by('soal_id', 'asc')
                  ->limit($rows, $start);
+
         return $this->db->get();
 	}
     
@@ -82,6 +84,7 @@ class Cbt_soal_model extends CI_Model{
 		$this->db->select('COUNT(*) AS hasil')
                  ->where('('.$kolom.' LIKE "%'.$isi.'%" AND soal_topik_id="'.$topik.'")')
                  ->from($this->table);
+
         return $this->db->get();
 	}
 }

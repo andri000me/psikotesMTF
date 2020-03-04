@@ -54,24 +54,15 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Subtest</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control input-sm" id="tambah-subtest" name="tambah-subtest">
+                                    <select class="form-control input-sm" id="tambah-subtes" name="tambah-subtes">
                                     <?php
                                     
-                                        for ($i = 1;$i <= 1;$i++)
+                                        for ($i = 1;$i <= 4;$i++)
                                         {
-                                            echo "<option>$i</option>";
+                                            echo '<option value='.$i.'>'.$i.'</option>';
                                         }
                                     
-                                    ?>
-                                    <?php 
-                                    /*if(!empty($dataSubtest)){ echo $dataSubtest; } */
-                                    ?>
-
-                                        <!-- <option value="1">Pilihan Ganda</option>
-                                        <option value="2">Esai</option>
-                                        <option value="3">Jawaban Singkat</option>
-                                        <option value="4">DISC</option> -->
-                                    
+                                    ?>                                    
                                     </select>
                                 </div>
                             </div>
@@ -85,7 +76,9 @@
                                         <option value="4">PAPI</option>
                                         <option value="5">MBTI</option>
                                         <option value="6">Pilihan Ganda</option>
-                                        <option value="7">Esai</option>
+                                        <option value="7">Jawaban Ganda</option>
+                                        <option value="8">Esai</option>
+                                        <option value="9">Antonim / Sinonim</option>
                                     </select>
                                 </div>
                                 <!-- <label class="col-sm-2 control-label">Tingkat Kesulitan</label> -->
@@ -179,6 +172,7 @@
                                     <th>No.</th>
                                     <th>Soal</th>
                                     <th>Jawaban</th>
+                                    <!-- <th>Subtes</th> -->
                                     <!-- <th style="text-align: center; padding-left: 0px; padding-right: 0px;">Action</th> -->
                                     <th>Action</th>
                                 </tr>
@@ -187,6 +181,7 @@
                                 <tr>
                                     <td> </td>
                                     <td> </td>
+                                    <!-- <td> </td> -->
                                     <td> </td>
                                     <td> </td>
                                 </tr>

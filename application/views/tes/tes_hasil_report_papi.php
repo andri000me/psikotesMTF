@@ -37,7 +37,6 @@ $sql = "
                 cbt_tes.tes_id = ".$tesuser_tes_id."
         ORDER BY
                 cbt_jawaban.jawaban_benar";
-
     $A = 0;
     $B = 0;
     $C = 0;
@@ -102,14 +101,14 @@ $sql = "
             }else if($row['jawaban'] == 'Z'){
                 $Z = $Z+1;
             }
-
-
+            $name = $row['name'];
+            $tanggal_tes = $row['tanggal_tes'];
+            $user_ids = $user_id;
         }
+
     }
 
-    $name = $row['name'];
-    $tanggal_tes = $row['tanggal_tes'];
-    $user_ids = $user_id;
+
 ?>
 <html>
 <head>
@@ -117,11 +116,9 @@ $sql = "
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <section class="invoice">
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-        <div style="margin: 10px; width:100%; text-align: left; margin-top: 10px;"><H2><b>Diagram PAPI</b></H2></div>
-
-
-        <table  style="width: -webkit-fill-available; margin: 10px; width:100%;">
+<body>
+        <div style="margin: 10px; width:100%; text-align: left; margin-top: 10px; margin-left: 20px; margin-right: 20px"><H3><b>Diagram PAPI</b></H3></div>
+        <table  style="width: -webkit-fill-available; margin: 10px; width:100%; font-size:12px; margin-left: 20px; margin-right: 20px">
             <tr>
                 <td style="width: 10%;">No Test</td>
                 <td style="width: 1%;">:</td>
@@ -135,11 +132,9 @@ $sql = "
             <tr>
                 <td style="width: 10%;">Tanggal</td>
                 <td style="width: 1%;">:</td>
-                <td style="width: 88%;"><?php   $date=date_create($tanggal_tes);
-                                                echo date_format($date,"d F Y");?></td>
+                <td style="width: 88%;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
             </tr>
         </table>
-        <div>&nbsp;</div>
         <table class="tableWorkDirection">
             <!-- WORK DIRECTION	-->
             <tr class="tableWorkDirectionTr">
@@ -164,9 +159,9 @@ $sql = "
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($N == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center; text-align: center;"><?php  if($N == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($N == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact !important; text-align: center;"><?php  if($N == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center; text-align: center;"><?php  if($N == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($N == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($N == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -180,9 +175,9 @@ $sql = "
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($G == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -196,10 +191,10 @@ $sql = "
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($A == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($A == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($A == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>&nbsp;</td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($A == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($A == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
             </tr>
             <tr class="tableWorkDirectionTr">
@@ -231,9 +226,9 @@ $sql = "
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($L == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($L == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($L == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($L == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($L == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 </tr>
                 <tr class="tableWorkDirectionTr">
@@ -246,10 +241,10 @@ $sql = "
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($P == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($P == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($P == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($P == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 </tr>
                 <tr class="tableWorkDirectionTr">
                     <td class="tableWorkDirectionTd">&nbsp;&nbsp;&nbsp;&nbsp;Mudah dalam membuat keputusan</td>
@@ -260,9 +255,9 @@ $sql = "
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($I == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($I == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($I == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                    <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($I == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($I == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($I == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                 </tr>
@@ -294,9 +289,9 @@ $sql = "
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($T == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($T == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($T == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($T == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($T == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($T == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                     </tr>
@@ -307,10 +302,10 @@ $sql = "
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                        <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($V == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($V == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -341,8 +336,8 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($X == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($X == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($X == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($X == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($X == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -358,9 +353,9 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($S == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($S == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($S == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($S == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($S == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($S == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         </tr>
@@ -370,10 +365,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php echo $B;?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($B == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($B == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($B == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($B == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($B == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($B == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -384,10 +379,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center">O</td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php echo $O;?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($O == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($O == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($O == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($O == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($O == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -421,10 +416,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($R == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($R == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($R == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($R == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($R == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($R == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         </tr>
@@ -432,7 +427,7 @@ $sql = "
                             <td class="tableWorkDirectionTd">&nbsp;&nbsp;&nbsp;&nbsp;Suka pekerjaan yang terperinci</td>
                             <td class="tableWorkDirectionTd" style="text-align:center">D</td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php echo $D;?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($D == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($D == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($D == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($D == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($D == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -450,10 +445,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($C == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($C == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -486,10 +481,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($Z == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($Z == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($Z == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($Z == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($Z == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                         </tr>
                         <tr class="tableWorkDirectionTr">
@@ -499,10 +494,10 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($E == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($E == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -515,9 +510,9 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($K == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($K == 9){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -548,9 +543,9 @@ $sql = "
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($F == 5){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 6){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 7){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($F == 8){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -560,8 +555,8 @@ $sql = "
                             <td class="tableWorkDirectionTd">&nbsp;&nbsp;&nbsp;&nbsp;Kebut, Taat pada aturan pengarahan</td>
                             <td class="tableWorkDirectionTd" style="text-align:center">W</td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php echo $W;?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($W == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
-                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($W == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($W == 0){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
+                            <td class="tableWorkDirectionTd" style="background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;"><?php  if($W == 1){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($W == 2){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($W == 3){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
                             <td class="tableWorkDirectionTd" style="text-align:center"><?php  if($W == 4){ echo '<b>X</b>';}else{'&nbsp;';} ?></td>
@@ -575,30 +570,22 @@ $sql = "
                             <td colspan="13">&nbsp;</td>
                         </tr>
         </table>
-
-        <table style="margin: 10px;">
+        <table style="margin: 10px; margin-left: 20px; margin-right: 20px">
             <tr>
                 <td colspan="3">Keterangan</td>
             </tr>
-
             <tr>
-                <td style="width: 25px; background-color: #50dfb3; -webkit-print-color-adjust: exact; text-align: center;">&nbsp;</td>
+                <td style="width: 25px; background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;">&nbsp;</td>
                 <td>&nbsp;:&nbsp;</td>
                 <td>Optimal Range</td>
             </tr>
         </table>
-
-</body>
-    <div>&nbsp;</div>
+    </body>
     <div class="row no-print">
         <div class="col-xs-12">
-          <!-- <a href="invoice-print.html" onclick="myFunction()" class="btn btn-default"><i class="fa fa-print"></i> Print</a> -->
-        
           <button type="button" class="btn btn-default" style="margin-right: 5px;" onclick="myFunction()">
             <i class="fa fa-print"></i> Print
           </button>
-
-
           <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"  onclick="detail_tes(<?php echo $user_id; ?>)" >
             <i class="fa fa-download"></i> Generate Excel
           </button>
@@ -608,15 +595,6 @@ $sql = "
 </section>
 </html>
 
-<?php
-
-// $filename ="excelreport.xls";
-// $contents = "testdata1 \t testdata2 \t testdata3 \t \n";
-// header('Content-type: application/ms-excel');
-// header('Content-Disposition: attachment; filename='.$filename);
-// echo $contents;
- ?>
-
 <script>
     function myFunction() {
         window.print();
@@ -625,62 +603,25 @@ $sql = "
         window.open("<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>/index/"+tesuser_id);
         
     }
-
 </script>
 
 <style>
-    /* @page {
-        size: A4;
-        margin: 0;
-    }
-    @media print {
-    html, body {
-        width: 210mm;
-        height: 297mm;
-    } */
-    /* ... the rest of the rules ... */
-    @media print
-        {
-        @page   {
-                    size: landscape;
-                    size: A4;
-                }
-        html,  body {
-                    width: 210mm;
-                    height: 297mm;
-                    -webkit-print-color-adjust: exact;
-        }   
-        .tableWorkDirection{
-            border: 1px solid black;
-            border-collapse: collapse;
-            width: -webkit-fill-available; 
-            margin: 10px; border: 1px solid black;
-            background-color: white;
-            -webkit-print-color-adjust: exact; 
-        }
-
-        .tableWorkDirectionTr{
-            border: 1px solid black;
-            border-collapse: collapse;
-            width: -webkit-fill-available; 
-            margin: 10px; border: 1px solid black;
-            -webkit-print-color-adjust: exact; 
-        }
-
-        .tableWorkDirectionTd{
-            border: 1px solid black;
-            border-collapse: collapse;
-            width: -webkit-fill-available; 
-            margin: 10px; border: 1px solid black;
-            -webkit-print-color-adjust: exact; 
-        }
-    }
+    @page   {
+                size: 7in 9.25in;
+                /* margin: 27mm 16mm 27mm 16mm; */
+                size: landscape; 
+            }
+            
 
     .tableWorkDirection{
+        font-size:12px;
         border: 1px solid black;
         border-collapse: collapse;
         width: -webkit-fill-available; 
-        margin: 10px; border: 1px solid black;
+        margin: 10px;
+        margin-left: 20px;
+        margin-right: 20px; 
+        border: 1px solid black;
         background-color: white;
         -webkit-print-color-adjust: exact; 
     }
@@ -689,7 +630,8 @@ $sql = "
         border: 1px solid black;
         border-collapse: collapse;
         width: -webkit-fill-available; 
-        margin: 10px; border: 1px solid black;
+        margin: 10px; 
+        border: 1px solid black;
         -webkit-print-color-adjust: exact; 
     }
 

@@ -6,7 +6,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content='width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="<?php echo base_url(); ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media='all' />
     <!-- Font Awesome Icons -->
     <link href="<?php echo base_url(); ?>public/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
@@ -220,12 +220,14 @@
 		?>
       </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer" style="text-align: center;">
+      <footer class="main-footer row no-print" style="text-align: center;">
         <div class="pull-right hidden-xs">
           <!---<b>Version</b>---> <?php /*if(!empty($site_version)){ echo $site_version; } */ ?>
         </div>
         <strong>&copy; 2020 Mandiri Tunas Finance</strong>
       </footer>
+
+      
 
     </div><!-- ./wrapper -->
 	
