@@ -96,13 +96,14 @@
         <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">
-              <a href="<?php echo base_url(); ?>" class="navbar-brand"> <b><?php if(!empty($site_name)){ echo $site_name; } ?></b></a>
+              <img src="<?php echo base_url(); ?>public/plugins/adminlte/img/mtfLogo.png" alt="mandiri tunas finance logo" style="width: 7em; margin-top: 0.2em;">
+              <!-- <a href="<?php echo base_url(); ?>" class="navbar-brand"> <b><?php if(!empty($site_name)){ echo $site_name; } ?></b></a> -->
             </div>
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                   <ul class="nav navbar-nav">
-                    <li><a href="#"><span id="timestamp"></span></a></li>
+                    <!-- <li><a href="#"><span id="timestamp"></span></a></li> jam server -->
                   </ul>
                   <!-- User Account Menu -->
                   <li class="dropdown user user-menu">

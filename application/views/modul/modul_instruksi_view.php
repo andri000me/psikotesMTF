@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
-		Mengelola Soal
+		Mengelola Soal ssss
 		<small>Mengelola soal berdasarkan modul dan topik</small>
 	</h1>
 	<ol class="breadcrumb">
@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Pilih Topik</div>
                 </div><!-- /.box-header -->
@@ -41,7 +41,7 @@
     </div>
 	<div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <?php echo form_open_multipart($url.'/tambah','id="form-tambah" class="form-horizontal"'); ?>
                         <div class="box-header with-border">
                             <div class="box-title">Mengelola Instruksi <span id="judul-tambah-soal"></span></div>
@@ -119,7 +119,7 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <?php echo form_open_multipart($url.'/upload_file','id="form-upload-image" class="form-horizontal"'); ?>
-                                        <div class="box">
+                                        <div class="box box-primary">
                                             <div class="box-header with-border">
                                                 <div class="box-title">Upload File</div>
                                             </div><!-- /.box-header -->
@@ -164,7 +164,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="box">
+                                    <div class="box box-primary">
                                         <div class="box-body" style="max-height: 230px;overflow: auto;">
                                             <table id="table-image" class="table table-bordered table-hover">
                                                 <thead>
@@ -307,7 +307,7 @@
         $('#image-isi').val('');
         $('#image-file').val('');
 
-        // refresh_table_image();
+        refresh_table_image();
 
         $("#modal-image").modal("show");
     }

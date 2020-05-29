@@ -14,7 +14,7 @@
 <section class="content">
 	<div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <?php echo form_open($url.'/tambah_tes','id="form-tambah-tes"  class="form-horizontal"'); ?>
                 <div class="box-header with-border">
                     <div class="box-title">Mengelola Tes</div>
@@ -56,7 +56,7 @@
                                 <p class="help-block">Waktu tes dalam satuan menit</p>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label class="col-sm-3 control-label">Group</label>
                             <div class="col-sm-9">
                                 <select class="form-control input-sm" id="tambah-group" name="tambah-group[]" size="8" multiple>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="display: none;">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Poin Dasar</label>
                             <div class="col-sm-9">
@@ -119,7 +119,7 @@
 
     <div class="row hide" id="kolom-soal">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Tambah Soal <div id="judul-tambah-soal"></div></div>
                 </div><!-- /.box-header -->
@@ -157,7 +157,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"  style="display: none;">
                             <label class="col-sm-3 control-label">Tingkat Kesulitan</label>
                             <div class="col-sm-9">
                                 <select class="form-control input-sm" id="soal-kesulitan" name="soal-kesulitan" >

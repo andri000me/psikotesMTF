@@ -68,37 +68,63 @@ class Peserta_import extends Member_Controller {
             $row=2;
             $kosong=0;
             while($kosong<4){
-                $kosong=0;
+                // $kosong=0;
                 $kolom1 = $worksheet->getCellByColumnAndRow(1, $row)->getValue();//username
                 $kolom2 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();//password
                 $kolom3 = ucwords(addslashes($worksheet->getCellByColumnAndRow(3, $row)->getValue()));//nama
                 $kolom4 = $worksheet->getCellByColumnAndRow(4, $row)->getValue();//email
                 $kolom5 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();//group
+                $kolom6 = $worksheet->getCellByColumnAndRow(6, $row)->getValue();//group
+                $kolom7 = $worksheet->getCellByColumnAndRow(7, $row)->getValue();//group
                 
                 if(empty($kolom1)){ $kosong++; }
                 if(empty($kolom2)){ $kosong++; }
                 if(empty($kolom3)){ $kosong++; }
                 if(empty($kolom5)){ $kosong++; }
+                if(empty($kolom6)){ $kosong++; }
+                if(empty($kolom7)){ $kosong++; }
                 
+                $tanggal = (new \DateTime())->format('Y-m-d H:i:s');;
                 if($kosong==0){
-                    if($this->cbt_user_grup_model->count_by_kolom('grup_nama', $kolom5)->row()->hasil>0){
+                    // if($this->cbt_user_grup_model->count_by_kolom('grup_nama', $kolom5)->row()->hasil>0){
                     	if($this->cbt_user_model->count_by_kolom('user_name', $kolom1)->row()->hasil>0){
                     		$pesan=$pesan.$kolom1.' - '.$kolom3.' sudah digunakan <br>';
                         	$jmldataerror++;
                     	}else{
                     		$data['user_name'] = $kolom1;
 				            $data['user_password'] = $kolom2;
-				            $data['user_email'] = $kolom4;
-				            $data['user_firstname'] = $kolom3;
-				            $data['user_grup_id'] = $this->cbt_user_grup_model->get_by_kolom_limit('grup_nama', $kolom5, 1)->row()->grup_id;
+                            $data['user_firstname'] = $kolom3;
+                            $data['user_email'] = $kolom4;
+
+                            if($kolom5 == 'L'){
+                                $data['user_jenis_kelamin'] = '1';
+                            }else if($kolom5 == 'P'){
+                                $data['user_jenis_kelamin'] = '0';
+                            };
+
+                            if($kolom6 == 'SMA'){
+                                $data['user_pendidikan_terakhir'] = 1;
+                            }else if($kolom6 == 'SMK'){
+                                $data['user_pendidikan_terakhir'] = 2;
+                            }else if($kolom6 == 'S1'){
+                                $data['user_pendidikan_terakhir'] = 3;
+                            }else if($kolom6 == 'S2'){
+                                $data['user_pendidikan_terakhir'] = 4;
+                            }else if($kolom6 == 'S3'){
+                                $data['user_pendidikan_terakhir'] = 5;
+                            };
+				            $data['user_pekerjaan'] = $kolom7;
+				            // $data['user_grup_id'] = $this->cbt_user_grup_model->get_by_kolom_limit('grup_nama', $kolom5, 1)->row()->grup_id;
+                            $data['user_grup_id'] = 8;
+                            $data['user_creation_date'] = $tanggal;
 
                     		$this->cbt_user_model->save($data);
                     		$jmldatasukses++;
                     	}
-                    }else{
-                        $pesan=$pesan.'Group "'.$kolom5.'" belum dibuat <br>';
-                        $jmldataerror++;
-                    }
+                    // }else{
+                    //     $pesan=$pesan.'Group "'.$kolom5.'" belum dibuat <br>';
+                    //     $jmldataerror++;
+                    // }
                 }else{
                 	if($kosong<4){
                 		$pesan=$pesan.'Baris ke  '.$row.' GAGAL di simpan : '.$kolom1.' - '.$kolom3.'<br>';

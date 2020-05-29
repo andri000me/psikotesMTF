@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Filter Jawaban</div>
                 </div><!-- /.box-header -->
@@ -49,7 +49,7 @@
     </div>
 	<div class="row">
         <div class="col-xs-12">
-			<div class="box">
+			<div class="box box-primary">
 				<div class="box-header with-border">
 					<div class="box-title">Daftar Jawaban</div>
 				</div><!-- /.box-header -->

@@ -43,7 +43,7 @@ class Tool_exportimport_soal extends Member_Controller {
 
     public function exportsoal(){
     	ini_set("memory_limit","-1");
-		ini_set('max_execution_time', 200);
+		ini_set('max_execution_time', 200000000000000);
 
 		$this->load->library('zip');
 
@@ -179,7 +179,7 @@ class Tool_exportimport_soal extends Member_Controller {
 	                        
 	                // disini proses import data soal dimulai
 	                ini_set("memory_limit","-1");
-					ini_set('max_execution_time', 200);
+					ini_set('max_execution_time', 200000000000000);
 					
 	                $this->load->library('zip');
 

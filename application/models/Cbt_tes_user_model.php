@@ -2,7 +2,9 @@
 
  
 class Cbt_tes_user_model extends CI_Model{
-	public $table = 'cbt_tes_user';
+    public $table = 'cbt_tes_user';
+    public $tableGroup = 'cbt_tes_group';
+    public $tableUser = 'cbt_user';
 	
 	function __construct(){
         parent::__construct();
@@ -156,6 +158,8 @@ class Cbt_tes_user_model extends CI_Model{
         return $this->db->get();
     }
 
+
+
     function get_nilai_by_tes_user($tes_id, $user_id){
         $this->db->select('SUM(`cbt_tes_soal`.`tessoal_nilai`) AS nilai')
                  ->where('(tesuser_tes_id="'.$tes_id.'" AND tesuser_user_id="'.$user_id.'")')
@@ -164,14 +168,41 @@ class Cbt_tes_user_model extends CI_Model{
         return $this->db->get();
     }
 	
-	function get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal){
-        $sql = '';
-        if($tes_id!='semua'){
-            $sql = ' AND tesuser_tes_id="'.$tes_id.'"';
-        }
-        if($grup_id!='semua'){
-            $sql = $sql.' AND user_grup_id="'.$grup_id.'"';
-        }
+	// function get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $kolom, $isi){
+    //     $sql = '';
+    //     if($tes_id!='semua'){
+    //         $sql = ' AND tesuser_tes_id="'.$tes_id.'"';
+    //     }
+    //     if($grup_id!='semua'){
+    //         $sql = $sql.' AND user_grup_id="'.$grup_id.'"';
+    //     }
+    //     $order = '';
+    //     if($urutkan=='tertinggi'){
+    //         $order = 'nilai DESC';
+    //     }else if($urutkan=='terendah'){
+    //         $order = 'nilai ASC';
+    //     }else if($urutkan=='nama'){
+    //         $order = 'user_firstname ASC';
+    //     }else if($urutkan=='waktu'){
+    //         $order = 'tesuser_creation_time DESC';
+    //     }else{
+    //         $order = 'user_firstname ASC';
+    //     }
+
+	// 	$this->db->select('cbt_tes_user.*,cbt_user_grup.grup_nama, cbt_tes.*, cbt_user.*, SUM(`cbt_tes_soal`.`tessoal_nilai`) AS nilai ')
+    //              ->where('('.$kolom.' LIKE "%'.$isi.'%" AND tesuser_creation_time>="'.$tanggal[0].'" AND tesuser_creation_time<="'.$tanggal[1].'" '.$sql.' AND (tesuser_status = 4 OR tesuser_status = 5) )')
+    //              ->from($this->table)
+    //              ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
+    //              ->join('cbt_user_grup', 'cbt_user.user_grup_id = cbt_user_grup.grup_id')
+    //              ->join('cbt_tes', 'cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id')
+    //              ->join('cbt_tes_soal', 'cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user.tesuser_id')
+    //              ->group_by('cbt_tes_user.tesuser_id')
+	// 			 ->order_by($order)
+    //              ->limit($rows, $start);
+    //     return $this->db->get();
+    // }
+    
+    function get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $kolom, $isi){
         $order = '';
         if($urutkan=='tertinggi'){
             $order = 'nilai DESC';
@@ -182,37 +213,37 @@ class Cbt_tes_user_model extends CI_Model{
         }else if($urutkan=='waktu'){
             $order = 'tesuser_creation_time DESC';
         }else{
-            $order = 'tesuser_tes_id ASC';
+            $order = 'user_firstname ASC';
         }
-
-		$this->db->select('cbt_tes_user.*,cbt_user_grup.grup_nama, cbt_tes.*, cbt_user.*, SUM(`cbt_tes_soal`.`tessoal_nilai`) AS nilai ')
-                 ->where('(tesuser_creation_time>="'.$tanggal[0].'" AND tesuser_creation_time<="'.$tanggal[1].'" '.$sql.' )')
-                 ->from($this->table)
-                 ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
-                 ->join('cbt_user_grup', 'cbt_user.user_grup_id = cbt_user_grup.grup_id')
-                 ->join('cbt_tes', 'cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id')
-                 ->join('cbt_tes_soal', 'cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user.tesuser_id')
-                 ->group_by('cbt_tes_user.tesuser_id')
-				 ->order_by($order)
+        $this->db->select('cbt_user.*')
+                 ->where('('.$kolom.' LIKE "%'.$isi.'%")')
+                 ->from($this->tableUser)
+                 ->order_by($order)
                  ->limit($rows, $start);
         return $this->db->get();
-	}
-    
-    function get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal){
-        $sql = '';
-        if($tes_id!='semua'){
-            $sql = ' AND tesuser_tes_id="'.$tes_id.'"';
-        }
-        if($grup_id!='semua'){
-            $sql = $sql.' AND user_grup_id="'.$grup_id.'"';
-        }
+    }
 
-		$this->db->select('COUNT(*) AS hasil')
-                 ->where('(tesuser_creation_time>="'.$tanggal[0].'" AND tesuser_creation_time<="'.$tanggal[1].'" '.$sql.' )')
-                 ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
-                 ->from($this->table);
+    function get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $kolom, $isi){
+        $this->db->select('COUNT(*) AS hasil')
+                 ->where('('.$kolom.' LIKE "%'.$isi.'%")')
+                 ->from($this->tableUser);
         return $this->db->get();
 	}
+    // function get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $kolom, $isi){
+    //     $sql = '';
+    //     if($tes_id!='semua'){
+    //         $sql = ' AND tesuser_tes_id="'.$tes_id.'"';
+    //     }
+    //     if($grup_id!='semua'){
+    //         $sql = $sql.' AND user_grup_id="'.$grup_id.'"';
+    //     }
+
+	// 	$this->db->select('COUNT(*) AS hasil')
+    //              ->where('('.$kolom.' LIKE "%'.$isi.'%" AND tesuser_creation_time>="'.$tanggal[0].'" AND tesuser_creation_time<="'.$tanggal[1].'" '.$sql.'  AND (tesuser_status = 4 OR tesuser_status = 5) )')
+    //              ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
+    //              ->from($this->table);
+    //     return $this->db->get();
+	// }
 
     /**
      * Question Type
@@ -292,4 +323,38 @@ class Cbt_tes_user_model extends CI_Model{
                  ->from($this->table);
         return $this->db->get();
     }
+
+
+
+
+
+
+
+
+
+
+
+    function count_by_user_group_tes($user_id, $tes_id){
+        $this->db->select('COUNT(*) AS hasil')
+                 ->where('tes_group_user_id="'.$user_id.'" AND tes_group_tes_id="'.$tes_id.'"')
+                 ->from($this->tableGroup);
+        return $this->db->get();
+    }
+
+    function count_by_user_group_tes_selesai($user_id, $tes_id){
+        $this->db->select('COUNT(*) AS hasil')
+                 ->where('tes_group_user_id="'.$user_id.'" AND tes_group_tes_id="'.$tes_id.'" AND tesuser_status=4')
+                 ->from($this->tableGroup);
+        return $this->db->get();
+    }
+
+    function get_by_user_group_tes($user_id, $tes_id){
+        $this->db->where('tes_group_user_id="'.$user_id.'" AND tes_group_tes_id="'.$tes_id.'"')
+                 ->from($this->tableGroup)
+                 ->limit(1);
+        return $this->db->get();
+    }
+
+
+
 }

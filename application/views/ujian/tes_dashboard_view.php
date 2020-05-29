@@ -14,27 +14,35 @@
 	<!-- Main content -->
     <section class="content">
         <div class="callout callout-info">
-            <h4>Informasi</h4>
-            <p>Silahkan pilih Tes yang diikuti dari daftar tes yang tersedia dibawah ini. Apabila tes tidak muncul, silahkan menghubungi Operator yang bertugas.</p>
+            <h4>PERHATIAN!</h4>
+            <p>· Saudara akan menghadapi serangkaian tes dengan waktu pengerjaan yang berbeda-beda.<br>
+            · Dengan adanya batas waktu pada masing-masing tes, maka perhatikan waktu pengerjaan dan jangan terpaku pada suatu nomor.<br>
+            · Silakan Saudara mengerjakan tes ini secara individual, serta tidak menggunakan alat bantu seperti kalkulator, gadget, atau alat bantu lainnya.<br>
+            · Pastikan koneksi internet Saudara stabil serta mengerjakan di tempat yang kondusif sehingga hasilnya bisa maksimal.<br>
+            · Saudara hanya diperbolehkan mengerjakan satu kali. Ketika Saudara menekan tombol submit tes maka Saudara dianggap telah menyelesaikan tes.</p>
         </div>
         <div class="box box-success box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">Daftar Tes</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
-                <table id="table-tes" class="table table-bordered table-hover">
+                <table id="table-tes" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th class="all">Tes</th>
+                            <th class="all">Nama Tes</th>
+                            <th class="all">Tanggal Maksimal Pengerjaan</th>
                             <th>Waktu Mulai Tes</th>
                             <th>Waktu Selesai Tes</th>
+                            <th>Durasi Tes</th>
                             <th>Status</th>
                             <th class="all">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td> </td>
+                            <td> </td>
                             <td> </td>
                             <td> </td>
                             <td> </td>
@@ -60,8 +68,10 @@
                   "aoColumns": [
                         {"bSearchable": false, "bSortable": false, "sWidth":"20px"},
                         {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false, "sWidth":"150px"},
-                        {"bSearchable": false, "bSortable": false, "sWidth":"150px"},
+                        {"bSearchable": false, "bSortable": false},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"130px"},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"130px"},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"100px"},
                         {"bSearchable": false, "bSortable": false, "sWidth":"100px"},
                         {"bSearchable": false, "bSortable": false, "sWidth":"30px"}],
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",

@@ -5,8 +5,9 @@
 		<small>Daftar peserta, penambahan peserta, pengubahan data peserta, dan penghapusan data peserta</small>
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="<?php echo site_url() ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Peserta</li>
+        <li><a href="<?php echo site_url() ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Data Peserta</li>
+		<li class="active">Daftar Peserta</li>
 	</ol>
 </section>
 
@@ -14,7 +15,7 @@
 <section class="content">
 	<div class="row">
         <div class="col-md-3">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Pilih Group</div>
                     </div><!-- /.box-header -->
@@ -37,7 +38,7 @@
         </div>
 
         <div class="col-md-9">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     						<div class="box-title">Daftar Peserta</div>
     						<div class="box-tools pull-right">
@@ -47,10 +48,11 @@
     						</div>
                     </div><!-- /.box-header -->
 
+
                     <div class="box-body">
                         <?php echo form_open($url.'/hapus_daftar_siswa','id="form-hapus"'); ?>
                         <input type="hidden" name="check" id="check" value="0">
-                        <table id="table-peserta" class="table table-bordered table-hover">
+                        <table id="table-peserta" class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -110,10 +112,10 @@
     <div class="modal" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <?php echo form_open($url.'/tambah','id="form-tambah"'); ?>
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="border-radius: 7px;">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
-                    <div id="trx-judul">Tambah Peserta</div>
+                    <div id="trx-judul" style="size:20px">Tambah Peserta</div>
                 </div>
                 <div class="modal-body">
                     <div class="row-fluid">
@@ -121,37 +123,72 @@
                             <div id="form-pesan"></div>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" id="tambah-username" name="tambah-username" placeholder="Username Peserta">
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" id="tambah-username" name="tambah-username" placeholder="Username Peserta">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" id="tambah-password" name="tambah-password" >
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="password" class="form-control" id="tambah-password" name="tambah-password" placeholder="Password Peserta">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="text" class="form-control" id="tambah-nama" name="tambah-nama" placeholder="Nama Lengkap Peserta">
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" id="tambah-nama" name="tambah-nama" placeholder="Nama Lengkap Peserta">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
-                                <select name="tambah-kelamin" id="tambah-kelamin" class="form-control input-sm">
-                                    <option value="1">Laki-Laki</option>
-                                    <option value="0">Perempuan</option>
-                                </select>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <select name="tambah-kelamin" id="tambah-kelamin" class="form-control input-sm">
+                                        <option value="1">Laki-Laki</option>
+                                        <option value="0">Perempuan</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" id="tambah-email" name="tambah-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <input type="text" class="form-control" id="tambah-email" name="tambah-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display: none;">
                                 <label>Group</label>
                                 <select name="tambah-group" id="tambah-group" class="form-control input-sm">
                                     <?php if(!empty($select_group)){ echo $select_group; } ?>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Pendidikan Terakhir</label>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                                    <select name="tambah-pendidikan" id="tambah-pendidikan" class="form-control input-sm">
+                                        <option value="1">SMA</option>
+                                        <option value="2">SMK</option>
+                                        <option value="3">S1</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Pekerjaan</label>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                    <input type="text" class="form-control" id="tambah-pekerjaan" name="tambah-pekerjaan" placeholder="Pekerjaan">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,7 +206,7 @@
     <div class="modal" id="modal-edit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <?php echo form_open($url.'/edit','id="form-edit"'); ?>
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="border-radius: 7px;">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
                     <div id="trx-judul">Edit Peserta</div>
@@ -180,39 +217,74 @@
                             <div id="form-pesan-edit"></div>
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="hidden" name="edit-id" id="edit-id">
-                                <input type="hidden" name="edit-pilihan" id="edit-pilihan">
-                                <input type="text" class="form-control" id="edit-username" name="edit-username" readonly >
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" id="edit-username" name="edit-username" placeholder="Username Peserta">
+                                    <input type="hidden" name="edit-id" id="edit-id">
+                                    <input type="hidden" name="edit-pilihan" id="edit-pilihan">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" id="edit-password" name="edit-password" >
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="password" class="form-control" id="edit-password" name="edit-password" placeholder="Password Peserta">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="text" class="form-control" id="edit-nama" name="edit-nama" placeholder="Nama Lengkap Peserta">
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" id="edit-nama" name="edit-nama" placeholder="Nama Lengkap Peserta">
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
-                                <select name="edit-kelamin" id="edit-kelamin" class="form-control input-sm">
-                                    <option value="1">Laki-Laki</option>
-                                    <option value="0">Perempuan</option>
-                                </select>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <select name="edit-kelamin" id="edit-kelamin" class="form-control input-sm">
+                                        <option value="1">Laki-Laki</option>
+                                        <option value="0">Perempuan</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" id="edit-email" name="edit-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <input type="text" class="form-control" id="edit-email" name="edit-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                                </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display: none;">
                                 <label>Group</label>
                                 <select name="edit-group" id="edit-group" class="form-control input-sm">
                                     <?php if(!empty($select_group)){ echo $select_group; } ?>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Pendidikan Terakhir</label>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+                                    <select name="edit-pendidikan" id="edit-pendidikan" class="form-control input-sm">
+                                        <option value="1">SMA</option>
+                                        <option value="2">SMK</option>
+                                        <option value="3">S1</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Pekerjaan</label>
+                                <div class="input-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                    <input type="text" class="form-control" id="edit-pekerjaan" name="edit-pekerjaan" placeholder="Pekerjaan">
+                                </div>
                             </div>
                             <p>NB : Peserta yang dihapus, maka semua hasil tes akan ikut terhapus !</p>
                         </div>
@@ -259,6 +331,8 @@
                 $('#edit-email').val(data.email);
                 $('#edit-kelamin').val(data.user_kelamin);
                 $('#edit-group').val(data.group);
+                $('#edit-pendidikan').val(data.pendidikan_terakhir);
+                $('#edit-pekerjaan').val(data.pekerjaan);
                 
                 $("#modal-edit").modal("show");
             }

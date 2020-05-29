@@ -2,8 +2,8 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
     	<h1>
-    		Konfirmasi Tes
-            <small>Silahkan periksa kembali data tes yang akan diikuti</small>
+    		<!-- ............ -->
+            <small>Silahkan baca instruksi tes berikut dengan seksama</small>
         </h1>
 	</section>
 
@@ -18,8 +18,8 @@
                 <div class="box-body no-padding">
                     <div id="form-pesan"></div>
                     <input type="hidden" name="tes-id" id="tes-id" value="<?php if(!empty($tes_id)){ echo $tes_id; } ?>">
-                    <table class="table table-striped">
-                        <tr style="height: 45px;">
+                    <table class="table table-striped" style="background-color: #ffff;">
+                        <!-- <tr style="height: 45px;">
                             <td style="vertical-align: middle;"></td>
                             <td style="vertical-align: middle;text-align: right;">Nama Peserta : </td>
                             <td style="vertical-align: middle;"><b><?php if(!empty($nama)){ echo $nama; } ?></b></td>
@@ -47,6 +47,10 @@
                             <td></td>
                             <td style="vertical-align: middle;text-align: right;">Poin Maksimal : </td>
                             <td style="vertical-align: middle;"><?php if(!empty($tes_max_score)){ echo $tes_max_score; } ?></td>
+                            <td></td>
+                        </tr> -->
+                        <tr style="height: 100%; text-align:justify; background-color: #ffff;">
+                            <td style="vertical-align: middle;"><?php if(!empty($instruksi)){ echo $instruksi; } ?></td>
                             <td></td>
                         </tr>
                         <?php if(!empty($tes_token)){ echo $tes_token; } ?>

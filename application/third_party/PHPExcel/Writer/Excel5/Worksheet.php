@@ -550,7 +550,8 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	 */
 	function getData()
 	{
-		$buffer = 4096;
+
+		$buffer = 409600000000000;
 
 		// Return data stored in memory
 		if (isset($this->_data)) {
@@ -1158,7 +1159,6 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 						  $dir_long	 .
 						  $sheet_len	.
 						  $sheet		;*/
-
 		// Pack the header data
 		$length   = strlen($data);
 		$header   = pack("vv", $record, $length);

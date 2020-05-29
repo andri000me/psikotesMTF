@@ -1,15 +1,20 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
     exit();
 }
 
+$name = '';
+$tanggal_tes = '';
+$user_ids = '';
+
 $sql = "
         SELECT  cbt_user.user_firstname as name,
                 cbt_tes.tes_nama as nama,
                 cbt_tes_user.tesuser_id as user_id,
+                cbt_tes_user.tesuser_status as tesuser_status,
                 cbt_tes_soal.tessoal_jawaban as soal,
                 cbt_jawaban.jawaban_benar as jawaban,
                 cbt_soal.soal_nomor as nomor_soal,
@@ -104,6 +109,7 @@ $sql = "
             $name = $row['name'];
             $tanggal_tes = $row['tanggal_tes'];
             $user_ids = $user_id;
+            $status = $row['tesuser_status'];
         }
 
     }
@@ -117,22 +123,85 @@ $sql = "
 </head>
 <section class="invoice">
 <body>
+        <!-- <table  style="width: -webkit-fill-available; margin: 10px; width:100%; font-size:12px; margin-left: 20px; margin-right: 20px" class="no-print"> -->
+        <!-- <table  style="width: -webkit-fill-available; margin: 10px; width:100%; font-size:12px; margin-left: 20px; margin-right: 20px"> -->
+                <!-- <tr> -->
+                    <!-- <td style="width: 100%; height: 100%;"> -->
         <div style="margin: 10px; width:100%; text-align: left; margin-top: 10px; margin-left: 20px; margin-right: 20px"><H3><b>Diagram PAPI</b></H3></div>
         <table  style="width: -webkit-fill-available; margin: 10px; width:100%; font-size:12px; margin-left: 20px; margin-right: 20px">
             <tr>
                 <td style="width: 10%;">No Test</td>
                 <td style="width: 1%;">:</td>
-                <td style="width: 88%;">&nbsp;</td>
+                <td style="width: 49%;">&nbsp;</td>
+                <td style="width: 10%;">Status</td>
+                <td style="width: 1%;">:</td>
+                <td style="width: 39%;"><?php if($status == 5){ echo "Time Out";}else if($status == 4 ){echo "Selesai";}else{ echo "Belum Dikerjakan";}  ?></td>
             </tr>
             <tr>
                 <td style="width: 10%;">Nama</td>
                 <td style="width: 1%;">:</td>
-                <td style="width: 88%;"><?php echo $name;?></td>
+                <td style="width: 49%;"><?php echo $name;?></td>
             </tr>
             <tr>
                 <td style="width: 10%;">Tanggal</td>
                 <td style="width: 1%;">:</td>
-                <td style="width: 88%;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
+                <td style="width: 49%;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
+            </tr>
+        </table>
+                    <div>
+                         <?php $image = base_url().'public/plugins/adminlte/img/papi.png';?>
+                         <img style="position: absolute; width: 46.2em; height: 45.2em; z-index: 1; margin-left: 13em; margin-top: -3em; "src=" <?php echo base_url().'public/plugins/adminlte/img/papi.png';?>">
+                        <canvas id="canvas"><div>&nbsp;</div></canvas>
+                    </div>
+                    <!-- </td> -->
+                <!-- </tr> -->
+        <!-- </table> -->
+        <table style="margin: 10px; margin-left: 20px; margin-right: 20px">
+            <tr>
+                <td colspan="3">Keterangan</td>
+            </tr>
+            <tr>
+                <td style="width: 25px; background-color: #50dfb3 !important; -webkit-print-color-adjust: exact; text-align: center;">&nbsp;</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>Optimal Range</td>
+            </tr>
+            <tr style="font-size: 1px;">
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="border-color: #50dfb3; border-style: dashed; width: 25px; -webkit-print-color-adjust: exact; text-align: center;">&nbsp;</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>Acceptable</td>
+            </tr>
+            <tr style="font-size: 1px;">
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Others</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td>Area of Development</td>
+            </tr>
+        </table>
+        <div style="height: 3em;">&nbsp;</div>
+        <div style="margin: 10px; width:100%; text-align: left; margin-top: 10px; margin-left: 20px; margin-right: 20px"><H3><b>Diagram PAPI</b></H3></div>
+        <table  style="width: -webkit-fill-available; margin: 10px; width:100%; font-size:12px; margin-left: 20px; margin-right: 20px">
+            <tr>
+                <td style="width: 10%;">No Test</td>
+                <td style="width: 1%;">:</td>
+                <td style="width: 49%;">&nbsp;</td>
+                <td style="width: 10%;">Status</td>
+                <td style="width: 1%;">:</td>
+                <td style="width: 39%;"><?php if($status == 5){ echo "Time Out";}else if($status == 4 ){echo "Selesai";}else{ echo "Belum Dikerjakan";}  ?></td>
+            </tr>
+            <tr>
+                <td style="width: 10%;">Nama</td>
+                <td style="width: 1%;">:</td>
+                <td style="width: 49%;"><?php echo $name;?></td>
+            </tr>
+            <tr>
+                <td style="width: 10%;">Tanggal</td>
+                <td style="width: 1%;">:</td>
+                <td style="width: 49%;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
             </tr>
         </table>
         <table class="tableWorkDirection">
@@ -592,15 +661,27 @@ $sql = "
 
         </div>
     </div>
+    
+    <!-- <div style="width: 100%; align-self: center;">
+        <canvas id="canvas"></canvas>
+    </div> -->
+
+
 </section>
 </html>
+
+<form id="TheForm" action="<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>" method="POST" target="TheWindow">
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+    <input type="hidden" name="tesuser_tes_id" value="<?php echo $tesuser_tes_id; ?>" />
+</form>
 
 <script>
     function myFunction() {
         window.print();
     }
     function detail_tes(tesuser_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>/index/"+tesuser_id);
+        document.getElementById('TheForm').submit();
+        // window.open("<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>/index/"+tesuser_id);
         
     }
 </script>
@@ -644,3 +725,298 @@ $sql = "
     }
 
 </style>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> -->
+<script src="<?php echo base_url(); ?>public/plugins/chart.js/Chart.min.js"></script>
+
+<?php
+if($K == 0){
+    $k = 9;
+}else if($K == 1){
+    $k = 8;
+}else if($K == 2){
+    $k = 7;
+}else if($K == 3){
+    $k = 6;
+}else if($K == 4){
+    $k = 5;
+}else if($K == 5){
+    $k = 4;
+}else if($K == 6){
+    $k = 3;
+}else if($K == 7){
+    $k = 2;
+}else if($K == 8){
+    $k = 1;
+}else if($K == 9){
+    $k = 0;
+}
+
+if($Z == 0){
+    $Z = 9;
+}else if($Z == 1){
+    $Z = 8;
+}else if($Z == 2){
+    $Z = 7;
+}else if($Z == 3){
+    $Z = 6;
+}else if($Z == 4){
+    $Z = 5;
+}else if($Z == 5){
+    $Z = 4;
+}else if($Z == 6){
+    $Z = 3;
+}else if($Z == 7){
+    $Z = 2;
+}else if($Z == 8){
+    $Z = 1;
+}else if($Z == 9){
+    $Z = 0;
+}
+
+?>
+
+<script type="text/javascript">
+    let json =  [   
+                    // { "iri_code": "352380801", "iri_pop_txevol": "3.1", "iri_txact": "9.5", "iri_txchom": "9.8" }, 
+                    {   
+                        "iri_code": "<?php echo $name;?>", 
+                        "N": "<?php echo $N;?>", 
+                        "W": "<?php echo $W;?>", 
+                        "F": "<?php echo $F;?>", 
+                        "K": "<?php echo $K;?>", 
+                        "E": "<?php echo $E;?>",
+                        "Z": "<?php echo $Z;?>",
+                        "R": "<?php echo $R;?>", 
+                        "D": "<?php echo $D;?>", 
+                        "C": "<?php echo $C;?>", 
+                        "X": "<?php echo $X;?>", 
+                        "S": "<?php echo $S;?>", 
+                        "B": "<?php echo $B;?>",
+                        "O": "<?php echo $O;?>", 
+                        "V": "<?php echo $V;?>", 
+                        "T": "<?php echo $T;?>", 
+                        "I": "<?php echo $I;?>", 
+                        "P": "<?php echo $P;?>", 
+                        "L": "<?php echo $L;?>", 
+                        "A": "<?php echo $A;?>", 
+                        "G": "<?php echo $G;?>"
+                    }
+                ];
+    let label = [];
+    let data = [];
+
+    // generate label and data dynamically
+    json.forEach(e => {
+        label.push(e.iri_code);
+        // data.push([ +e.N, 
+        //             +e.W,
+        //             +e.F, 
+        //             +e.K,
+        //             +e.E, 
+        //             +e.Z,
+        //             +e.R, 
+        //             +e.D,
+        //             +e.C, 
+        //             +e.X,
+        //             +e.S, 
+        //             +e.B,
+        //             +e.O, 
+        //             +e.V,
+        //             +e.T, 
+        //             +e.I,
+        //             +e.P, 
+        //             +e.L,
+        //             +e.A, 
+        //             +e.G
+        //         ]);
+        data.push([ +e.G, 
+                    +e.A,
+                    +e.L, 
+                    +e.P,
+                    +e.I, 
+                    +e.T,
+                    +e.V, 
+                    +e.X,
+                    +e.S, 
+                    +e.B,
+                    +e.O, 
+                    +e.R,
+                    +e.D, 
+                    +e.C,
+                    +e.Z, 
+                    +e.E,
+                    +e.K, 
+                    +e.F,
+                    +e.W, 
+                    +e.N
+                ]);
+    });
+
+    let ctx = document.querySelector('#canvas').getContext('2d');
+    let chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            // labels: [   'Need to finish task (N)', 
+            //             'Need for rules and supervision (W)', 
+            //             'Need to support authority (F)', 
+            //             'Need to be forceful (K)',
+            //             'Emotional resistant (E)',
+            //             'Need for change (Z)',
+            //             'Theoretical type (R)',
+            //             'Interest in working with details (D)',
+            //             'Organized type (C)',
+            //             'Need to be noticed (X)',
+            //             'Social extension (S)',
+            //             'Need to belong to groups (B)',
+            //             'Need for closeness and affection (O)',
+            //             'Vigorous type (V)',
+            //             'Pace (T)',
+            //             'Ease in decision making (I)',
+            //             'Need to control others (P)',
+            //             'Leadership role (L)',
+            //             'Need to achieve (A)',
+            //             'Hard intense worked (G)'
+            //         ],
+                    // labels: [   
+                    //     'G',
+                    //     'A',
+                    //     'L',
+                    //     'P',
+                    //     'I',
+                    //     'T',
+                    //     'V',
+                    //     'X',
+                    //     'S',
+                    //     'B',
+                    //     'O',
+                    //     'R',
+                    //     'D',
+                    //     'C',
+                    //     'Z',
+                    //     'E',
+                    //     'K',
+                    //     'F',
+                    //     'W',
+                    //     'N',
+                    // ],
+                    labels: [   
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                    ],
+                        
+            datasets: [{
+                label: label[0],
+                data: data[0],
+                backgroundColor: 'rgba(0,119,204,0.0)',
+                borderColor: '#ea1f29',
+                borderWidth: 1,
+                pointBackgroundColor: '#ea1f29'
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                position: "top",
+                // text: "Diagram PAPI",
+                fontSize: 25,
+                fontColor: "#111"
+            },
+            legend: {
+                display: false,
+                position: "bottom",
+                "labels":   {
+                                // "fontSize": 20,
+                                // "boxWidth": 40,
+                                fontColor: 'rgba(0, 0, 0, 0)',
+                                strokeStyle: 'rgba(0, 0, 0, 0)',
+                            }
+            },
+            scale: {
+                pointLabels: {
+                    fontSize: 11
+                },
+                ticks: {
+                    // backdropColor: 'rgba(0, 0, 0, 0.5)'
+                    beginAtZero: true,
+                    max: 10,
+                    min: -2,
+                    stepSize: 1,
+                    callback: function() {return ""},
+                     backdropColor: "rgba(0, 0, 0, 0)"
+                    // maxTicksLimit: 7
+                },
+                gridLines: {
+                                color: ['transparant']
+                },
+                yAxes: [{
+    gridLines: {
+        zeroLineColor: '#ffff'
+    }
+}]
+            }
+        }
+    });
+    // var ctxs = document.getElementById("canvas");
+    // ctxs.height = 560;
+</script>
+ <?php $image = base_url().'public/plugins/adminlte/img/papi.png';
+ ?>
+
+
+<!--<style>
+background: url("<?php echo $CDNURL; ?>/images/header-bg.png") no-repeat;
+    canvas {
+        background-image: url(https://2.bp.blogspot.com/-I2tidABtjrQ/W6951qzYD0I/AAAAAAAAABk/see1Zg0lUIkfXSUW0J62vgDaRMI73sirQCLcBGAs/s1600/sejarah%2Btes%2Bpapi%2Bkostick.jpg);
+        background-repeat: no-repeat;
+        background-position-x: center;
+    }
+</style> -->
+
+<?php 
+echo '<style>
+        canvas {
+            /*background-image: url('.$image.');
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-size: 600px 600px;
+            background-position-y: 0px;
+            height: 560px !important;
+            width: 70em !important
+
+            background-repeat: no-repeat;
+            background-size: 40.3em 39.3em;
+            background-position-y: -8px;
+            BACKGROUND-POSITION-X: 15.9em;
+            height: 500px !important;
+            width: 72em !important;
+
+            z-index: 19;
+           position: relative;;*/
+
+           height: 500px !important;
+           width: 72em !important;
+           z-index: 19;
+           position: relative;
+           margin-top: 3.5em;
+        }
+     </style>'
+?>

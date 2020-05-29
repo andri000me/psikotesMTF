@@ -220,12 +220,12 @@
 		?>
       </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer row no-print" style="text-align: center;">
-        <div class="pull-right hidden-xs">
+      <!-- <footer class="main-footer row no-print" style="text-align: center;">
+        <div class="pull-right hidden-xs"> -->
           <!---<b>Version</b>---> <?php /*if(!empty($site_version)){ echo $site_version; } */ ?>
-        </div>
+        <!-- </div>
         <strong>&copy; 2020 Mandiri Tunas Finance</strong>
-      </footer>
+      </footer> -->
 
       
 

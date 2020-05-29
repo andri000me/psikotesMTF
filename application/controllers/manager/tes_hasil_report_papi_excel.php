@@ -4,11 +4,14 @@ $contents = "testdata1 \t testdata2 \t testdata3 \t \n";
 header('Content-type: application/ms-excel');
 header('Content-Disposition: attachment; filename='.$filename);
 echo $contents;
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
     exit();
 }
+
+$user_id = $_POST['user_id'];
+$tesuser_tes_id = $_POST['tesuser_tes_id'];
 
 $sql = "
         SELECT  cbt_user.user_firstname as name,
@@ -30,8 +33,8 @@ $sql = "
         AND     cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user. tesuser_id
         AND     cbt_jawaban.jawaban_id = cbt_tes_soal.tessoal_jawaban_id
         AND     cbt_soal.soal_id = cbt_tes_soal.tessoal_soal_id
-        AND     cbt_user.user_id = 7
-        AND     cbt_tes.tes_id = 45
+        AND     cbt_user.user_id = ".$user_id."
+        AND     cbt_tes.tes_id = ".$tesuser_tes_id."
         ORDER BY
                 cbt_jawaban.jawaban_benar";
 

@@ -30,7 +30,7 @@ class Cbt_user_model extends CI_Model{
     }
 	
 	function get_by_kolom($kolom, $isi){
-        $this->db->select('user_id,user_grup_id,user_name,user_password,user_email,user_firstname,user_regdate,user_jenis_kelamin')
+        $this->db->select('user_id,user_grup_id,user_name,user_password,user_email,user_firstname,user_regdate,user_jenis_kelamin,user_pendidikan_terakhir,user_pekerjaan')
                  ->where($kolom, $isi)
                  ->from($this->table);
         return $this->db->get();

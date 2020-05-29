@@ -1,11 +1,28 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Cbt_soal_model extends CI_Model{
-	public $table = 'cbt_soal';
+    public $table = 'cbt_soal';
+    public $tableSubtest = 'cbt_subtest_instruksi';
 	
 	function __construct(){
         parent::__construct();
     }
-	
+    
+    function saveSubtes($data){
+        $this->db->insert($this->tableSubtest, $data);
+
+        return $this->db->insert_id();
+    }
+    
+    function deleteSubtes($kolom, $isi){
+        $this->db->where($kolom, $isi)
+                 ->delete($this->tableSubtest);
+    }
+    
+    function updateSubtes   ($kolom, $isi, $data){
+        $this->db->where($kolom, $isi)
+                 ->update($this->tableSubtest, $data);
+    }
+    
     function save($data){
         $this->db->insert($this->table, $data);
 
@@ -57,7 +74,7 @@ class Cbt_soal_model extends CI_Model{
         if($tipe!=0){
             $tipe_sql = ' AND soal_tipe="'.$tipe.'"';
         }
-        $sql = 'SELECT '.$select.' FROM cbt_soal WHERE soal_topik_id="'.$topik.'" AND soal_difficulty="'.$kesulitan.'" '.$tipe_sql.' ORDER BY soal_id ASC LIMIT '.$limit;
+        $sql = 'SELECT '.$select.' FROM cbt_soal WHERE soal_topik_id="'.$topik.'" AND soal_difficulty="'.$kesulitan.'" '.$tipe_sql.' ORDER BY soal_nomor ASC LIMIT '.$limit;
 
 
         return $this->db->query($sql);
@@ -86,5 +103,30 @@ class Cbt_soal_model extends CI_Model{
                  ->from($this->table);
 
         return $this->db->get();
+    }
+    
+
+    function get_datatable_subtest($start, $rows, $kolom, $isi, $topik){
+		$this->db->where('('.$kolom.' LIKE "%'.$isi.'%" AND instruksi_topik_id="'.$topik.'")')
+                 ->from($this->tableSubtest)
+                 ->order_by('instruksi_subtes ASC')
+                //  ->order_by('soal_id', 'asc')
+                 ->limit($rows, $start);
+
+        return $this->db->get();
 	}
+    
+    function get_datatable_subtest_count($kolom, $isi, $topik){
+		$this->db->select('COUNT(*) AS hasil')
+                 ->where('('.$kolom.' LIKE "%'.$isi.'%" AND instruksi_topik_id="'.$topik.'")')
+                 ->from($this->tableSubtest);
+
+        return $this->db->get();
+    }
+    
+    function get_by_kolom_subtes($kolom, $isi){
+        $this->db->where($kolom, $isi)
+                 ->from($this->tableSubtest);
+        return $this->db->get();
+    }
 }

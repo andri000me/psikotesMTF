@@ -111,9 +111,9 @@ class Tes_tambah extends Member_Controller {
         
         $this->form_validation->set_rules('tambah-nama', 'Nama Tes','required|strip_tags');
         $this->form_validation->set_rules('tambah-deskripsi', 'Deskripsi Tes','required|strip_tags');
-        $this->form_validation->set_rules('tambah-rentang-waktu', 'Rentang Waktu Pengerjaan Tes','required|strip_tags');
+        // $this->form_validation->set_rules('tambah-rentang-waktu', 'Rentang Waktu Pengerjaan Tes','required|strip_tags');
         $this->form_validation->set_rules('tambah-waktu', 'Waktu Pengerjaan Tes','required|integer|strip_tags');
-        $this->form_validation->set_rules('tambah-group[]', 'Grup','required|strip_tags');
+        // $this->form_validation->set_rules('tambah-group[]', 'Grup','required|strip_tags');
         $this->form_validation->set_rules('tambah-poin', 'Poin Dasar','required|numeric|strip_tags');
         $this->form_validation->set_rules('tambah-poin-salah', 'Poin Jawaban Salah','required|numeric|strip_tags');
         $this->form_validation->set_rules('tambah-poin-kosong', 'Poin Jawaban Kosong','required|numeric|strip_tags');
@@ -185,19 +185,20 @@ class Tes_tambah extends Member_Controller {
             	}
 
                 if($is_process==1){
-                    // Menyimpan data group yang mengikuti tes
-                    $groups = $this->input->post('tambah-group', true);
-                    // menghapus data group berdasarkan tes terlebih dahulu
-                    $this->cbt_tesgrup_model->delete('tstgrp_tes_id', $tes_id);
-                    foreach ($groups as $group) {
-                        $data_group['tstgrp_tes_id'] = $tes_id;
-                        $data_group['tstgrp_grup_id'] = $group;
+                    // // Menyimpan data group yang mengikuti tes
+                    // $groups = $this->input->post('tambah-group', true);
+                    // // menghapus data group berdasarkan tes terlebih dahulu
+                    // $this->cbt_tesgrup_model->delete('tstgrp_tes_id', $tes_id);
+                    // foreach ($groups as $group) {
+                    //     $data_group['tstgrp_tes_id'] = $tes_id;
+                    //     $data_group['tstgrp_grup_id'] = $group;
+                    //     $data_group['tesuser_subtes'] = 1;
 
-                        // Jika group tidak kosong
-                        if($group!=0){
-                            $this->cbt_tesgrup_model->save($data_group);
-                        }
-                    }
+                    //     // Jika group tidak kosong
+                    //     if($group!=0){
+                    //         $this->cbt_tesgrup_model->save($data_group);
+                    //     }
+                    // }
 
                     // Mengupdate score maximal
                     $data_tes['tes_max_score'] = $this->hitung_skor($tes_id);

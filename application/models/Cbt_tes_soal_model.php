@@ -35,7 +35,7 @@ class Cbt_tes_soal_model extends CI_Model{
 
     function count_by_tesuser_dijawab($tesuser_id){
         $this->db->select('COUNT(*) AS hasil')
-                 ->where('tessoal_tesuser_id="'.$tesuser_id.'" AND tessoal_change_time!=""')
+                 ->where('tessoal_tesuser_id="'.$tesuser_id.'" AND tessoal_change_time IS NOT NUlL')
                  ->from($this->table);
         return $this->db->get();
     }
@@ -61,6 +61,14 @@ class Cbt_tes_soal_model extends CI_Model{
         return $this->db->get();
     }
 
+    function get_by_testuser_subtes($tesuser_id, $subtestNow){
+        $this->db->where('tessoal_tesuser_id="'.$tesuser_id.'"  AND cbt_tes_soal.tessoal_subtes ="'.$subtestNow.'"')
+                 ->join('cbt_soal', 'cbt_tes_soal.tessoal_soal_id = cbt_soal.soal_id')
+                 ->from($this->table)
+                 ->order_by('tessoal_order', 'ASC');
+        return $this->db->get();
+    }
+
     function get_by_testuser_select($tesuser_id, $topik, $select){
         $this->db->select($select)
                  ->where('tessoal_tesuser_id="'.$tesuser_id.'" AND soal_topik_id="'.$topik.'"')
@@ -80,8 +88,17 @@ class Cbt_tes_soal_model extends CI_Model{
         return $this->db->get();
     }
 
+    function get_by_testuser_limit_subtes($tesuser_id, $limit, $subtes){
+        $this->db->where('tessoal_tesuser_id="'.$tesuser_id.'" AND tessoal_subtes="'.$subtes.'"')
+                 ->join('cbt_soal', 'cbt_tes_soal.tessoal_soal_id = cbt_soal.soal_id')
+                 ->from($this->table)
+                 ->order_by('tessoal_order', 'ASC')
+                 ->limit($limit);
+        return $this->db->get();
+    }
+
     function get_by_tessoal_limit($tessoal_id, $limit){
-        $this->db->select('soal_nomor,tessoal_id,tessoal_tesuser_id,tessoal_user_ip,tessoal_soal_id,tessoal_jawaban_text,tessoal_nilai,tessoal_ragu,tessoal_creation_time,tessoal_display_time,tessoal_change_time,tessoal_reaction_time,tessoal_order,tessoal_num_answers,tessoal_comment,tessoal_audio_play,soal_id,soal_topik_id,soal_detail,soal_tipe,soal_kunci,soal_difficulty,soal_aktif,soal_audio,soal_audio_play,soal_timer,soal_inline_answers,soal_auto_next')
+        $this->db->select('soal_nomor,tessoal_id,tessoal_tesuser_id,tessoal_user_ip,tessoal_soal_id,tessoal_jawaban_text,tessoal_nilai,tessoal_ragu,tessoal_creation_time,tessoal_display_time,tessoal_change_time,tessoal_reaction_time,tessoal_order,tessoal_num_answers,tessoal_comment,tessoal_audio_play,soal_id,soal_topik_id,soal_detail,soal_tipe,soal_kunci,soal_difficulty,soal_aktif,soal_audio,soal_audio_play,soal_timer,soal_inline_answers,soal_auto_next,tessoal_subtes')
                  ->where('tessoal_id="'.$tessoal_id.'"')
                  ->join('cbt_soal', 'cbt_tes_soal.tessoal_soal_id = cbt_soal.soal_id')
                  ->from($this->table)

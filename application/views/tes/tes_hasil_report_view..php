@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Filter Hasil</div>
                 </div><!-- /.box-header -->
@@ -54,11 +54,11 @@
                             <label class="col-sm-3 control-label">Urutkan</label>
                             <div class="col-sm-5">
                                 <select name="pilih-urutkan" id="pilih-urutkan" class="form-control input-sm">
-                                    <option value="tertinggi">Nilai Tertinggi</option>  
-                                    <option value="terendah">Nilai Terendah</option>
-                                    <option value="waktu">Waktu Tes</option>
                                     <option value="nama">Nama User</option>
                                     <option value="tes">Tes</option>
+                                    <!-- <option value="tertinggi">Nilai Tertinggi</option>   -->
+                                    <!-- <option value="terendah">Nilai Terendah</option> -->
+                                    <option value="waktu">Waktu Tes</option>
                                 </select>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
 	<div class="row">
         <?php echo form_open($url.'/edit_tes','id="form-edit"'); ?>
         <div class="col-xs-12">
-			<div class="box">
+			<div class="box box-primary">
 				<div class="box-header with-border">
 					<div class="box-title">Daftar Hasil Tes</div>
                     <div class="box-tools pull-right">
@@ -87,16 +87,16 @@
 
                 <div class="box-body">
                     <input type="hidden" name="edit-pilihan" id="edit-pilihan">
-					<table id="table-hasil" class="table table-bordered table-hover">
+					<table id="table-hasil" class="table table-bordered table-hover table-striped">
 						<thead>
                             <tr>
                                 <th class="all">No.</th>
                                 <th class="all">Nama User</th>
-                                <th>Waktu</th>
-                                <th>Nama Tes</th>
-                                <th>Group</th>
-                                <th>Waktu Mulai</th>
-                                <th>Status</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Tanggal Registrasi</th>
+                                <th>Email</th>
+                                <!-- <th>Group</th> -->
+                                <th>User Name</th>
                                 <th>Hasil</th>
                                 <th class="all"></th>
                             </tr>
@@ -106,11 +106,11 @@
                                 <td> </td>
                                 <td> </td>
                                 <td> </td>
+                                <!-- <td> </td> -->
                                 <td> </td>
                                 <td> </td>
                                 <td> </td>
-                                <td> </td>
-                                <td> </td>
+                                <!-- <td> </td> -->
                                 <td> </td>
                             </tr>
                         </tbody>
@@ -180,8 +180,12 @@
         });
     }
 
-    function detail_tes(tesuser_id,tesuser_tes_id,topik_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report'; ?>/index/"+tesuser_id+"/"+tesuser_tes_id+"/"+topik_id);
+    // function detail_tes(tesuser_id,tesuser_tes_id,topik_id){
+    //     window.open("<?php echo site_url().'/manager/tes_hasil_report'; ?>/index/"+tesuser_id+"/"+tesuser_tes_id+"/"+topik_id);
+    // }
+
+    function detail_tes(tesuser_id){
+        window.open("<?php echo site_url().'/manager/tes_hasil_report'; ?>/index/"+tesuser_id+"/");
     }
 
     function export_excel(){
@@ -270,15 +274,15 @@
                   "iDisplayLength":50,
                   "bProcessing": false,
                   "bServerSide": true, 
-                  "searching": false,
+                  "searching": true,
                   "aoColumns": [
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
     					{"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
+                        // {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
+                        // {"bSearchable": false, "bSortable": false},
     					{"bSearchable": false, "bSortable": false, "sWidth":"150px"},
                         {"bSearchable": false, "bSortable": false, "sWidth":"20px"}],
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",

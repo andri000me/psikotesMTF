@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
@@ -11,10 +11,13 @@ $sql = "
         SELECT  cbt_user.user_firstname as name,
         cbt_tes.tes_nama as nama,
         cbt_tes_user.tesuser_id as user_id,
+        cbt_tes_user.tesuser_status as tesuser_status,
         cbt_soal.soal_detail as soal,
         cbt_jawaban.jawaban_benar as jawaban,
         cbt_soal.soal_nomor as soal_nomor,
-        cbt_tes.tes_begin_time as tanggal_tes
+        cbt_tes.tes_begin_time as tanggal_tes,
+        cbt_user.user_tanggal_lahir as tanggal_lahir,
+        cbt_user.user_jenis_kelamin as jenis_kelamin
         FROM 
         cbt_tes_user,
         cbt_user,
@@ -92,6 +95,232 @@ $sql = "
     $Aggr = 0;
     $Aggc = 0;
     $Aggs = 0;
+    
+    $s1 ='C';
+    $s2 ='C';
+    $s3 ='C';
+    $s4 ='C';
+    $s5 ='C';
+    $s6 ='C';
+    $s7 ='C';
+    $s8 ='C';
+    $s9 ='C';
+    $s10 ='C';
+    $s11 ='C';
+    $s12 ='C';
+    $s13 ='C';
+    $s14 ='C';
+    $s15 ='C';
+    $s16 ='C';
+    $s17 ='C';
+    $s18 ='C';
+    $s19 ='C';
+    $s20 ='C';
+    $s21 ='C';
+    $s22 ='C';
+    $s23 ='C';
+    $s24 ='C';
+    $s25 ='C';
+    $s26 ='C';
+    $s27 ='C';
+    $s28 ='C';
+    $s29 ='C';
+    $s30 ='C';
+    $s31 ='C';
+    $s32 ='C';
+    $s33 ='C';
+    $s34 ='C';
+    $s35 ='C';
+    $s36 ='C';
+    $s37 ='C';
+    $s38 ='C';
+    $s39 ='C';
+    $s40 ='C';
+    $s41 ='C';
+    $s42 ='C';
+    $s43 ='C';
+    $s44 ='C';
+    $s45 ='C';
+    $s46 ='C';
+    $s47 ='C';
+    $s48 ='C';
+    $s49 ='C';
+    $s50 ='C';
+    $s51 ='C';
+    $s52 ='C';
+    $s53 ='C';
+    $s54 ='C';
+    $s55 ='C';
+    $s56 ='C';
+    $s57 ='C';
+    $s58 ='C';
+    $s59 ='C';
+    $s60 ='C';
+    $s61 ='C';
+    $s62 ='C';
+    $s63 ='C';
+    $s64 ='C';
+    $s65 ='C';
+    $s66 ='C';
+    $s67 ='C';
+    $s68 ='C';
+    $s69 ='C';
+    $s70 ='C';
+    $s71 ='C';
+    $s72 ='C';
+    $s73 ='C';
+    $s74 ='C';
+    $s75 ='C';
+    $s76 ='C';
+    $s77 ='C';
+    $s78 ='C';
+    $s79 ='C';
+    $s80 ='C';
+    $s81 ='C';
+    $s82 ='C';
+    $s83 ='C';
+    $s84 ='C';
+    $s85 ='C';
+    $s86 ='C';
+    $s87 ='C';
+    $s88 ='C';
+    $s89 ='C';
+    $s90 ='C';
+    $s91 ='C';
+    $s92 ='C';
+    $s93 ='C';
+    $s94 ='C';
+    $s95 ='C';
+    $s96 ='C';
+    $s97 ='C';
+    $s98 ='C';
+    $s99 ='C';
+    $s100 ='C';
+    $s101 ='C';
+    $s102 ='C';
+    $s103 ='C';
+    $s104 ='C';
+    $s105 ='C';
+    $s106 ='C';
+    $s107 ='C';
+    $s108 ='C';
+    $s109 ='C';
+    $s110 ='C';
+    $s111 ='C';
+    $s112 ='C';
+    $s113 ='C';
+    $s114 ='C';
+    $s115 ='C';
+    $s116 ='C';
+    $s117 ='C';
+    $s118 ='C';
+    $s119 ='C';
+    $s120 ='C';
+    $s121 ='C';
+    $s122 ='C';
+    $s123 ='C';
+    $s124 ='C';
+    $s125 ='C';
+    $s126 ='C';
+    $s127 ='C';
+    $s128 ='C';
+    $s129 ='C';
+    $s130 ='C';
+    $s131 ='C';
+    $s132 ='C';
+    $s133 ='C';
+    $s134 ='C';
+    $s135 ='C';
+    $s136 ='C';
+    $s137 ='C';
+    $s138 ='C';
+    $s139 ='C';
+    $s140 ='C';
+    $s141 ='C';
+    $s142 ='C';
+    $s143 ='C';
+    $s144 ='C';
+    $s145 ='C';
+    $s146 ='C';
+    $s147 ='C';
+    $s148 ='C';
+    $s149 ='C';
+    $s150 ='C';
+    $s151 ='C';
+    $s152 ='C';
+    $s153 ='C';
+    $s154 ='C';
+    $s155 ='C';
+    $s156 ='C';
+    $s157 ='C';
+    $s158 ='C';
+    $s159 ='C';
+    $s160 ='C';
+    $s161 ='C';
+    $s162 ='C';
+    $s163 ='C';
+    $s164 ='C';
+    $s165 ='C';
+    $s166 ='C';
+    $s167 ='C';
+    $s168 ='C';
+    $s169 ='C';
+    $s170 ='C';
+    $s171 ='C';
+    $s172 ='C';
+    $s173 ='C';
+    $s174 ='C';
+    $s175 ='C';
+    $s176 ='C';
+    $s177 ='C';
+    $s178 ='C';
+    $s179 ='C';
+    $s180 ='C';
+    $s181 ='C';
+    $s182 ='C';
+    $s183 ='C';
+    $s184 ='C';
+    $s185 ='C';
+    $s186 ='C';
+    $s187 ='C';
+    $s188 ='C';
+    $s189 ='C';
+    $s190 ='C';
+    $s191 ='C';
+    $s192 ='C';
+    $s193 ='C';
+    $s194 ='C';
+    $s195 ='C';
+    $s196 ='C';
+    $s197 ='C';
+    $s198 ='C';
+    $s199 ='C';
+    $s200 ='C';
+    $s201 ='C';
+    $s202 ='C';
+    $s203 ='C';
+    $s204 ='C';
+    $s205 ='C';
+    $s206 ='C';
+    $s207 ='C';
+    $s208 ='C';
+    $s209 ='C';
+    $s210 ='C';
+    $s211 ='C';
+    $s212 ='C';
+    $s213 ='C';
+    $s214 ='C';
+    $s215 ='C';
+    $s216 ='C';
+    $s217 ='C';
+    $s218 ='C';
+    $s219 ='C';
+    $s220 ='C';
+    $s221 ='C';
+    $s222 ='C';
+    $s223 ='C';
+    $s224 ='C';
+    $s225 ='C';
     
     if($result = mysqli_query($mysqli, $sql)){
         while($row = mysqli_fetch_array($result)){
@@ -331,7 +560,9 @@ $sql = "
                 };
             }else if($row['soal_nomor'] == '38'){
                 $s38 = $row['jawaban'];
-                if($s38 == 'B'){
+                if($s38 == 'A'){
+                    $Ordr = $Ordr + 1;
+                }else if($s38 == 'B'){
                     $Succ = $Succ + 1;
                 };
             }else if($row['soal_nomor'] == '39'){
@@ -371,7 +602,9 @@ $sql = "
                 }
             }else if($row['soal_nomor'] == '44'){
                 $s44 = $row['jawaban'];
-                if($s44 == 'B'){
+                if($s44 == 'A'){
+                    $Exhr = $Exhr + 1;
+                }else if($s44 == 'B'){
                     $Domc = $Domc + 1;
                 }
             }else if($row['soal_nomor'] == '45'){
@@ -1319,7 +1552,7 @@ $sql = "
                 $s183 = $row['jawaban'];
                 if($s183 == 'A'){
                     $Endr = $Endr + 1;
-                }else if($s182 == 'B'){
+                }else if($s183 == 'B'){
                     $Intc = $Intc + 1;
                 };
             }else if($row['soal_nomor'] == '184'){
@@ -1596,6 +1829,11 @@ $sql = "
             $name = $row['name'];
             $tanggal_tes = $row['tanggal_tes'];
             $user_ids = $user_id;
+            $tanggal_lahir = $row['tanggal_lahir'];
+            $from = new DateTime($tanggal_lahir);
+            $to   = new DateTime('today');
+            $jenis_kelamin = $row['jenis_kelamin'];
+            $status = $row['tesuser_status'];
         }
         if($s1 == $s151){
             $b1 = '1';
@@ -1702,19 +1940,529 @@ $sql = "
         $Ends = $Endr + $Endc;
         $Hets = $Hetr + $Hetc;
         $Aggs = $Aggr + $Aggc;
+
+
+        $Achsh = 0;
+        $Defsh = 0;
+        $Ordsh = 0;
+        $Exhsh = 0;
+        $Autsh = 0;
+        $Affsh = 0;
+        $Intsh = 0;
+        $Sucsh = 0;
+        $Domsh = 0;
+        $Abash = 0;
+        $Nursh = 0;
+        $Chgsh = 0;
+        $Endsh = 0;
+        $Hetsh = 0;
+        $Aggsh = 0;
+
+        // 0 cewe
+        // 1 laki-laki
+
+        if($jenis_kelamin == 0){
+
+            if($Achs >= 25.06){
+                $Achsh = '+++';
+            }else if($Achs >= 21.43 && $Achs <= 25.05){
+                $Achsh = '++';
+            }else if($Achs >= 17.80 && $Achs <= 21.42){
+                $Achsh = '+';
+            }else if($Achs >= 14.17 && $Achs <= 17.79){
+                $Achsh = '0';
+            }else if($Achs >= 10.54 && $Achs <= 14.16){
+                $Achsh = '-';
+            }else if($Achs >= 6.91 && $Achs <= 10.53){
+                $Achsh = '--';
+            }else if($Achs >= 0.00 && $Achs <= 6.9){
+                $Achsh = '---';
+            }
+
+            if($Defs >= 26.37){
+                $Defsh = '+++';
+            }else if($Defs >= 22.17 && $Defs <= 26.36){
+                $Defsh = '++';
+            }else if($Defs >= 17.97 && $Defs <= 22.16){
+                $Defsh = '+';
+            }else if($Defs >= 13.76 && $Defs <= 17.96){
+                $Defsh = '0';
+            }else if($Defs >= 9.56 && $Defs <= 13.75){
+                $Defsh = '-';
+            }else if($Defs >= 5.56 && $Defs <= 9.55){
+                $Defsh = '--';
+            }else if($Defs >= 0.00 && $Defs <= 5.55){
+                $Defsh = '---';
+            }
+
+            if($Ords >= 28.35){
+                $Ordsh = '+++';
+            }else if($Ords >= 24.52 && $Ords <= 28.34){
+                $Ordsh = '++';
+            }else if($Ords >= 20.49 && $Ords <= 24.51){
+                $Ordsh = '+';
+            }else if($Ords >= 16.46 && $Ords <= 20.48){
+                $Ordsh = '0';
+            }else if($Ords >= 12.43 && $Ords <= 16.45){
+                $Ordsh = '-';
+            }else if($Ords >= 8.40 && $Ords <= 12.42){
+                $Ordsh = '--';
+            }else if($Ords >= 0.00 && $Ords <= 8.39){
+                $Ordsh = '---';
+            }
+
+            if($Exhs >= 17.40){
+                $Exhsh = '+++';
+            }else if($Exhs >= 14.00 && $Exhs <= 17.39){
+                $Exhsh = '++';
+            }else if($Exhs >= 10.60 && $Exhs <= 13.99){
+                $Exhsh = '+';
+            }else if($Exhs >= 7.19 && $Exhs <= 10.59){
+                $Exhsh = '0';
+            }else if($Exhs >= 3.79 && $Exhs <= 7.18){
+                $Exhsh = '-';
+            }else if($Exhs >= 0.39 && $Exhs <= 3.78){
+                $Exhsh = '--';
+            }else if($Exhs >= 0.00 && $Exhs <= 0.38){
+                $Exhsh = '---';
+            }
+
+            if($Auts >= 15.46){
+                $Autsh = '+++';
+            }else if($Auts >= 12.50 && $Auts <= 15.45){
+                $Autsh = '++';
+            }else if($Auts >= 9.54 && $Auts <= 12.49){
+                $Autsh = '+';
+            }else if($Auts >= 6.57 && $Auts <= 9.53){
+                $Autsh = '0';
+            }else if($Auts >= 3.61 && $Auts <= 6.56){
+                $Autsh = '-';
+            }else if($Auts >= 0.65 && $Auts <= 3.6){
+                $Autsh = '--';
+            }else if($Auts >= 0.00 && $Auts <= 0.64){
+                $Autsh = '---';
+            }
+
+            if($Affs >= 23.06){
+                $Affsh = '+++';
+            }else if($Affs >= 21.43 && $Affs <= 23.05){
+                $Affsh = '++';
+            }else if($Affs >= 17.00 && $Affs <= 21.42){
+                $Affsh = '+';
+            }else if($Affs >= 14.17 && $Affs <= 17.79){
+                $Affsh = '0';
+            }else if($Affs >= 10.54 && $Affs <= 14.16){
+                $Affsh = '-';
+            }else if($Affs >= 6.91 && $Affs <= 10.53){
+                $Affsh = '--';
+            }else if($Affs >= 0.00 && $Affs <= 6.9){
+                $Affsh = '---';
+            }
+
+            if($Ints >= 25.40){
+                $Intsh = '+++';
+            }else if($Ints >= 21.07 && $Ints <= 25.39){
+                $Intsh = '++';
+            }else if($Ints >= 16.74 && $Ints <= 21.06){
+                $Intsh = '+';
+            }else if($Ints >= 12.41 && $Ints <= 16.73){
+                $Intsh = '0';
+            }else if($Ints >= 8.08 && $Ints <= 12.4){
+                $Intsh = '-';
+            }else if($Ints >= 3.75 && $Ints <= 8.07){
+                $Intsh = '--';
+            }else if($Ints >= 0.00 && $Ints <= 3.74){
+                $Intsh = '---';
+            }
+
+            if($Sucs >= 19.31){
+                $Sucsh = '+++';
+            }else if($Sucs >= 15.45 && $Sucs <= 19.3){
+                $Sucsh = '++';
+            }else if($Sucs >= 11.59 && $Sucs <= 15.44){
+                $Sucsh = '+';
+            }else if($Sucs >= 7.72 && $Sucs <= 11.58){
+                $Sucsh = '0';
+            }else if($Sucs >= 3.86 && $Sucs <= 7.71){
+                $Sucsh = '-';
+            }else if($Sucs >= 0.00 && $Sucs <= 3.85){
+                $Sucsh = '--';
+            }else if($Sucs >= -0.01){
+                $Sucsh = '---';
+            }
+
+            if($Doms >= 24.56){
+                $Domsh = '+++';
+            }else if($Doms >= 20.43 && $Doms <= 24.55){
+                $Domsh = '++';
+            }else if($Doms >= 16.30 && $Doms <= 20.42){
+                $Domsh = '+';
+            }else if($Doms >= 12.17 && $Doms <= 16.29){
+                $Domsh = '0';
+            }else if($Doms >= 8.04 && $Doms <= 12.16){
+                $Domsh = '-';
+            }else if($Doms >= 3.91 && $Doms <= 8.03){
+                $Domsh = '--';
+            }else if($Doms >= 0.00 && $Doms <= 3.9){
+                $Domsh = '---';
+            }
+
+            if($Abas >= 28.27){
+                $Abash = '+++';
+            }else if($Abas >= 24.30 && $Abas <= 28.26){
+                $Abash = '++';
+            }else if($Abas >= 20.33 && $Abas <= 24.29){
+                $Abash = '+';
+            }else if($Abas >= 16.36 && $Abas <= 20.32){
+                $Abash = '0';
+            }else if($Abas >= 12.39 && $Abas <= 16.35){
+                $Abash = '-';
+            }else if($Abas >= 8.42 && $Abas <= 12.38){
+                $Abash = '--';
+            }else if($Abas >= 0.00 && $Abas <= 8.41){
+                $Abash = '---';
+            }
+
+            if($Nurs >= 27.11){
+                $Nursh = '+++';
+            }else if($Nurs >= 23.17 && $Nurs <= 27.1){
+                $Nursh = '++';
+            }else if($Nurs >= 19.23 && $Nurs <= 23.16){
+                $Nursh = '+';
+            }else if($Nurs >= 15.28 && $Nurs <= 19.22){
+                $Nursh = '0';
+            }else if($Nurs >= 11.34 && $Nurs <= 15.27){
+                $Nursh = '-';
+            }else if($Nurs >= 7.40 && $Nurs <= 11.33){
+                $Nursh = '--';
+            }else if($Nurs >= 0.00 && $Nurs <= 7.39){
+                $Nursh = '---';
+            }
+
+            if($Chgs >= 23.81){
+                $Chgsh = '+++';
+            }else if($Chgs >= 19.94 && $Chgs <= 23.8){
+                $Chgsh = '++';
+            }else if($Chgs >= 16.07 && $Chgs <= 19.93){
+                $Chgsh = '+';
+            }else if($Chgs >= 12.20 && $Chgs <= 16.06){
+                $Chgsh = '0';
+            }else if($Chgs >= 8.33 && $Chgs <= 12.19){
+                $Chgsh = '-';
+            }else if($Chgs >= 4.46 && $Chgs <= 8.32){
+                $Chgsh = '--';
+            }else if($Chgs >= 0.00 && $Chgs <= 4.45){
+                $Chgsh = '---';
+            }
+
+            if($Ends >= 29.53){
+                $Endsh = '+++';
+            }else if($Ends >= 25.56 && $Ends <= 29.52){
+                $Endsh = '++';
+            }else if($Ends >= 21.58 && $Ends <= 25.55){
+                $Endsh = '+';
+            }else if($Ends >= 17.59 && $Ends <= 21.57){
+                $Endsh = '0';
+            }else if($Ends >= 13.61 && $Ends <= 17.58){
+                $Endsh = '-';
+            }else if($Ends >= 9.63 && $Ends <= 13.6){
+                $Endsh = '--';
+            }else if($Ends >= 0.00 && $Ends <= 9.62){
+                $Endsh = '---';
+            }
+
+            // masih salah
+            if($Hets >= 16.20){
+                $Hetsh = '+++';
+            }else if($Hets >= 12.22 && $Hets <= 29.52){
+                $Hetsh = '++';
+            }else if($Hets >= 8.24 && $Hets <= 25.55){
+                $Hetsh = '+';
+            }else if($Hets >= 4.25 && $Hets <= 21.57){
+                $Hetsh = '0';
+            }else if($Hets >= 0.27 && $Hets <= 17.58){
+                $Hetsh = '-';
+            }else if($Hets >= -3.71 && $Hets <= 0.26){
+                $Hetsh = '--';
+            }else if($Hets <= -3.72){
+                $Hetsh = '---';
+            }
+            
+            if($Aggs >= 18.04){
+                $Aggsh = '+++';
+            }else if($Aggs >= 14.81 && $Aggs <= 18.03){
+                $Aggsh = '++';
+            }else if($Aggs >= 11.58 && $Aggs <= 14.8){
+                $Aggsh = '+';
+            }else if($Aggs >= 8.35 && $Aggs <= 11.57){
+                $Aggsh = '0';
+            }else if($Aggs >= 5.12 && $Aggs <= 8.34){
+                $Aggsh = '-';
+            }else if($Aggs >= 1.89 && $Aggs <= 5.11){
+                $Aggsh = '--';
+            }else if($Aggs >= 0.00 && $Aggs <= 1.88){
+                $Aggsh = '---';
+            }
+
+
+
+
+        }else if($jenis_kelamin == 1){
+
+            if($Achs >= 24.96){
+                $Achsh = '+++';
+            }else if($Achs >= 21.89 && $Achs <= 24.95){
+                $Achsh = '++';
+            }else if($Achs >= 18.82 && $Achs <= 21.88){
+                $Achsh = '+';
+            }else if($Achs >= 15.75 && $Achs <= 18.81){
+                $Achsh = '0';
+            }else if($Achs >= 12.68 && $Achs <= 15.74){
+                $Achsh = '-';
+            }else if($Achs >= 9.51 && $Achs <= 12.67){
+                $Achsh = '--';
+            }else if($Achs >= 0.00 && $Achs <= 9.5){
+                $Achsh = '---';
+            }
+
+            if($Defs >= 23.45){
+                $Defsh = '+++';
+            }else if($Defs >= 19.97 && $Defs <= 23.44){
+                $Defsh = '++';
+            }else if($Defs >= 16.49 && $Defs <= 19.96){
+                $Defsh = '+';
+            }else if($Defs >= 13.01 && $Defs <= 16.45){
+                $Defsh = '0';
+            }else if($Defs >= 9.53 && $Defs <= 13){
+                $Defsh = '-';
+            }else if($Defs >= 6.05 && $Defs <= 9.52){
+                $Defsh = '--';
+            }else if($Defs >= 0.00 && $Defs <= 6.04){
+                $Defsh = '---';
+            }
+
+            if($Ords >= 28.76){
+                $Ordsh = '+++';
+            }else if($Ords >= 24.88 && $Ords <= 28.75){
+                $Ordsh = '++';
+            }else if($Ords >= 20.99 && $Ords <= 24.87){
+                $Ordsh = '+';
+            }else if($Ords >= 17.10 && $Ords <= 20.98){
+                $Ordsh = '0';
+            }else if($Ords >= 13.21 && $Ords <= 17.09){
+                $Ordsh = '-';
+            }else if($Ords >= 9.32 && $Ords <= 13.2){
+                $Ordsh = '--';
+            }else if($Ords >= 0.00 && $Ords <= 9.31){
+                $Ordsh = '---';
+            }
+
+            if($Exhs >= 19.18){
+                $Exhsh = '+++';
+            }else if($Exhs >= 15.76 && $Exhs <= 19.17){
+                $Exhsh = '++';
+            }else if($Exhs >= 12.34 && $Exhs <= 15.75){
+                $Exhsh = '+';
+            }else if($Exhs >= 8.92 && $Exhs <= 12.33){
+                $Exhsh = '0';
+            }else if($Exhs >= 5.50 && $Exhs <= 8.91){
+                $Exhsh = '-';
+            }else if($Exhs >= 2.08 && $Exhs <= 5.49){
+                $Exhsh = '--';
+            }else if($Exhs >= 0.00 && $Exhs <= 2.07){
+                $Exhsh = '---';
+            }
+
+            if($Auts >= 16.72){
+                $Autsh = '+++';
+            }else if($Auts >= 13.38 && $Auts <= 16.71){
+                $Autsh = '++';
+            }else if($Auts >= 10.04 && $Auts <= 13.37){
+                $Autsh = '+';
+            }else if($Auts >= 6.70 && $Auts <= 10.03){
+                $Autsh = '0';
+            }else if($Auts >= 3.36 && $Auts <= 6.69){
+                $Autsh = '-';
+            }else if($Auts >= 0.02 && $Auts <= 3.35){
+                $Autsh = '--';
+            }else if($Auts >= 0.00 && $Auts <= 0.01){
+                $Autsh = '---';
+            }
+
+            if($Affs >= 21.97){
+                $Affsh = '+++';
+            }else if($Affs >= 18.33 && $Affs <= 21.96){
+                $Affsh = '++';
+            }else if($Affs >= 14.69 && $Affs <= 18.32){
+                $Affsh = '+';
+            }else if($Affs >= 11.05 && $Affs <= 14.68){
+                $Affsh = '0';
+            }else if($Affs >= 7.41 && $Affs <= 11.04){
+                $Affsh = '-';
+            }else if($Affs >= 3.77 && $Affs <= 7.4){
+                $Affsh = '--';
+            }else if($Affs >= 0.00 && $Affs <= 3.76){
+                $Affsh = '---';
+            }
+
+            if($Ints >= 23.66){
+                $Intsh = '+++';
+            }else if($Ints >= 19.81 && $Ints <= 23.65){
+                $Intsh = '++';
+            }else if($Ints >= 15.96 && $Ints <= 19.8){
+                $Intsh = '+';
+            }else if($Ints >= 12.11 && $Ints <= 15.95){
+                $Intsh = '0';
+            }else if($Ints >= 8.26 && $Ints <= 12.1){
+                $Intsh = '-';
+            }else if($Ints >= 4.41 && $Ints <= 8.25){
+                $Intsh = '--';
+            }else if($Ints >= 0.00 && $Ints <= 4.4){
+                $Intsh = '---';
+            }
+
+            if($Sucs >= 25.71){
+                $Sucsh = '+++';
+            }else if($Sucs >= 20.70 && $Sucs <= 25.7){
+                $Sucsh = '++';
+            }else if($Sucs >= 15.96 && $Sucs <= 20.69){
+                $Sucsh = '+';
+            }else if($Sucs >= 10.68 && $Sucs <= 15.68){
+                $Sucsh = '0';
+            }else if($Sucs >= 5.67 && $Sucs <= 10.67){
+                $Sucsh = '-';
+            }else if($Sucs >= 0.66 && $Sucs <= 5.66){
+                $Sucsh = '--';
+            }else if($Sucs >= 0.00 && $Sucs <= 0.65){
+                $Sucsh = '---';
+            }
+
+            if($Doms >= 24.20){
+                $Domsh = '+++';
+            }else if($Doms >= 20.03 && $Doms <= 24.19){
+                $Domsh = '++';
+            }else if($Doms >= 15.86 && $Doms <= 20.02){
+                $Domsh = '+';
+            }else if($Doms >= 11.69 && $Doms <= 15.85){
+                $Domsh = '0';
+            }else if($Doms >= 7.52 && $Doms <= 11.68){
+                $Domsh = '-';
+            }else if($Doms >= 3.35 && $Doms <= 7.51){
+                $Domsh = '--';
+            }else if($Doms >= 0.00 && $Doms <= 3.34){
+                $Domsh = '---';
+            }
+
+            if($Abas >= 27.64){
+                $Abash = '+++';
+            }else if($Abas >= 23.64 && $Abas <= 27.63){
+                $Abash = '++';
+            }else if($Abas >= 19.64 && $Abas <= 23.63){
+                $Abash = '+';
+            }else if($Abas >= 15.64 && $Abas <= 19.63){
+                $Abash = '0';
+            }else if($Abas >= 11.64 && $Abas <= 15.63){
+                $Abash = '-';
+            }else if($Abas >= 7.64 && $Abas <= 11.63){
+                $Abash = '--';
+            }else if($Abas >= 0.00 && $Abas <= 7.63){
+                $Abash = '---';
+            }
+
+            if($Nurs >= 27.83){
+                $Nursh = '+++';
+            }else if($Nurs >= 23.98 && $Nurs <= 27.82){
+                $Nursh = '++';
+            }else if($Nurs >= 20.13 && $Nurs <= 23.97){
+                $Nursh = '+';
+            }else if($Nurs >= 16.28 && $Nurs <= 20.12){
+                $Nursh = '0';
+            }else if($Nurs >= 12.43 && $Nurs <= 16.27){
+                $Nursh = '-';
+            }else if($Nurs >= 8.58 && $Nurs <= 12.42){
+                $Nursh = '--';
+            }else if($Nurs >= 0.00 && $Nurs <= 8.57){
+                $Nursh = '---';
+            }
+
+            if($Chgs >= 21.46){
+                $Chgsh = '+++';
+            }else if($Chgs >= 17.64 && $Chgs <= 21.45){
+                $Chgsh = '++';
+            }else if($Chgs >= 13.82 && $Chgs <= 17.63){
+                $Chgsh = '+';
+            }else if($Chgs >= 10.00 && $Chgs <= 13.81){
+                $Chgsh = '0';
+            }else if($Chgs >= 6.18 && $Chgs <= 9.99){
+                $Chgsh = '-';
+            }else if($Chgs >= 2.36 && $Chgs <= 6.17){
+                $Chgsh = '--';
+            }else if($Chgs >= 0.00 && $Chgs <= 2.35){
+                $Chgsh = '---';
+            }
+
+            if($Ends >= 29.57){
+                $Endsh = '+++';
+            }else if($Ends >= 25.66 && $Ends <= 29.56){
+                $Endsh = '++';
+            }else if($Ends >= 21.75 && $Ends <= 25.65){
+                $Endsh = '+';
+            }else if($Ends >= 17.84 && $Ends <= 21.75){
+                $Endsh = '0';
+            }else if($Ends >= 13.93 && $Ends <= 17.83){
+                $Endsh = '-';
+            }else if($Ends >= 10.02 && $Ends <= 13.92){
+                $Endsh = '--';
+            }else if($Ends >= 0.00 && $Ends <= 10.01){
+                $Endsh = '---';
+            }
+
+            if($Hets >= 18.32){
+                $Hetsh = '+++';
+            }else if($Hets >= 13.69 && $Hets <= 18.31){
+                $Hetsh = '++';
+            }else if($Hets >= 9.06 && $Hets <= 13.68){
+                $Hetsh = '+';
+            }else if($Hets >= 4.43 && $Hets <= 9.05){
+                $Hetsh = '0';
+            }else if($Hets >= 0.20 && $Hets <= 4.42){
+                $Hetsh = '-';
+            }else if($Hets >= -4.81 && $Hets <= 0.19){
+                $Hetsh = '--';
+            }else if($Hets >= -3.72){
+                $Hetsh = '---';
+            }
+            
+            if($Aggs >= 21.34){
+                $Aggsh = '+++';
+            }else if($Aggs >= 17.25 && $Aggs <= 21.33){
+                $Aggsh = '++';
+            }else if($Aggs >= 13.16 && $Aggs <= 17.24){
+                $Aggsh = '+';
+            }else if($Aggs >= 9.07 && $Aggs <= 13.15){
+                $Aggsh = '0';
+            }else if($Aggs >= 4.98 && $Aggs <= 9.06){
+                $Aggsh = '-';
+            }else if($Aggs >= 0.89 && $Aggs <= 4.97){
+                $Aggsh = '--';
+            }else if($Aggs >= 0.00 && $Aggs <= 0.88){
+                $Aggsh = '---';
+            }
+
+        }
     };
 
 
 ?>
 <html>
 <head>
-    <title>MBTI</title>
+    <title>EPPS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <section class="invoice">
     <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-    <div style="margin: 10px; width:100%; text-align: center; margin-top: 10px;"><H1>EPPS</H1></div>
+    <div style="margin: 10px; text-align: center; margin-top: 10px;"><H1>EPPS</H1></div>
     <table style="font-size: 15px; width: -webkit-fill-available; margin: 10px; border-collapse: collapse; margin-left: 20px; margin-right: 20px;">
         <tr>
             <td style="width: 10%;">Nomor</td>
@@ -1722,7 +2470,12 @@ $sql = "
             <td style="width: 37%;">12345</td>
             <td style="width: 10%;">Jenis Kelamin</td>
             <td style="width: 3%;">&nbsp;:</td>
-            <td style="width: 37%;">12345</td>
+            <td style="width: 37%;"><?php   if($jenis_kelamin == 1){
+                                                echo "Laki-Laki";
+                                            }else{
+                                                echo "Perempuan";
+                                            }?>
+            </td>
         </tr>
 
         <tr>
@@ -1731,11 +2484,20 @@ $sql = "
             <td><? echo $name; ?></td>
             <td>Umur</td>
             <td>&nbsp;:</td>
-            <td>27 tahun</td>
+            <td><?php echo $from->diff($to)->y;?> tahun</td>
+        </tr>
+
+        <tr>
+            <td>Status</td>
+            <td>&nbsp;:</td>
+            <td><?php if($status == 5){ echo "Time Out";}else if($status == 4 ){echo "Selesai";}else{ echo "Belum Dikerjakan";}  ?></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
     </table>
 
-    <table style="font-size: 15px; width: -webkit-fill-available; margin: 10px; border-top: 2px solid black; border-collapse: collapse; margin-left: 20px; margin-right: 20px;">
+    <table style="font-size: 15px; width: -webkit-fill-available; margin: 10px; border-top: 2px solid black; border-collapse: collapse; margin-left: 20px; margin-right: 20px; width:98%">
         <!---kolom tengah-->
         <tr>
             <td>&nbsp;</td>
@@ -1757,11 +2519,12 @@ $sql = "
             <td>r</td>
             <td>c</td>
             <td>s</td>
+            <td>ss</td>
         </tr>
         <tr>
             <td>1 <?php if($s1 == 'A'){ echo '<strike style="color:red !important;"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important;" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>6 <?php if($s6 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s6 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>11 <?php if($s11 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>11 <?php if($s11 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s11 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>16 <?php if($s16 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s16 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>21 <?php if($s21 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s21 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>26 <?php if($s26 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s26 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1773,11 +2536,12 @@ $sql = "
             <td>56 <?php if($s56 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s56 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>61 <?php if($s61 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s61 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>66 <?php if($s66 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s66 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td class="borderRight">71 <?php if($s6 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s6 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td class="borderRight">71 <?php if($s71 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s71 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>&nbsp;Ach</td>
             <td><?php echo $Achr; ?></td>
             <td><?php echo $Achc; ?></td>
             <td><?php echo $Achs; ?></td>
+            <td><?php echo $Achsh; ?></td>
         </tr>
         <tr>
             <td>2 <?php if($s2 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s2 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1799,6 +2563,7 @@ $sql = "
             <td><?php echo $Defr; ?></td>
             <td><?php echo $Defc; ?></td>
             <td><?php echo $Defs; ?></td>
+            <td><?php echo $Defsh; ?></td>
         </tr>
         <tr>
             <td>3 <?php if($s3 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s3 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1820,6 +2585,7 @@ $sql = "
             <td><?php echo $Ordr; ?></td>
             <td><?php echo $Ordc; ?></td>
             <td><?php echo $Ords; ?></td>
+            <td><?php echo $Ordsh; ?></td>
         </tr>
         <tr>
             <td>4 <?php if($s4 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s4 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1841,6 +2607,7 @@ $sql = "
             <td><?php echo $Exhr; ?></td>
             <td><?php echo $Exhc; ?></td>
             <td><?php echo $Exhs; ?></td>
+            <td><?php echo $Exhsh; ?></td>
         </tr>
         <tr>
             <td>5 <?php if($s5 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s5 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1862,6 +2629,7 @@ $sql = "
             <td><?php echo $Autr; ?></td>
             <td><?php echo $Autc; ?></td>
             <td><?php echo $Auts; ?></td>
+            <td><?php echo $Autsh; ?></td>
         </tr>
 
         <tr>
@@ -1901,6 +2669,7 @@ $sql = "
             <td><?php echo $Affr; ?></td>
             <td><?php echo $Affc; ?></td>
             <td><?php echo $Affs; ?></td>
+            <td><?php echo $Affsh; ?></td>
         </tr>
         <tr>
             <td>77 <?php if($s77 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s77 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1922,6 +2691,7 @@ $sql = "
             <td><?php echo $Intr; ?></td>
             <td><?php echo $Intc; ?></td>
             <td><?php echo $Ints; ?></td>
+            <td><?php echo $Intsh; ?></td>
         </tr>
         <tr>
             <td>78 <?php if($s78 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s78 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1943,6 +2713,7 @@ $sql = "
             <td><?php echo $Sucr; ?></td>
             <td><?php echo $Succ; ?></td>
             <td><?php echo $Sucs; ?></td>
+            <td><?php echo $Sucsh; ?></td>
         </tr>
         <tr>
             <td>79 <?php if($s79 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s79 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -1964,27 +2735,29 @@ $sql = "
             <td><?php echo $Domr; ?></td>
             <td><?php echo $Domc; ?></td>
             <td><?php echo $Doms; ?></td>
+            <td><?php echo $Domsh; ?></td>
         </tr>
         <tr>
-            <td>80 <?php if($s80 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>85 <?php if($s85 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>90 <?php if($s90 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>95 <?php if($s95 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>100 <?php if($s100 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>105 <?php if($s105 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>110 <?php if($s110 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>115 <?php if($s115 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>120 <?php if($s120 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>125 <?php if($s125 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>130 <?php if($s130 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>135 <?php if($s135 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>140 <?php if($s140 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td>145 <?php if($s145 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
-            <td class="borderRight">150 <?php if($s150 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s1 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>80 <?php if($s80 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s80 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>85 <?php if($s85 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s85 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>90 <?php if($s90 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s90 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>95 <?php if($s95 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s95 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>100 <?php if($s100 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s100 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>105 <?php if($s105 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s105 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>110 <?php if($s110 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s110 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>115 <?php if($s115 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s115 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>120 <?php if($s120 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s120 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>125 <?php if($s125 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s125 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>130 <?php if($s130 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s130 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>135 <?php if($s135 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s135 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>140 <?php if($s140 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s140 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td>145 <?php if($s145 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s145 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
+            <td class="borderRight">150 <?php if($s150 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s150 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
             <td>&nbsp;Aba</td>
             <td><?php echo $Abar; ?></td>
             <td><?php echo $Abac; ?></td>
             <td><?php echo $Abas; ?></td>
+            <td><?php echo $Abash; ?></td>
         </tr>
 
         <tr>
@@ -2025,6 +2798,7 @@ $sql = "
             <td><?php echo $Nurr; ?></td>
             <td><?php echo $Nurc; ?></td>
             <td><?php echo $Nurs; ?></td>
+            <td><?php echo $Nursh; ?></td>
         </tr>
         <tr>
             <td>152 <?php if($s152 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s152 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -2046,6 +2820,7 @@ $sql = "
             <td><?php echo $Chgr; ?></td>
             <td><?php echo $Chgc; ?></td>
             <td><?php echo $Chgs; ?></td>
+            <td><?php echo $Chgsh; ?></td>
         </tr>
         <tr>
             <td>153 <?php if($s153 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s153 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -2067,6 +2842,7 @@ $sql = "
             <td><?php echo $Endr; ?></td>
             <td><?php echo $Endc; ?></td>
             <td><?php echo $Ends; ?></td>
+            <td><?php echo $Endsh; ?></td>
         </tr>
         <tr>
             <td>154 <?php if($s154 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s154 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -2088,6 +2864,7 @@ $sql = "
             <td><?php echo $Hetr; ?></td>
             <td><?php echo $Hetc; ?></td>
             <td><?php echo $Hets; ?></td>
+            <td><?php echo $Hetsh; ?></td>
         </tr>
         <tr style="border-bottom: 2px solid black;">
             <td>155 <?php if($s155 == 'A'){ echo '<strike style="color:red !important"><sup><span style="color:black">A</span></sup></strike> <sub>B</sub>'; } else if($s155 == 'B'){ echo'<sup>A</sup> <strike style="color:red !important" ><sub><span style="color:black">B</span></sub></strike>'; }?></td>
@@ -2109,6 +2886,7 @@ $sql = "
             <td><?php echo $Aggr; ?></td>
             <td><?php echo $Aggc; ?></td>
             <td><?php echo $Aggs; ?></td>
+            <td><?php echo $Aggsh; ?></td>
         </tr>
         <tr style="padding-top: 5px;">
                 <td class="paddingtr">
@@ -2182,12 +2960,18 @@ $sql = "
 </section>
 </html>
 
+<form id="TheForm" action="<?php echo site_url().'/manager/tes_hasil_report_epps_excel'; ?>" method="POST" target="TheWindow">
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+    <input type="hidden" name="tesuser_tes_id" value="<?php echo $tesuser_tes_id; ?>" />
+</form>
+
 <script>
     function myFunction() {
         window.print();
     }
     function detail_tes(user_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report_epps_excel'; ?>/index/"+user_id);
+        document.getElementById('TheForm').submit();
+        // window.open("<?php echo site_url().'/manager/tes_hasil_report_epps_excel'; ?>/index/"+user_id);
         
     }
 

@@ -27,6 +27,7 @@ class Dashboard extends Member_Controller {
         }
 
         $this->template->display_admin('manager/dashboard_view', 'Dashboard', $data);
+
     }
 	
 	function password(){

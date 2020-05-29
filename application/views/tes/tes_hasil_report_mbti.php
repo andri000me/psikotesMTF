@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
@@ -12,11 +12,15 @@ $sql = "
                 cbt_user.user_jenis_kelamin as jenis_kelamin,
                 cbt_tes.tes_nama as nama, 
                 cbt_tes_user.tesuser_id as user_id, 
+                cbt_tes_user.tesuser_status as tesuser_status,
                 cbt_soal.soal_detail as soal, 
                 cbt_soal.soal_nomor as soal_nomor, 
                 cbt_tes_soal.tessoal_jawaban_text as jawaban,
                 cbt_tes.tes_begin_time as tanggal_tes,
-                cbt_user.user_tanggal_lahir as tanggal_lahir
+                cbt_user.user_tanggal_lahir as tanggal_lahir,
+                cbt_user.user_pendidikan_terakhir as pendidikan_terakhir,
+                cbt_user.user_jenis_kelamin as jenis_kelamin,
+                cbt_user.user_pekerjaan as pekerjaan
         FROM    cbt_tes_user, 
                 cbt_user,
                 cbt_tes,
@@ -282,6 +286,9 @@ $sql = "
                 
                 $from = new DateTime($tanggal_lahir);
                 $to   = new DateTime('today');
+                $pendidikan_terakhir = $row['pendidikan_terakhir'];
+                $pekerjaan = $row['pekerjaan'];
+                $status = $row['tesuser_status'];
             }
 
         }
@@ -337,10 +344,31 @@ $sql = "
     <tr>
         <td>Pendidikan</td>
         <td>:</td>
+        <td>
+            <?php 
+                if($pendidikan_terakhir == 1){
+                    echo "SMA";
+                }else if($pendidikan_terakhir == 2){
+                    echo "SMK";
+                }else if($pendidikan_terakhir == 3){
+                    echo "S1";
+                }else if($pendidikan_terakhir == 4){
+                    echo "S2";
+                }else if($pendidikan_terakhir == 5){
+                    echo "S3";
+                }else if($pendidikan_terakhir > 5){
+                    echo "Lain-Lain";
+                }
+            ?>
+        </td>
+        <td>Status</td>
+        <td>:</td>
+        <td><?php if($status == 5){ echo "Time Out";}else if($status == 4 ){echo "Selesai";}else{ echo "Belum Dikerjakan";}  ?></td>
     </tr>
     <tr>
         <td>Pekerjaan</td>
         <td>:</td>
+        <td><?php echo $pekerjaan;?></td>
     </tr>
 </table>
 <div>&nbsp;</div>
@@ -897,12 +925,18 @@ $sql = "
 </section>
 </html>
 
+<form id="TheForm" action="<?php echo site_url().'/manager/tes_hasil_report_mbti_excel'; ?>" method="POST" target="TheWindow">
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+    <input type="hidden" name="tesuser_tes_id" value="<?php echo $tesuser_tes_id; ?>" />
+</form>
+
 <script>
     function myFunction() {
         window.print();
     }
     function detail_tes(user_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report_mbti_excel'; ?>/index/"+user_id);
+        document.getElementById('TheForm').submit();
+        // window.open("<?php echo site_url().'/manager/tes_hasil_report_mbti_excel'; ?>/index/"+user_id);
         
     }
 

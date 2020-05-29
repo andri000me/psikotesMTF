@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Data Soal <?php if(!empty($topik)){ echo $topik; }; echo ' Nomor '; echo  $soal_nomor;?></div>
                 </div><!-- /.box-header -->
@@ -33,7 +33,7 @@
     </div>
 	<div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <?php echo form_open_multipart($url.'/tambah','id="form-tambah" class="form-horizontal"'); ?>
                         <div class="box-header with-border">
                             <div class="box-title">Mengelola Jawaban</div>
@@ -86,7 +86,7 @@
                                                     <option value="Z">Z</option>
                                                     ';
                                                 }
-                                                else if( $soal_tipe == 1 || $soal_tipe == 7 ) {
+                                                else if( $soal_tipe == 1 || $soal_tipe == 7 || $soal_tipe == 9 ) {
                                                     Echo
                                                     '
                                                     <option value="0">Salah</option>
@@ -100,7 +100,7 @@
                                                     <option value="I">I</option>
                                                     <option value="S">S</option>
                                                     <option value="C">C</option>
-                                                    <option value="♦︎">♦︎</option>
+                                                    <option value="*">*</option>
                                                     ';
                                                 }
                                                 else if( $soal_tipe == 3 ) {
@@ -139,7 +139,7 @@
                                                                 <option value="I">I</option>
                                                                 <option value="S">S</option>
                                                                 <option value="C">C</option>
-                                                                <option value="♦︎">♦︎</option>
+                                                                <option value="*">*</option>
                                                         </select>
                                                     </div>
                                                 </div>';
@@ -160,7 +160,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                             <div class="box-title">Daftar Soal</div>
                     </div><!-- /.box-header -->
@@ -202,7 +202,7 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <?php echo form_open_multipart($url.'/upload_file','id="form-upload-image" class="form-horizontal"'); ?>
-                                        <div class="box">
+                                        <div class="box box-primary">
                                             <div class="box-header with-border">
                                                 <div class="box-title">Upload File</div>
                                             </div><!-- /.box-header -->
@@ -247,7 +247,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="box">
+                                    <div class="box box-primary">
                                         <div class="box-body" style="max-height: 230px;overflow: auto;">
                                             <table id="table-image" class="table table-bordered table-hover">
                                                 <thead>

@@ -233,11 +233,23 @@ class Modul_daftar extends Member_Controller {
 			$record[] = ++$i;
 
 			if($temp->soal_tipe==1){
-				$record[] = 'Pilihan Ganda';
+				$record[] = 'TIKI';
 			}else if($temp->soal_tipe==2){
-				$record[] = 'Essay';
+				$record[] = 'DISC';
 			}else if($temp->soal_tipe==3){
-				$record[] = 'Jawaban Singkat';
+				$record[] = 'EPPS ';
+			}else if($temp->soal_tipe==4){
+				$record[] = 'PAPI';
+			}else if($temp->soal_tipe==5){
+				$record[] = 'MBTI';
+			}else if($temp->soal_tipe==6){
+				$record[] = 'Pilihan Ganda';
+			}else if($temp->soal_tipe==7){
+				$record[] = 'Jawaban Ganda';
+			}else if($temp->soal_tipe==8){
+				$record[] = 'Esay';
+			}else if($temp->soal_tipe==9){
+				$record[] = 'Antonim / Sinonim';
 			}
 
 			$soal = $temp->soal_detail;
@@ -252,37 +264,104 @@ class Modul_daftar extends Member_Controller {
 				';
 			}
 
-            $jawaban_table = '
+			if($temp->soal_tipe== 2 || $temp->soal_tipe== 3){
+				$jawaban_table = '
+					<table class="table" border="0">
+						<tr>
+						<td colspan="3">'.$soal.'</td>
+						<td width="15%"><a href="'.site_url().'/manager/modul_soal/index/'.$temp->soal_id.'" title="Edit Soal" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Soal</a></td>
+						</tr>
+				';
+			}else if($temp->soal_tipe== 4 || $temp->soal_tipe== 5){
+				$jawaban_table = '
+					<table class="table" border="0">
+					<tr>
+						  <td colspan="1">'.$soal.'</td>
+						  <td width="15%"><a href="'.site_url().'/manager/modul_soal/index/'.$temp->soal_id.'" title="Edit Soal" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Soal</a></td>
+						</tr>
+				';
+				}
+			else{
+				$jawaban_table = '
             	<table class="table" border="0">
             		<tr>
                       <td colspan="3">'.$soal.'</td>
                       <td width="15%"><a href="'.site_url().'/manager/modul_soal/index/'.$temp->soal_id.'" title="Edit Soal" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Soal</a></td>
                     </tr>
-            ';
+				';
+			}
 
 
-            if($temp->soal_tipe==1){
+            if($temp->soal_tipe== 1 || $temp->soal_tipe== 6 || $temp->soal_tipe== 7 || $temp->soal_tipe== 2 || $temp->soal_tipe== 4 || $temp->soal_tipe== 5 || $temp->soal_tipe== 3 || $temp->soal_tipe==9){
             	$query_jawaban = $this->cbt_jawaban_model->get_by_soal($temp->soal_id);
 	            if($query_jawaban->num_rows()>0){
 	            	$query_jawaban = $query_jawaban->result();
-	            	$a = 0;
+					$a = 0;
+
+					if($temp->soal_tipe == 2){
+						$jawaban_table = $jawaban_table.'
+						<tr>
+							  <td width="5%">Paling</td>
+							  <td width="5%">Kurang</td>
+							  <td width="75%">Soal</td>
+							  <td width="15%">&nbsp;</td>
+						</tr>
+					';
+					}else if($temp->soal_tipe == 4 || $temp->soal_tipe== 5 || $temp->soal_tipe== 3 || $temp->soal_tipe==9){
+						$jawaban_table = $jawaban_table.'
+							<tr>
+								<td width="5%">Soal</td>
+								<td width="80%">Jawaban</td>
+								<td width="15%">&nbsp;</td>
+							</tr>
+						';
+					}
+					
 	            	foreach ($query_jawaban as $jawaban) {
 	            		$temp_jawaban = $jawaban->jawaban_detail;
 						$temp_jawaban = str_replace("[base_url]", base_url(), $temp_jawaban);
 
-						$temp_benar = 'Salah';
-						if($jawaban->jawaban_benar==1){
-							$temp_benar = '<b>Benar</b>';
-						}
 
-	            		$jawaban_table = $jawaban_table.'
+						if($temp->soal_tipe== 2){
+													
+							$jawabanPaling = explode(",",$jawaban->jawaban_benar);
+							$temp_paling = $jawabanPaling[0];
+							$temp_kurang = $jawabanPaling[1];
+
+							$jawaban_table = $jawaban_table.'
 	            			<tr>
-		                      	<td width="5%">'.++$a.'.</td>
-		                      	<td width="5%">'.$temp_benar.'</td>
+								  <td width="5%" style="text-align:center;">'.$temp_paling.'</td>
+								  <td width="5%" style="text-align:center;">'.$temp_kurang.'</td>
 		                      	<td width="75%">'.$temp_jawaban.'</td>
 		                      	<td width="15%"><a href="'.site_url().'/manager/modul_jawaban/index/'.$temp->soal_id.'/'.$jawaban->jawaban_id.'" title="Edit Jawaban" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Jawaban</a></td>
 		                    </tr>
 	            		';
+
+						}else if($temp->soal_tipe== 4 || $temp->soal_tipe== 5 || $temp->soal_tipe== 3 ){					
+							$temp_jawaban_soal = $jawaban->jawaban_benar;
+							$jawaban_table = $jawaban_table.'
+	            			<tr>
+								  <td width="80%">'.$temp_jawaban.'</td>
+								  <td width="80%">'.$temp_jawaban_soal.'</td>
+		                      	<td width="15%"><a href="'.site_url().'/manager/modul_jawaban/index/'.$temp->soal_id.'/'.$jawaban->jawaban_id.'" title="Edit Jawaban" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Jawaban</a></td>
+		                    </tr>
+	            		';
+
+						}else{
+							$temp_benar = 'Salah';
+							if($jawaban->jawaban_benar==1){
+								$temp_benar = '<b>Benar</b>';
+							}
+							$jawaban_table = $jawaban_table.'
+								<tr>
+									<td width="5%">'.++$a.'.</td>
+									<td width="5%">'.$temp_benar.'</td>
+									<td width="70%">'.$temp_jawaban.'</td>
+									<td width="15%"><a href="'.site_url().'/manager/modul_jawaban/index/'.$temp->soal_id.'/'.$jawaban->jawaban_id.'" title="Edit Jawaban" style="cursor: pointer;"><span class="glyphicon glyphicon-edit"></span>Edit Jawaban</a></td>
+								</tr>
+							';
+						};
+	            		
 	            	}
 	            }
             }else if($temp->soal_tipe==3){

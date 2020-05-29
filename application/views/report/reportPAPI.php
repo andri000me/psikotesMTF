@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());

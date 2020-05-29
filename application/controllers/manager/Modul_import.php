@@ -38,8 +38,9 @@ class Modul_import extends Member_Controller {
                         $counter++;
 
                         $jml_soal = $this->cbt_soal_model->count_by_kolom('soal_topik_id', $topik->topik_id)->row()->hasil;
-
-                        $select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.' ['.$jml_soal.']</option>';
+						if($topik->topik_id != 8){
+							$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.' ['.$jml_soal.']</option>';
+						}
                     }
                 }
             }else{
@@ -57,8 +58,10 @@ class Modul_import extends Member_Controller {
                             foreach ($query_topik as $topik) {
                                 $counter++;
 
-                                $jml_soal = $this->cbt_soal_model->count_by_kolom('soal_topik_id', $topik->topik_id)->row()->hasil;
-                                $select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.' ['.$jml_soal.']</option>';
+								$jml_soal = $this->cbt_soal_model->count_by_kolom('soal_topik_id', $topik->topik_id)->row()->hasil;
+								if($topik->topik_id != 8){
+									$select = $select.'<option value="'.$topik->topik_id.'">'.$topik->modul_nama.' - '.$topik->topik_nama.' ['.$jml_soal.']</option>';
+								}
                             }
 
                             $select = $select.'</optgroup>';
@@ -115,97 +118,125 @@ class Modul_import extends Member_Controller {
             $status['pesan'] = validation_errors();
         }
         echo json_encode($status);
+	}
+	
+	function export($id_topik=null){
+		$filename ="excelreport.xls";
+		$contents = "testdata1 \t testdata2 \t testdata3 \t \n";
+		header('Content-type: application/ms-excel');
+		header('Content-Disposition: attachment; filename='.$filename);
+		echo "<table>
+				<tr>
+					<td>Soal Nomor</td>
+					<td>Jenis</td>
+					<td>Id</td>
+					<td>Isi</td>
+					<td>Jawaban</td>
+				</tr>";
+					$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
+					$sqlPertanyaan = "
+							SELECT  soal_id, cbt_soal.soal_nomor, soal_detail, soal_topik_id
+							FROM    cbt_soal 
+							WHERE   soal_topik_id = ".$id_topik."
+							ORDER BY soal_nomor ASC"; 
+
+					if($resultPertanyaan = mysqli_query($mysqli, $sqlPertanyaan)){
+						while($row = mysqli_fetch_array($resultPertanyaan)){
+							$kolom3 = str_replace("<br />",".",$row['soal_detail']);
+						echo "<tr>
+									<td style='vertical-align : middle;text-align:center;'>".$row['soal_nomor']."</td>
+									<td style='vertical-align : middle;text-align:center;'>Q</td>
+									<td style='vertical-align : middle;text-align:center;'>".$row['soal_id']."</td>
+									<td>".$kolom3."</td>
+									<td>&nbsp;</td>
+							</tr>";
+							$sqlJawaban = " 
+											SELECT jawaban_id, jawaban_detail, jawaban_benar
+											FROM `cbt_jawaban`
+											WHERE jawaban_soal_id = ".$row['soal_id']."";
+									
+									if($resultJawaban = mysqli_query($mysqli, $sqlJawaban)){
+										while($rowJawaban = mysqli_fetch_array($resultJawaban)){
+											echo "<tr>
+													<td style='vertical-align : middle;text-align:center;'>&nbsp;</td>
+													<td style='vertical-align : middle;text-align:center;'>A</td>
+													<td style='vertical-align : middle;text-align:center;'>".$rowJawaban['jawaban_id']."</td>
+													<td>".$rowJawaban['jawaban_detail']."</td>
+													<td style='vertical-align : middle;text-align:center;'>".$rowJawaban['jawaban_benar']."</td>
+												</tr>";
+										}
+									}
+
+						}
+					}
+		echo "</table>";
     }
 
     function import_file($inputfile, $id_topik){
-        $this->load->library('excel');
+		$this->load->library('excel');
         $inputFileName = './public/uploads/'.$inputfile;
 
         $excel = PHPExcel_IOFactory::load($inputFileName);
         $worksheet = $excel->getSheet(0);
-        $highestRow = $worksheet->getHighestRow();
-        $pesan='<div class="alert alert-info alert-dismissable">
+		$highestRow = $worksheet->getHighestRow()+1;
+
+		$pesan='	<div class="alert alert-info alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-info"></i> Informasi!</h4>';
-        
-        if($highestRow>10){
-            $jmlsoalsukses=0;
-            $jmlsoalerror=0;
-            $row=6;
-            $kosong=0;
-            while($kosong<2){
-                $kosong=0;
-                $kolom1 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();//jenis, soal atau jawaban
-                $kolom2 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();//isi 
-                $kolom3 = $worksheet->getCellByColumnAndRow(4, $row)->getValue();//jawaban benar atau salah
-                $kolom4 = $worksheet->getCellByColumnAndRow(5, $row)->getValue();//tingkat kesulitan
-                
-                if(empty($kolom1)){ $kosong=+2; }
-                if(empty($kolom2)){ $kosong=+2; }
-                if(empty($kolom4) and $kolom1=='Q'){ $kosong++; }
-                
-                if($kosong==0){
-                	// Merubah html special char menjadi kode
-                	$kolom2 = htmlspecialchars($kolom2);
+					<h4><i class="icon fa fa-info"></i> Informasi!</h4>';
+		$jmldatasukses = 0;
+		$jmlsoalsukses = 0;
+		$jmljawabansukses = 0;
+		$jmldataerror = 0;			
+		$row=2;
+		$kosong = 0;
 
-                	// Menambah tag br untuk baris baru
-                	$kolom2 = str_replace("\r","<br />",$kolom2);
-                	$kolom2 = str_replace("\n","<br />",$kolom2);
-                	/**
-                	 * Jika tipe adalah Question
-                	 */
-                	if($kolom1=='Q'){
-                		$question['soal_topik_id'] = $id_topik;
-			        	$question['soal_detail'] = $kolom2;
-			        	$question['soal_tipe'] = '1';
-			        	$question['soal_difficulty'] = $kolom4;
-			        	$question['soal_aktif'] = 1;
+		for($i = 2; $i <$highestRow; ++$i) {
+			if($highestRow>2){
+				// while($kosong<2){
+				
+					$kolom1 = $worksheet->getCellByColumnAndRow(1, $i)->getValue();//jenis
+					$kolom2 = $worksheet->getCellByColumnAndRow(2, $i)->getValue();//id jawaban atau soal
+					$kolom3 = $worksheet->getCellByColumnAndRow(3, $i)->getValue();//isi
+					$kolom4 = $worksheet->getCellByColumnAndRow(4, $i)->getValue();//jawaban
+					
+					if(empty($kolom1)){ $kosong++; }
+					if(empty($kolom2)){ $kosong++; }
+					if(empty($kolom3)){ $kosong++; }
+					if(empty($kolom4)){ $kosong++; }
 
-                		$soal_id = $this->cbt_soal_model->save($question);
-                		$jmlsoalsukses++;
+						if($kosong < 5){
+							$kolom3 = str_replace(".","<br />",$kolom3);
+							if($kolom1=='Q'){
+								// $question['soal_topik_id'] = $kolom2;
+								$question['soal_detail'] = $kolom3;
 
+								$this->cbt_soal_model->update('soal_id', $kolom2, $question);
+								$jmlsoalsukses++;
 
-                	/**
-                	 * Jika tipe adalah Answer
-                	 */
-                	}else if($kolom1=='A'){
-				        $answer['jawaban_detail'] = $kolom2;
-				        if(!empty($kolom3)){
-				        	$answer['jawaban_benar'] = $kolom3;
-				        }else{
-				        	$answer['jawaban_benar'] = '0';
-				        }
-				        $answer['jawaban_aktif'] = 1;
-				        $answer['jawaban_soal_id'] = $soal_id;
-
-				        $this->cbt_jawaban_model->save($answer);
-                	}
-
-                }else{
-                	if($kosong<2){
-                		$pesan=$pesan.'Baris ke  '.$row.' GAGAL di simpan : '.$kolom2.'<br>';
-                    	$jmlsoalerror++;
-                	}
-                }
-                
-                $row++;
-            }
-            $pesan = $pesan.'<br>Jumlah soal yang berhasil diimport adalah '.$jmlsoalsukses.'<br>
-                            Jumlah soal yang gagal di dimport adalah '.$jmlsoalerror.'<br>
-                            Jumlah total baris yang diproses adalah '.($row-6).'<br>';
-        }else{
-            $pesan = $pesan.'Tidak Ada Yang Berhasil Di IMPORT. Cek kembali file excel yang dikirim';
-        }
-        $pesan = $pesan.'</div>';
+							}else if($kolom1=='A'){
+								$answer['jawaban_detail'] = $kolom3;
+								$answer['jawaban_benar'] = $kolom4;
+								$answer['jawaban_aktif'] = 1;
+								$this->cbt_jawaban_model->update('jawaban_id', $kolom2, $answer);
+								$jmljawabansukses++;
+							}
+							$jmldatasukses++;
+							$kosong = 0;
+						}else{
+							$pesan=$pesan.'Baris ke  '.$row.' GAGAL di simpan : '.$kolom1.' - '.$kolom3.'<br>';
+							$jmldataerror++;
+							$kosong = 0;
+						}
+					}
+				}
+				$pesan = 	$pesan.'<br>Jumlah pertanyaan yang berhasil diimport adalah '.$jmlsoalsukses.'<br>
+							Jumlah jawaban yang berhasil diimport adalah '.$jmljawabansukses.'<br>
+							Jumlah data yang gagal di dimport adalah '.$jmldataerror.'<br>
+							Jumlah total baris yang diproses adalah <br>';
+        		$pesan = $pesan.'</div>';
         
         return $pesan;
     }
-	
-	/**
-	* funsi tambahan 
-	* 
-	* 
-*/
 	
 	function get_start() {
 		$start = 0;

@@ -193,10 +193,12 @@ class Tes_report extends Member_Controller {
 		$rows = $this->get_rows();
 
 		// run query to get user listing
-		$query = $this->cbt_tes_user_model->get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal);
+		// $query = $this->cbt_tes_user_model->get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, 'user_firstname', $search);
+		$query = $this->cbt_tes_user_model->get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, 'user_firstname', $search);
+
 		$iFilteredTotal = $query->num_rows();
 		
-		$iTotal= $this->cbt_tes_user_model->get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal)->row()->hasil;
+		$iTotal= $this->cbt_tes_user_model->get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, 'user_firstname', $search)->row()->hasil;
 	    
 		$output = array(
 			"sEcho" => intval($_GET['sEcho']),
@@ -214,49 +216,65 @@ class Tes_report extends Member_Controller {
 			$record[] = ++$i;
 			// $record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes(\''.$temp->tesuser_id.'\')"> <b>'.stripslashes($temp->user_firstname).'</b></a>';
 			$record[] = $temp->user_firstname;
-            $record[] = $temp->tes_duration_time.' menit';
-            $record[] = $temp->tes_nama;
-            $record[] = $temp->grup_nama;
-			$record[] = $temp->tesuser_creation_time;
+			if($temp->user_jenis_kelamin == 0){
+				$record[] = "Perempuan";
+			}else{
+				$record[] = "Laki-Laki";				
+			}
+			$record[] = $temp->user_regdate;
+			$record[] = $temp->user_email;
+			$record[] = $temp->user_name;
+
+
+			// $record[] = $temp->user_firstname;
+            // $record[] = $temp->tes_duration_time.' menit';
+            // $record[] = $temp->tes_nama;
+            // $record[] = $temp->grup_nama;
+			// $record[] = $temp->tesuser_creation_time;
 			// $record[] = $temp->nilai;
 			// $record[] = 'print';
-            if($temp->tesuser_status==1){
-            	$tanggal = new DateTime();
-                // Cek apakah tes sudah melebihi batas waktu
-                $tanggal_tes = new DateTime($temp->tesuser_creation_time);
-                $tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
-                if($tanggal>$tanggal_tes){
-                	$record[] = 'Selesai';
-                }else{
-                	$tanggal = $tanggal_tes->diff($tanggal);
-                	$menit_sisa = ($tanggal->h*60)+($tanggal->i);
-                	$record[] = 'Berjalan (-'.$menit_sisa.' menit)';
-                }
-            }else{
-            	$record[] = 'Selesai';
-			}
+            // if($temp->tesuser_status==1){
+            // 	$tanggal = new DateTime();
+            //     // Cek apakah tes sudah melebihi batas waktu
+            //     $tanggal_tes = new DateTime($temp->tesuser_creation_time);
+            //     $tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
+            //     if($tanggal>$tanggal_tes){
+            //     	$record[] = 'Selesai';
+            //     }else{
+            //     	$tanggal = $tanggal_tes->diff($tanggal);
+            //     	$menit_sisa = ($tanggal->h*60)+($tanggal->i);
+            //     	$record[] = 'Berjalan (-'.$menit_sisa.' menit)';
+            //     }
+            // }else{
+			// 	if($temp->tesuser_status == 4){
+			// 		$record[] = 'Selesai';
+			// 	}else if($temp->tesuser_status == 5){
+			// 		$record[] = 'Time Out';
+			// 	}
+
+			// }
 			$topik_id = '';
-			$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+			$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 			if(mysqli_connect_errno()) {
 				printf("Connect failed: %s\n",mysql_connect_error());
 				exit();
 			}
-			$sql = "
-					SELECT  cbt_tes_topik_set.tset_topik_id
-					FROM 
-							cbt_tes_topik_set
-					WHERE
-							cbt_tes_topik_set.tset_tes_id = ".$temp->tesuser_tes_id."";
+			// $sql = "
+			// 		SELECT  cbt_tes_topik_set.tset_topik_id
+			// 		FROM 
+			// 				cbt_tes_topik_set
+			// 		WHERE
+			// 				cbt_tes_topik_set.tset_tes_id = ".$temp->tesuser_tes_id."";
 
-							if($result = mysqli_query($mysqli, $sql)){
-								while($row = mysqli_fetch_array($result)){
-										$topik_id = $row['tset_topik_id'];
-								}
-							}
-
-			$record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes(\''.$temp->tesuser_user_id.'\','.$temp->tesuser_tes_id.','.$topik_id.')"> <b>Print</b></a>';
-            $record[] = '<input type="checkbox" name="edit-testuser-id['.$temp->tesuser_id.']" >';
+			// 				if($result = mysqli_query($mysqli, $sql)){
+			// 					while($row = mysqli_fetch_array($result)){
+			// 							$topik_id = $row['tset_topik_id'];
+			// 					}
+			// 				}
+			$record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes('.$temp->user_id.')"> <b>Print</b></a>';
+			// $record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes(\''.$temp->tesuser_user_id.'\','.$temp->tesuser_tes_id.','.$topik_id.')"> <b>Print</b></a>';
+            // $record[] = '<input type="checkbox" name="edit-testuser-id['.$temp->tesuser_id.']" >';
             
 
 			$output['aaData'][] = $record;

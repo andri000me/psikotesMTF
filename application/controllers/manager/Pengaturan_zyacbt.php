@@ -16,7 +16,7 @@ class Pengaturan_zyacbt extends Member_Controller {
         $data['kode_menu'] = $this->kode_menu;
         $data['url'] = $this->url;
         
-        $this->template->display_admin($this->kelompok.'/pengaturan_zyacbt_view', 'Pengaturan System', $data);
+        $this->template->display_admin($this->kelompok.'/pengaturan_zyacbt_view', 'Pengaturan ZYACBT', $data);
     }
 
     function simpan(){

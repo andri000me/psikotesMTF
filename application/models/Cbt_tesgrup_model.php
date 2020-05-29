@@ -2,7 +2,8 @@
 
  
 class Cbt_tesgrup_model extends CI_Model{
-	public $table = 'cbt_tesgrup';
+    public $table = 'cbt_tesgrup';
+    public $tableGroup = 'cbt_tes_group';
 	
 	function __construct(){
         parent::__construct();
@@ -79,6 +80,26 @@ class Cbt_tesgrup_model extends CI_Model{
                  ->where('(tstgrp_grup_id="'.$grup_id.'" AND tes_begin_time<=NOW() AND tes_end_time>=NOW())')
                  ->join('cbt_tes', 'cbt_tesgrup.tstgrp_tes_id = cbt_tes.tes_id')
                  ->from($this->table);
+        return $this->db->get();
+    }
+
+
+
+    
+    function get_datatablegroup($start, $rows, $user_id){
+		$this->db->where('( tes_group_user_id="'.$user_id.'" AND tes_group_begin_time<=NOW() AND tes_group_end_time>=NOW())')
+                 ->from($this->tableGroup)
+                 ->join('cbt_tes', 'tes_group_tes_id = cbt_tes.tes_id')
+                 ->order_by('tes_group_begin_time ASC, cbt_tes.tes_nama ASC')
+                 ->limit($rows, $start);
+        return $this->db->get();
+	}
+    
+    function get_datatablegroup_count($user_id){
+		$this->db->select('COUNT(*) AS hasil')
+                 ->where('( tes_group_user_id="'.$user_id.'" AND tes_group_begin_time<=NOW() AND tes_group_end_time>=NOW())')
+                 ->join('cbt_tes', 'tes_group_tes_id = cbt_tes.tes_id')
+                 ->from($this->tableGroup);
         return $this->db->get();
 	}
 }

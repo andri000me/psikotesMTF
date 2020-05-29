@@ -3,13 +3,15 @@ $filename ="excelreport.xls";
 $contents = "testdata1 \t testdata2 \t testdata3 \t \n";
 header('Content-type: application/ms-excel');
 header('Content-Disposition: attachment; filename='.$filename);
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
     exit();
 }
-// echo $user_id."+".$tesuser_tes_id."+".$topik_id;
+
+$user_id = $_POST['user_id'];
+$tesuser_tes_id = $_POST['tesuser_tes_id'];
 
 $sql = "
         SELECT  cbt_user.user_firstname as name, 
@@ -20,7 +22,10 @@ $sql = "
                 cbt_soal.soal_nomor as soal_nomor, 
                 cbt_tes_soal.tessoal_jawaban_text as jawaban,
                 cbt_tes.tes_begin_time as tanggal_tes,
-                cbt_user.user_tanggal_lahir as tanggal_lahir
+                cbt_user.user_tanggal_lahir as tanggal_lahir,
+                cbt_user.user_pendidikan_terakhir as pendidikan_terakhir,
+                cbt_user.user_jenis_kelamin as jenis_kelamin,
+                cbt_user.user_pekerjaan as pekerjaan
         FROM    cbt_tes_user, 
                 cbt_user,
                 cbt_tes,
@@ -28,8 +33,8 @@ $sql = "
                 cbt_soal 
         WHERE   cbt_user.user_id = cbt_tes_user.tesuser_user_id 
         AND     cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id 
-        AND     cbt_user.user_id = 7
-        AND     cbt_tes.tes_id = 125
+        AND     cbt_user.user_id = ".$user_id."
+        AND     cbt_tes.tes_id = ".$tesuser_tes_id."
         AND     cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user. tesuser_id 
         AND     cbt_soal.soal_id = cbt_tes_soal.tessoal_soal_id 
         ORDER BY cbt_tes_soal.tessoal_order";
@@ -286,6 +291,8 @@ $sql = "
 
                 $from = new DateTime($tanggal_lahir);
                 $to   = new DateTime('today');
+                $pendidikan_terakhir = $row['pendidikan_terakhir'];
+                $pekerjaan = $row['pekerjaan'];
             }
 
         }
@@ -347,13 +354,29 @@ $sql = "
         <td>&nbsp;</td>
         <td colspan="5">Pendidikan</td>
         <td>:</td>
-        <td colspan="7">&nbsp;</td>
+        <td colspan="7">
+            <?php 
+                if($pendidikan_terakhir == 1){
+                    echo "SMA";
+                }else if($pendidikan_terakhir == 2){
+                    echo "SMK";
+                }else if($pendidikan_terakhir == 3){
+                    echo "S1";
+                }else if($pendidikan_terakhir == 4){
+                    echo "S2";
+                }else if($pendidikan_terakhir == 5){
+                    echo "S3";
+                }else if($pendidikan_terakhir > 5){
+                    echo "Lain-Lain";
+                }
+            ?>
+        </td>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td colspan="5">Pekerjaan</td>
         <td>:</td>
-        <td colspan="7">&nbsp;</td>
+        <td colspan="7"><?php echo $pekerjaan ?></td>
     </tr>
     <tr>
         <td  colspan="25"></td>

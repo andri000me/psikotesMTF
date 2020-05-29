@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 $mysqli->set_charset('utf8mb4');
 
 if(mysqli_connect_errno()) {
@@ -14,7 +14,8 @@ $sql = "
                 cbt_tes_soal.tessoal_jawaban as soal,
                 cbt_jawaban.jawaban_benar as jawaban,
                 cbt_soal.soal_nomor as nomor_soal,
-                cbt_tes.tes_begin_time as tanggal_tes
+                cbt_tes.tes_begin_time as tanggal_tes,
+                cbt_tes_soal.tessoal_jawaban_text as jawabana_mentah
         FROM 
                 cbt_tes_user,
                 cbt_user,
@@ -61,6 +62,7 @@ $sql = "
     if($result = mysqli_query($mysqli, $sql)){
         while($row = mysqli_fetch_array($result)){
             $jawaban = explode(",", $row['jawaban']);
+            echo $row['jawabana_mentah'];
             if($jawaban[0] == 'D'){
                 $DM = $DM+1;
             }else if($jawaban[0] == 'I'){
@@ -69,7 +71,7 @@ $sql = "
                 $SM = $SM+1;
             }else if($jawaban[0] == 'C'){
                 $CM = $CM+1;
-            }else if($jawaban[0] == '♦︎'){
+            }else if($jawaban[0] == '*'){
                 $PM = $PM+1;
             }
 
@@ -81,7 +83,7 @@ $sql = "
                 $SL = $SL+1;
             }else if($jawaban[1] == 'C'){
                 $CL = $CL+1;
-            }else if($jawaban[1] == '♦︎'){
+            }else if($jawaban[1] == '*'){
                 $PL = $PL+1;
             }
 
@@ -1154,12 +1156,18 @@ $sql = "
 </section>
 </html>
 
+<form id="TheForm" action="<?php echo site_url().'/manager/tes_hasil_report_disc_excel'; ?>" method="POST" target="TheWindow">
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+    <input type="hidden" name="tesuser_tes_id" value="<?php echo $tesuser_tes_id; ?>" />
+</form>
+
 <script>
     function myFunction() {
         window.print();
     }
     function detail_tes(tesuser_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>/index/"+tesuser_id);
+        document.getElementById('TheForm').submit();
+        // window.open("<?php echo site_url().'/manager/tes_hasil_report_disc_excel'; ?>/index/"+tesuser_id);
         
     }
 

@@ -14,7 +14,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Filter Jawaban</div>
                 </div><!-- /.box-header -->
@@ -35,8 +35,8 @@
                             <label class="col-sm-3 control-label">Urutkan</label>
                             <div class="col-sm-5">
                                 <select name="pilih-urutkan" id="pilih-urutkan" onclick="refresh_table()" class="form-control input-sm">
-                                    <option value="soal">Soal</option>  
                                     <option value="user">User</option>
+                                    <option value="soal">Soal</option>  
                                 </select>
                             </div>
                         </div>
@@ -49,14 +49,14 @@
     </div>
 	<div class="row">
         <div class="col-xs-12">
-			<div class="box">
+			<div class="box box-primary">
 				<div class="box-header with-border">
 					<div class="box-title">Daftar Jawaban</div>
 				</div><!-- /.box-header -->
 
                 <div class="box-body">
                     <input type="hidden" name="edit-pilihan" id="edit-pilihan">
-					<table id="table-jawaban" class="table table-bordered table-hover">
+					<table id="table-jawaban" class="table table-bordered table-hover  table-striped">
 						<thead>
                             <tr>
                                 <th>No.</th>
@@ -172,7 +172,7 @@
                   "iDisplayLength":25,
                   "bProcessing": false,
                   "bServerSide": true, 
-                  "searching": false,
+                  "searching": true,
                   "aoColumns": [
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
     					{"bSearchable": false, "bSortable": false, "sWidth":"40%"},

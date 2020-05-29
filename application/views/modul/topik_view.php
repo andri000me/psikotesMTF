@@ -14,7 +14,7 @@
 <section class="content">
 	<div class="row">
         <div class="col-md-3">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Pilih Modul</div>
                     </div><!-- /.box-header -->
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-9">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     						<div class="box-title">Daftar Topik</div>
     						<div class="box-tools pull-right">

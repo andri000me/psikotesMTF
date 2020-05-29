@@ -10,14 +10,13 @@
 	</ol>
 </section>
 
-<!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Pilih Topik</div>
-                </div><!-- /.box-header -->
+                </div>
 
                 <div class="box-body">
                     <div class="col-xs-2"></div>
@@ -25,7 +24,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Pilih Topik</label>
                             <div class="col-sm-9">
-                                <select name="topik" id="topik" class="form-control input-sm">
+                                <select name="topik" id="topik" class="form-control input-sm first-select">
                                     <?php if(!empty($select_topik)){ echo $select_topik; } ?>
                                 </select>
                             </div>
@@ -33,6 +32,7 @@
                     </div>
                     <div class="col-xs-2"></div>
                 </div>
+                
                 <div class="box-footer">
                     <p>Pilih terlebih dahulu Topik yang akan digunakan sebelum menambah atau mengubah soal</p>
                 </div>
@@ -41,11 +41,11 @@
     </div>
 	<div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <?php echo form_open_multipart($url.'/tambah','id="form-tambah" class="form-horizontal"'); ?>
                         <div class="box-header with-border">
                             <div class="box-title">Mengelola Soal <span id="judul-tambah-soal"></span></div>
-                        </div><!-- /.box-header -->
+                        </div>
 
                         
 
@@ -155,7 +155,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Daftar Soal <span id="judul-daftar-soal"></span></div>
                         <div class="box-tools pull-right">
@@ -206,7 +206,7 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <?php echo form_open_multipart($url.'/upload_file','id="form-upload-image" class="form-horizontal"'); ?>
-                                        <div class="box">
+                                        <div class="box box-primary">
                                             <div class="box-header with-border">
                                                 <div class="box-title">Upload File</div>
                                             </div><!-- /.box-header -->
@@ -251,7 +251,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="box">
+                                    <div class="box box-primary">
                                         <div class="box-body" style="max-height: 230px;overflow: auto;">
                                             <table id="table-image" class="table table-bordered table-hover">
                                                 <thead>
@@ -319,6 +319,7 @@
 
 
 <script lang="javascript">
+
     function refresh_table(){
         $('#table-soal').dataTable().fnReloadAjax();
     }
@@ -331,6 +332,25 @@
         var judul = $('#topik option:selected').text();
         $('#judul-daftar-soal').html(judul);
         $('#judul-tambah-soal').html(judul);
+
+        $('#topik').on('change', function() {
+                if(this.value == '18') {
+                    $('.second-select option').show();
+                    $('.second-select').prop('selectedIndex',0);
+                }
+                else if(this.value != '8') {
+                    $('#tambah-subtes option[value="2"]').hide();
+                    $('#tambah-subtes option[value="3"]').hide();
+                    $('#tambah-subtes option[value="4"]').hide();
+                    $('#tambah-subtes').prop('selectedIndex',0);
+                }else if(this.value == '8') {
+                    $('#tambah-subtes option[value="2"]').show();
+                    $('#tambah-subtes option[value="3"]').show();
+                    $('#tambah-subtes option[value="4"]').show();
+                    $('#tambah-subtes').prop('selectedIndex',0);
+                }
+            }
+        )
 	}
 
     function edit(id){
@@ -599,4 +619,8 @@
             <?php if(!empty($data_soal)){ echo $data_soal; } ?>
 		});
     });
+
+    
+
+
 </script>

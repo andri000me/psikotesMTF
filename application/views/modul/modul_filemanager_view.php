@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-xs-6">
             <?php echo form_open_multipart($url.'/upload_file','id="form-upload" class="form-horizontal"'); ?>
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Upload File</div>
                     </div><!-- /.box-header -->
@@ -44,7 +44,7 @@
 
         <div class="col-xs-6">
             <?php echo form_open_multipart($url.'/tambah_dir','id="form-tambah" class="form-horizontal"'); ?>
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Create Directory</div>
                     </div><!-- /.box-header -->
@@ -74,7 +74,7 @@
 
 	<div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     						<div class="box-title">Data File : <a style="cursor:pointer;" onclick="open_home_dir()">Uploads</a><span id="posisi-file-judul"></span></div>
     						<div class="box-tools pull-right">
@@ -86,7 +86,7 @@
 
                     <div class="box-body">
                         <input type="hidden" name="posisi-file" id="posisi-file">
-                        <table id="table-file" class="table table-bordered table-hover">
+                        <table id="table-file" class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>No.</th>

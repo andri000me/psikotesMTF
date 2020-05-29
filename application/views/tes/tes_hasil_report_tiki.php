@@ -1,21 +1,35 @@
 <?php
-$mysqli = new mysqli("localhost","root", "","dbmtfpsikotes");
+$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 
 if(mysqli_connect_errno()) {
     printf("Connect failed: %s\n",mysql_connect_error());
     exit();
 }
 
-    // subtest no 1
+$name = '';
+$tanggal_tes = '';
+$user_ids = '';
+$pendidikan_terakhir = '';
+$jenis_kelamin = '';
+$from = new DateTime();
+$to   = new DateTime();
+$tanggal_lahir = '';
+
+// subtest no 1
 $sqlt1 = "        
         SELECT  cbt_user.user_firstname as name,
                 cbt_tes.tes_nama as nama, 
                 cbt_tes_user.tesuser_id as user_id,
                 cbt_tes_soal.tessoal_jawaban as soal,
+                cbt_tes_user.tesuser_status as tesuser_status,
                 cbt_jawaban.jawaban_benar as jawaban, 
                 cbt_soal.soal_nomor as nomor_soal, 
                 cbt_tes.tes_begin_time as tanggal_tes,
-                cbt_tes_soal_jawaban.soaljawaban_order as jawabanTes
+                cbt_tes_soal_jawaban.soaljawaban_order as jawabanTes,
+                cbt_user.user_tanggal_lahir as tanggal_lahir,
+                cbt_user.user_pendidikan_terakhir as pendidikan_terakhir,
+                cbt_user.user_jenis_kelamin as jenis_kelamin,
+                cbt_tes_soal.tessoal_nilai as nilai
         FROM    cbt_tes_user, 
                 cbt_user, 
                 cbt_tes, 
@@ -77,220 +91,218 @@ $sqlt1 = "
         $T1S40 = 0;
 
         $TotalT1 = 0;
-
     if($result = mysqli_query($mysqli, $sqlt1)){
         while($row = mysqli_fetch_array($result)){
-            // echo $row['jawaban'];
             if($row['nomor_soal'] == '1'){
                 $T1S1 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '2'){
                 $T1S2 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '3'){
                 $T1S3 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '4'){
                 $T1S4 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '5'){
                 $T1S5 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '6'){
                 $T1S6 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '7'){
                 $T1S7 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '8'){
                 $T1S8 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '9'){
                 $T1S9 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '10'){
                 $T1S10 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '11'){
                 $T1S11 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '12'){
                 $T1S12 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '13'){
                 $T1S13 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '14'){
                 $T1S14 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '15'){
                 $T1S15 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '16'){
                 $T1S16 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '17'){
                 $T1S17 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '18'){
                 $T1S18 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '19'){
                 $T1S19 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '20'){
                 $T1S20 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '21'){
                 $T1S21 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '22'){
                 $T1S22 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '23'){
                 $T1S23 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '24'){
                 $T1S24 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '25'){
                 $T1S25 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '26'){
                 $T1S26 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '27'){
                 $T1S27 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '28'){
                 $T1S28 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
-                    $TotalT1 = $TotalT1 + 1;
-                }
-            }else if($row['nomor_soal'] == '28'){
-                $T1S28 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '29'){
                 $T1S29 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '30'){
                 $T1S30 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '31'){
                 $T1S31 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '32'){
                 $T1S32 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '33'){
-                $T133 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                $T1S33 = $row['jawabanTes'];
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '34'){
                 $T1S34 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '35'){
                 $T1S35 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '36'){
                 $T1S36 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '37'){
                 $T1S37 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '38'){
                 $T1S38 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '39'){
                 $T1S39 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }else if($row['nomor_soal'] == '40'){
                 $T1S40 = $row['jawabanTes'];
-                if($row['jawabanTes'] == '1'){
+                if($row['nilai'] == '1.00'){
                     $TotalT1 = $TotalT1 + 1;
                 }
             }
             $name = $row['name'];
             $tanggal_tes = $row['tanggal_tes'];
             $user_ids = $user_id;
-
+            $tanggal_lahir = $row['tanggal_lahir'];
+            $from = new DateTime($tanggal_lahir);
+            $to   = new DateTime('today');
+            $pendidikan_terakhir = $row['pendidikan_terakhir'];
+            $jenis_kelamin = $row['jenis_kelamin'];
+            $status = $row['tesuser_status'];
         }
     }
 
@@ -4757,39 +4769,95 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
     $T4ss = 0;
     $TaLLss = 0;
 
+    $kategoriT1= '';
+    $kategoriT2= '';
+    $kategoriT3= '';
+    $kategoriT4= '';
+
+
+    // kolom kategori
+    if($TotalT1 <= 13){
+        $kategoriT1= 'KS';
+    }else if($TotalT1 <= 21){
+        $kategoriT1= 'K';
+    }else if($TotalT1 <= 29){
+        $kategoriT1= 'C';
+    }else if($TotalT1 <= 36){
+        $kategoriT1= 'B';
+    }else if($TotalT1 <= 40){
+        $kategoriT1= 'BS';
+    };
+
+    if($T2SALL <= 6){
+        $kategoriT2= 'KS';
+    }else if($T2SALL <= 11){
+        $kategoriT2= 'K';
+    }else if($T2SALL <= 16){
+        $kategoriT2= 'C';
+    }else if($T2SALL <= 20){
+        $kategoriT2= 'B';
+    }else if($T2SALL <= 26){
+        $kategoriT2= 'BS';
+    };
+
+    if($T3SALL <= 16){
+        $kategoriT3= 'KS';
+    }else if($T3SALL <= 24){
+        $kategoriT3= 'K';
+    }else if($T3SALL <= 30){
+        $kategoriT3= 'C';
+    }else if($T3SALL <= 34){
+        $kategoriT3= 'B';
+    }else if($T3SALL <= 40){
+        $kategoriT3= 'BS';
+    };
+
+    if($T4SALL <= 4){
+        $kategoriT4= 'KS';
+    }else if($T4SALL <= 7){
+        $kategoriT4= 'K';
+    }else if($T4SALL <= 11){
+        $kategoriT4= 'C';
+    }else if($T4SALL <= 18){
+        $kategoriT4= 'B';
+    }else if($T4SALL <= 30){
+        $kategoriT4= 'BS';
+    };
+
+
     if($TotalT1 <= 4 ){
         $T1ss = 0;
     }else if($TotalT1 <= 7 ){
         $T1ss = 1;
-    }else if($TotalT1 = 8 ){
+    }else if($TotalT1 == 8 ){
         $T1ss = 2;
-    }else if($TotalT1 = 9 ){
+    }else if($TotalT1 == 9 ){
         $T1ss = 3;
-    }else if($TotalT1 = 10 ){
+    }else if($TotalT1 == 10 ){
         $T1ss = 4;
-    }else if($TotalT1 = 11 ){
+    }else if($TotalT1 == 11 ){
         $T1ss = 5;
-    }else if($TotalT1 = 12 ){
+    }else if($TotalT1 == 12 ){
         $T1ss = 6;
-    }else if($TotalT1 = 13 ){
+    }else if($TotalT1 == 13 ){
         $T1ss = 7;
     }else if($TotalT1 <= 15 ){
         $T1ss = 8;
-    }else if($TotalT1 = 16 ){
+    }else if($TotalT1 == 16 ){
         $T1ss = 9;
     }else if($TotalT1 <= 18 ){
         $T1ss = 10;
     }else if($TotalT1 <= 20 ){
         $T1ss = 11;
-    }else if($TotalT1 = 21 ){
+    }else if($TotalT1 == 21 ){
         $T1ss = 12;
     }else if($TotalT1 <= 23 ){
         $T1ss = 13;
-    }else if($TotalT1 = 24 ){
+    }else if($TotalT1 == 24 ){
         $T1ss = 14;
     }else if($TotalT1 <= 26 ){
         $T1ss = 15;
-    }else if($TotalT1 = 27 ){
+    }else if($TotalT1 == 27 ){
         $T1ss = 16;
     }else if($TotalT1 <= 29 ){
         $T1ss = 17;
@@ -4797,19 +4865,19 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         $T1ss = 18;
     }else if($TotalT1 <= 32 ){
         $T1ss = 19;
-    }else if($TotalT1 = 33 ){
+    }else if($TotalT1 == 33 ){
         $T1ss = 20;
-    }else if($TotalT1 = 34 ){
+    }else if($TotalT1 == 34 ){
         $T1ss = 21;
     }else if($TotalT1 <= 36 ){
         $T1ss = 22;
-    }else if($TotalT1 = 37 ){
+    }else if($TotalT1 == 37 ){
         $T1ss = 23;
-    }else if($TotalT1 = 38 ){
+    }else if($TotalT1 == 38 ){
         $T1ss = 24;
-    }else if($TotalT1 = 39 ){
+    }else if($TotalT1 == 39 ){
         $T1ss = 26;
-    }else if($TotalT1 = 40 ){
+    }else if($TotalT1 == 40 ){
         $T1ss = 28;
     };
 
@@ -4817,43 +4885,43 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         $T2ss = 4;
     }else if($T2SALL <= 4 ){
         $T2ss = 5;
-    }else if($T2SALL = 5 ){
+    }else if($T2SALL == 5 ){
         $T2ss = 6;
-    }else if($T2SALL = 6 ){
+    }else if($T2SALL == 6 ){
         $T2ss = 7;
-    }else if($T2SALL = 7 ){
+    }else if($T2SALL == 7 ){
         $T2ss = 8;
     }else if($T2SALL <= 9 ){
         $T2ss = 9;
-    }else if($T2SALL = 10 ){
+    }else if($T2SALL == 10 ){
         $T2ss = 11;
-    }else if($T2SALL = 11 ){
+    }else if($T2SALL == 11 ){
         $T2ss = 12;
-    }else if($T2SALL = 12 ){
+    }else if($T2SALL == 12 ){
         $T2ss = 13;
-    }else if($T2SALL = 13 ){
+    }else if($T2SALL == 13 ){
         $T2ss = 14;
-    }else if($T2SALL = 14 ){
+    }else if($T2SALL == 14 ){
         $T2ss = 15;
-    }else if($T2SALL = 15 ){
+    }else if($T2SALL == 15 ){
         $T2ss = 16;
-    }else if($T2SALL = 16 ){
+    }else if($T2SALL == 16 ){
         $T2ss = 17;
-    }else if($T2SALL = 17 ){
+    }else if($T2SALL == 17 ){
         $T2ss = 18;
-    }else if($T2SALL = 18 ){
+    }else if($T2SALL == 18 ){
         $T2ss = 19;
-    }else if($T2SALL = 19 ){
+    }else if($T2SALL == 19 ){
         $T2ss = 21;
-    }else if($T2SALL = 20 ){
+    }else if($T2SALL == 20 ){
         $T2ss = 22;
-    }else if($T2SALL = 21 ){
+    }else if($T2SALL == 21 ){
         $T2ss = 24;
-    }else if($T2SALL = 22 ){
+    }else if($T2SALL == 22 ){
         $T2ss = 25;
-    }else if($T2SALL = 23 ){
+    }else if($T2SALL == 23 ){
         $T2ss = 27;
-    }else if($T2SALL = 24 ){
+    }else if($T2SALL == 24 ){
         $T2ss = 29;
     }else if($T2SALL <= 26 ){
         $T2ss = 30;
@@ -4866,51 +4934,51 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         $T3ss = 1;
     }else if($T3SALL <= 8 ){
         $T3ss = 2;
-    }else if($T3SALL = 9 ){
+    }else if($T3SALL == 9 ){
         $T3ss = 3;
     }else if($T3SALL <= 11 ){
         $T3ss = 4;
     }else if($T3SALL <= 13 ){
         $T3ss = 5;
-    }else if($T3SALL = 14 ){
+    }else if($T3SALL == 14 ){
         $T3ss = 6;
     }else if($T3SALL <= 16 ){
         $T3ss = 7;
     }else if($T3SALL <= 18 ){
         $T3ss = 8;
-    }else if($T3SALL = 19 ){
+    }else if($T3SALL == 19 ){
         $T3ss = 9;
     }else if($T3SALL <= 21 ){
         $T3ss = 10;
-    }else if($T3SALL = 22 ){
+    }else if($T3SALL == 22 ){
         $T3ss = 11;
     }else if($T3SALL <= 24 ){
         $T3ss = 12;
-    }else if($T3SALL = 25 ){
+    }else if($T3SALL == 25 ){
         $T3ss = 13;
-    }else if($T3SALL = 26 ){
+    }else if($T3SALL == 26 ){
         $T3ss = 14;
     }else if($T3SALL <= 28 ){
         $T3ss = 15;
-    }else if($T3SALL = 29 ){
+    }else if($T3SALL == 29 ){
         $T3ss = 16;
-    }else if($T3SALL = 30 ){
+    }else if($T3SALL == 30 ){
         $T3ss = 17;
-    }else if($T3SALL = 31 ){
+    }else if($T3SALL == 31 ){
         $T3ss = 18;
-    }else if($T3SALL = 32 ){
+    }else if($T3SALL == 32 ){
         $T3ss = 19;
-    }else if($T3SALL = 33 ){
+    }else if($T3SALL == 33 ){
         $T3ss = 20;
-    }else if($T3SALL = 34 ){
+    }else if($T3SALL == 34 ){
         $T3ss = 22;
-    }else if($T3SALL = 35 ){
+    }else if($T3SALL == 35 ){
         $T3ss = 24;
-    }else if($T3SALL = 36 ){
+    }else if($T3SALL == 36 ){
         $T3ss = 25;
-    }else if($T3SALL = 37 ){
+    }else if($T3SALL == 37 ){
         $T3ss = 26;
-    }else if($T3SALL = 38 ){
+    }else if($T3SALL == 38 ){
         $T3ss = 28;
     }else if($T3SALL <= 40 ){
         $T3ss = 30;
@@ -4919,47 +4987,47 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
 
     if($T4SALL <= 1 ){
         $T4ss = 0;
-    }else if($T4SALL = 2 ){
+    }else if($T4SALL == 2 ){
         $T4ss = 3;
-    }else if($T4SALL = 3 ){
+    }else if($T4SALL == 3 ){
         $T4ss = 6;
-    }else if($T4SALL = 4 ){
+    }else if($T4SALL == 4 ){
         $T4ss = 7;
-    }else if($T4SALL = 5 ){
+    }else if($T4SALL == 5 ){
         $T4ss = 9;
-    }else if($T4SALL = 6 ){
+    }else if($T4SALL == 6 ){
         $T4ss = 10;
-    }else if($T4SALL = 7 ){
+    }else if($T4SALL == 7 ){
         $T4ss = 12;
-    }else if($T4SALL = 8 ){
+    }else if($T4SALL == 8 ){
         $T4ss = 13;
-    }else if($T4SALL = 9 ){
+    }else if($T4SALL == 9 ){
         $T4ss = 14;
-    }else if($T4SALL = 10 ){
+    }else if($T4SALL == 10 ){
         $T4ss = 16;
-    }else if($T4SALL = 11 ){
+    }else if($T4SALL == 11 ){
         $T4ss = 17;
     }else if($T4SALL <= 13 ){
         $T4ss = 18;
-    }else if($T4SALL = 14 ){
+    }else if($T4SALL == 14 ){
         $T4ss = 19;
-    }else if($T4SALL = 15 ){
+    }else if($T4SALL == 15 ){
         $T4ss = 20;
     }else if($T4SALL <= 17 ){
         $T4ss = 21;
-    }else if($T4SALL = 18 ){
+    }else if($T4SALL == 18 ){
         $T4ss = 22;
-    }else if($T4SALL = 19 ){
+    }else if($T4SALL == 19 ){
         $T4ss = 23;
     }else if($T4SALL <= 21 ){
         $T4ss = 24;
     }else if($T4SALL <= 23 ){
         $T4ss = 25;
-    }else if($T4SALL = 24 ){
+    }else if($T4SALL == 24 ){
         $T4ss = 26;
-    }else if($T4SALL = 25 ){
+    }else if($T4SALL == 25 ){
         $T4ss = 28;
-    }else if($T4SALL = 26 ){
+    }else if($T4SALL == 26 ){
         $T4ss = 29;
     }else if($T4SALL <= 30 ){
         $T4ss = 30;
@@ -4974,160 +5042,172 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
 
     if($TaLLss <= 21 ){
         $TallIQ = 56;
-    }else if($TaLLss = 22 ){
+    }else if($TaLLss == 22 ){
         $TallIQ = 57;
-    }else if($TaLLss = 23 ){
+    }else if($TaLLss == 23 ){
         $TallIQ = 58;
-    }else if($TaLLss = 24 ){
+    }else if($TaLLss == 24 ){
         $TallIQ = 60;
-    }else if($TaLLss = 25 ){
+    }else if($TaLLss == 25 ){
         $TallIQ = 61;
-    }else if($TaLLss = 26 ){
+    }else if($TaLLss == 26 ){
         $TallIQ = 62;
-    }else if($TaLLss = 27 ){
+    }else if($TaLLss == 27 ){
         $TallIQ = 64;
-    }else if($TaLLss = 28 ){
+    }else if($TaLLss == 28 ){
         $TallIQ = 65;
-    }else if($TaLLss = 29 ){
+    }else if($TaLLss == 29 ){
         $TallIQ = 66;
-    }else if($TaLLss = 30 ){
+    }else if($TaLLss == 30 ){
         $TallIQ = 67;
-    }else if($TaLLss = 31 ){
+    }else if($TaLLss == 31 ){
         $TallIQ = 68;
-    }else if($TaLLss = 32 ){
+    }else if($TaLLss == 32 ){
         $TallIQ = 70;
-    }else if($TaLLss = 33 ){
+    }else if($TaLLss == 33 ){
         $TallIQ = 71;
-    }else if($TaLLss = 34 ){
+    }else if($TaLLss == 34 ){
         $TallIQ = 72;
-    }else if($TaLLss = 35 ){
+    }else if($TaLLss == 35 ){
         $TallIQ = 73;
-    }else if($TaLLss = 36 ){
+    }else if($TaLLss == 36 ){
         $TallIQ = 74;
-    }else if($TaLLss = 37 ){
+    }else if($TaLLss == 37 ){
         $TallIQ = 75;
-    }else if($TaLLss = 38 ){
+    }else if($TaLLss == 38 ){
         $TallIQ = 77;
-    }else if($TaLLss = 39 ){
+    }else if($TaLLss == 39 ){
         $TallIQ = 78;
-    }else if($TaLLss = 40 ){
+    }else if($TaLLss == 40 ){
         $TallIQ = 79;
-    }else if($TaLLss = 41 ){
+    }else if($TaLLss == 41 ){
         $TallIQ = 80;
-    }else if($TaLLss = 42 ){
+    }else if($TaLLss == 42 ){
         $TallIQ = 81;
-    }else if($TaLLss = 43 ){
+    }else if($TaLLss == 43 ){
         $TallIQ = 83;
-    }else if($TaLLss = 44 ){
+    }else if($TaLLss == 44 ){
         $TallIQ = 84;
-    }else if($TaLLss = 45 ){
+    }else if($TaLLss == 45 ){
         $TallIQ = 85;
-    }else if($TaLLss = 46 ){
+    }else if($TaLLss == 46 ){
         $TallIQ = 86;
-    }else if($TaLLss = 47 ){
+    }else if($TaLLss == 47 ){
         $TallIQ = 87;
-    }else if($TaLLss = 48 ){
+    }else if($TaLLss == 48 ){
         $TallIQ = 89;
-    }else if($TaLLss = 49 ){
+    }else if($TaLLss == 49 ){
         $TallIQ = 90;
-    }else if($TaLLss = 50 ){
+    }else if($TaLLss == 50 ){
         $TallIQ = 91;
-    }else if($TaLLss = 51 ){
+    }else if($TaLLss == 51 ){
         $TallIQ = 92;
-    }else if($TaLL93 = 52 ){
+    }else if($TaLLss == 52 ){
         $TallIQ = 93;
-    }else if($TaLLss = 53 ){
+    }else if($TaLLss == 53 ){
         $TallIQ = 94;
-    }else if($TaLLss = 54 ){
+    }else if($TaLLss == 54 ){
         $TallIQ = 96;
-    }else if($TaLLss = 55 ){
+    }else if($TaLLss == 55 ){
         $TallIQ = 97;
-    }else if($TaLLss = 56 ){
+    }else if($TaLLss == 56 ){
         $TallIQ = 98;
-    }else if($TaLLss = 57 ){
+    }else if($TaLLss == 57 ){
         $TallIQ = 99;
-    }else if($TaLLss = 58 ){
+    }else if($TaLLss == 58 ){
         $TallIQ = 100;
-    }else if($TaLLss = 59 ){
+    }else if($TaLLss == 59 ){
         $TallIQ = 102;
-    }else if($TaLLss = 60 ){
+    }else if($TaLLss == 60 ){
         $TallIQ = 103;
-    }else if($TaLLss = 61 ){
+    }else if($TaLLss == 61 ){
         $TallIQ = 104;
-    }else if($TaLLss = 62 ){
+    }else if($TaLLss == 62 ){
         $TallIQ = 105;
-    }else if($TaLLss = 63 ){
+    }else if($TaLLss == 63 ){
         $TallIQ = 106;
-    }else if($TaLLss = 64 ){
+    }else if($TaLLss == 64 ){
         $TallIQ = 107;
-    }else if($TaLLss = 65 ){
+    }else if($TaLLss == 65 ){
         $TallIQ = 108;
-    }else if($TaLLss = 66 ){
+    }else if($TaLLss == 66 ){
         $TallIQ = 109;
-    }else if($TaLLss = 67 ){
+    }else if($TaLLss == 67 ){
         $TallIQ = 110;
-    }else if($TaLLss = 68 ){
+    }else if($TaLLss == 68 ){
         $TallIQ = 112;
-    }else if($TaLLss = 69 ){
+    }else if($TaLLss == 69 ){
         $TallIQ = 113;
-    }else if($TaLLss = 70 ){
+    }else if($TaLLss == 70 ){
         $TallIQ = 114;
-    }else if($TaLLss = 71 ){
+    }else if($TaLLss == 71 ){
         $TallIQ = 115;
-    }else if($TaLLss = 72 ){
+    }else if($TaLLss == 72 ){
         $TallIQ = 117;
-    }else if($TaLLss = 73 ){
+    }else if($TaLLss == 73 ){
         $TallIQ = 118;
-    }else if($TaLLss = 74 ){
+    }else if($TaLLss == 74 ){
         $TallIQ = 119;
-    }else if($TaLLss = 75 ){
+    }else if($TaLLss == 75 ){
         $TallIQ = 120;
-    }else if($TaLLss = 76 ){
+    }else if($TaLLss == 76 ){
         $TallIQ = 122;
-    }else if($TaLLss = 77 ){
+    }else if($TaLLss == 77 ){
         $TallIQ = 123;
-    }else if($TaLLss = 78 ){
+    }else if($TaLLss == 78 ){
         $TallIQ = 124;
-    }else if($TaLLss = 79 ){
+    }else if($TaLLss == 79 ){
         $TallIQ = 125;
-    }else if($TaLLss = 80 ){
+    }else if($TaLLss == 80 ){
         $TallIQ = 126;
-    }else if($TaLLss = 81 ){
+    }else if($TaLLss == 81 ){
         $TallIQ = 127;
-    }else if($TaLLss = 82 ){
+    }else if($TaLLss == 82 ){
         $TallIQ = 129;
-    }else if($TaLLss = 83 ){
+    }else if($TaLLss == 83 ){
         $TallIQ = 130;
-    }else if($TaLLss = 84 ){
+    }else if($TaLLss == 84 ){
         $TallIQ = 131;
-    }else if($TaLLss = 85 ){
+    }else if($TaLLss == 85 ){
         $TallIQ = 132;
-    }else if($TaLLss = 86 ){
+    }else if($TaLLss == 86 ){
         $TallIQ = 133;
-    }else if($TaLLss = 87 ){
+    }else if($TaLLss == 87 ){
         $TallIQ = 134;
-    }else if($TaLLss = 88 ){
+    }else if($TaLLss == 88 ){
         $TallIQ = 135;
-    }else if($TaLLss = 89 ){
+    }else if($TaLLss == 89 ){
         $TallIQ = 137;
-    }else if($TaLLss = 90 ){
+    }else if($TaLLss == 90 ){
         $TallIQ = 138;
-    }else if($TaLLss = 91 ){
+    }else if($TaLLss == 91 ){
         $TallIQ = 139;
-    }else if($TaLLss = 92 ){
+    }else if($TaLLss == 92 ){
         $TallIQ = 140;
-    }else if($TaLLss = 93 ){
+    }else if($TaLLss == 93 ){
         $TallIQ = 142;
-    }else if($TaLLss = 94 ){
+    }else if($TaLLss == 94 ){
         $TallIQ = 143;
-    }else if($TaLLss = 95 ){
+    }else if($TaLLss == 95 ){
         $TallIQ = 144;
     }else if($TaLLss >= 96 ){
         $TallIQ = 145;
     }
 
     $statusLulus = '';
+    $IQLevel = '';
 
+    if($TallIQ <= 89){
+        $IQLevel = 'Dibawah Rata-Rata';
+    }else if($TallIQ >= 90 && $TallIQ <= 110){
+        $IQLevel = 'Rata-Rata';
+    }else if($TallIQ == 111 && $TallIQ <= 120){
+        $IQLevel = 'Diatas Rata-Rata';
+    }else if($TallIQ == 121 && $TallIQ <= 127){
+        $IQLevel = 'Cerdas';
+    }else if($TallIQ >= 128){
+        $IQLevel = 'Sangat Cerdas';
+    }
     if($TallIQ >= 100){
         $statusLulus = 'Lulus';
     }else{
@@ -5163,8 +5243,8 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         <td>&nbsp;</td>
         <td style="width: 5%;">&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;"><strong>RS</strong></td>
-        <td style="border: 1px solid black; text-align: center;"><strong>SS</strong></td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;width: 40px;"><strong>SS</strong></td>
+        <td style="border: 1px solid black; text-align: center;"><strong>&nbsp;Kategori&nbsp;</strong></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
@@ -5172,60 +5252,92 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         <td style="width: 10%;">Nama</td>
         <td>:</td>
         <td style="width: 30%; border-bottom: 1px solid black;"><?php echo $name;?></td>
-        <td>(L/P)</td>
+        <td><?php if($jenis_kelamin == 1){
+            echo "(<strike>L</strike>/P)";
+        }else{
+            echo "(L/<strike>P</strike>)";
+        } ?></td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;"><strong>T-1</strong></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $TotalT1; ?></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T1ss; ?></td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;"><?php echo $kategoriT1; ?></td>
     </tr>
     <tr>
         <td>Pendidikan</td>
         <td>:</td>
-        <td style="border-bottom: 1px solid black;">&nbsp;</td>
+        <td style="border-bottom: 1px solid black;">
+        <?php 
+            if($pendidikan_terakhir == 1){
+                echo "SMA";
+            }else if($pendidikan_terakhir == 2){
+                echo "SMK";
+            }else if($pendidikan_terakhir == 3){
+                echo "S1";
+            }else if($pendidikan_terakhir == 4){
+                echo "S2";
+            }else if($pendidikan_terakhir == 5){
+                echo "S3";
+            }else if($pendidikan_terakhir > 5){
+                echo "Lain-Lain";
+            }
+        ?>
+        </td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;"><strong>T-2</strong></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T2SALL; ?></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T2ss; ?></td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;"><?php echo $kategoriT2; ?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Usia</td>
         <td>:</td>
-        <td style="border-bottom: 1px solid black;"></td>
+        <td style="border-bottom: 1px solid black;"><?php echo $from->diff($to)->y;?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;"><strong>T-3</strong></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T3SALL; ?></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T3ss; ?></td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;"><?php echo $kategoriT3; ?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Tgl. Lahir</td>
         <td>:</td>
-        <td style="border-bottom: 1px solid black;"></td>
+        <td style="border-bottom: 1px solid black;"><?php $date=date_create($tanggal_lahir); echo date_format($date,"d F Y");?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;"><strong>T-4</strong></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T4SALL; ?></td>
         <td style="border: 1px solid black; text-align: center;"><?php echo $T4ss; ?></td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;"><?php echo $kategoriT4; ?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Tgl. Test</td>
         <td>:</td>
-        <td style="border-bottom: 1px solid black;"></td>
+        <td style="border-bottom: 1px solid black;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;" colspan="2"><strong>Total</strong></td>
-        <td style="border: 1px solid black; text-align: center;"><?php echo $TaLLss; ?></td>
+        <td style="border: 1px solid black; text-align: center;" colspan="2"><?php echo $TaLLss; ?></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td>:</td>
+        <td style="border-bottom: 1px solid black;"><?php if($status == 5){ echo "Time Out";}else if($status == 4 ){echo "Selesai";}else{ echo "Belum Dikerjakan";}  ?></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;" colspan="2"><strong>IQ</strong></td>
+        <td style="border: 1px solid black; text-align: center;" colspan="2"><?php echo $TallIQ; ?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -5236,10 +5348,10 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         <td></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td style="border: 1px solid black; text-align: center;" colspan="2"><strong>IQ</strong></td>
-        <td style="border: 1px solid black; text-align: center;"><?php echo $TallIQ; ?></td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td style="border: 1px solid black; text-align: center;" colspan="2"><strong>IQ Level</strong></td>
+        <td style="border-top: 1px solid; border-left: 1px solid; border-right: 1px solid; border-bottom: 1px solid; text-align: center; width: 15%;" colspan="2"><?php echo $IQLevel;?></td>
+        <!-- <td>&nbsp;</td>
+        <td>&nbsp;</td> -->
         <td>&nbsp;</td>
     </tr>
     <tr>
@@ -5249,7 +5361,7 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td style="border: 1px solid black; text-align: center;" colspan="2"><strong>Status</strong></td>
-        <td style="border: 1px solid black; text-align: center; width: 15%;" rowspan="3"><?php echo $statusLulus;?></td>
+        <td style="border-top: 1px solid; border-left: 1px solid; border-right: 1px solid; border-bottom: 1px solid; text-align: center; width: 15%;" colspan="2"><?php echo $statusLulus;?></td>
         <!-- <td>&nbsp;</td>
         <td>&nbsp;</td> -->
         <td>&nbsp;</td>
@@ -5614,7 +5726,7 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
             <!-- border-bottom: 1px solid; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid; -->
     <table style="margin-left: 80px; margin-right: 80px;  border-collapse: collapse; font-size: 14px;">
         <tr>
-            <td style="border-top: 1px solid black; border-left: 1px solid black;">Contoh :</td>
+            <td style="border-top: 1px solid black; border-left: 1px solid black;">&nbsp;Contoh :</td>
             <td style="border-top: 1px solid black;">&nbsp;</td>
             <td style="border-top: 1px solid black;">&nbsp;</td>
             <td style="border-top: 1px solid black;">&nbsp;</td>
@@ -5933,14 +6045,18 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
     <tr>
         <td style="width: 10%;">Nama</td>
         <td>:</td>
-        <td style="width: 30%; border-bottom: 1px solid black;">&nbsp;</td>
-        <td>(L/P)</td>
+        <td style="width: 30%; border-bottom: 1px solid black;"><?php echo $name;?></td>
+        <td><?php if($jenis_kelamin == 1){
+            echo "(<strike>L</strike>/P)";
+        }else{
+            echo "(L/<strike>P</strike>)";
+        } ?></td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Tgl. Test</td>
         <td>:</td>
-        <td style="border-bottom: 1px solid black;"></td>
+        <td style="border-bottom: 1px solid black;"><?php $date=date_create($tanggal_tes); echo date_format($date,"d F Y");?></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
@@ -5960,7 +6076,7 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
         <!-- border-bottom: 1px solid; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid; -->
 <table style="margin-left: 80px; margin-right: 80px;  border-collapse: collapse; font-size: 14px;">
     <tr>
-        <td style="border-top: 1px solid black; border-left: 1px solid black;">Contoh :</td>
+        <td style="border-top: 1px solid black; border-left: 1px solid black;">&nbsp;Contoh :</td>
         <td style="border-top: 1px solid black;">&nbsp;</td>
         <td style="border-top: 1px solid black;">&nbsp;</td>
         <td style="border-top: 1px solid black;">&nbsp;</td>
@@ -6655,12 +6771,19 @@ $T3SALL = $T3S1ALL + $T3S2ALL + $T3S3ALL + $T3S4ALL + $T3S5ALL + $T3S6ALL + $T3S
 </section>
 </html>
 
+<form id="TheForm" action="<?php echo site_url().'/manager/tes_hasil_report_tiki_excel'; ?>" method="POST" target="TheWindow">
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+    <input type="hidden" name="tesuser_tes_id" value="<?php echo $tesuser_tes_id; ?>" />
+</form>
+
 <script>
     function myFunction() {
         window.print();
     }
     function detail_tes(tesuser_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_report_papi_excel'; ?>/index/"+tesuser_id);
+        // window.open('', 'TheWindow');
+        document.getElementById('TheForm').submit();
+        // window.open("<?php echo site_url().'/manager/tes_hasil_report_tiki_excel'; ?>/index/"+tesuser_id);
         
     }
 </script>

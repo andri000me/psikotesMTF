@@ -22,7 +22,7 @@
     </div>
 	<div class="row">
 		<div class="col-md-6">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Backup Database</div>
                     </div><!-- /.box-header -->
@@ -40,7 +40,7 @@
                 </div>
         </div>
         <div class="col-md-6">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Backup Data Upload</div>
                     </div><!-- /.box-header -->

@@ -346,7 +346,7 @@ class Modul_instruksi extends Member_Controller {
 			"sEcho" => intval($_GET['sEcho']),
 	        "iTotalRecords" => $iTotal,
 	        "iTotalDisplayRecords" => $iTotal,
-	        "aaData" => array()
+	        "aaData" => array(),
 	    );
 
 	    // get result after running query and put it in array
@@ -407,7 +407,9 @@ class Modul_instruksi extends Member_Controller {
 		if(!empty($topik)){
 			$posisi = $this->config->item('upload_path').'/topik_'.$topik;
 		}else{
-			$posisi = $this->config->item('upload_path');
+			$topik = 8;
+			// $posisi = $this->config->item('upload_path');
+			$posisi = $this->config->item('upload_path').'/topik_'.$topik;
 		}
 
 		// variable initialization
@@ -438,7 +440,7 @@ class Modul_instruksi extends Member_Controller {
 			"sEcho" => intval($_GET['sEcho']),
 	        "iTotalRecords" => $iTotal,
 	        "iTotalDisplayRecords" => $iTotal,
-	        "aaData" => array()
+			"aaData" => array()
 	    );
 		
 	    foreach ($query as $temp) {			
@@ -468,6 +470,7 @@ class Modul_instruksi extends Member_Controller {
 
 		$output['iTotalRecords'] = $iTotal;
 		$output['iTotalDisplayRecords'] = $iTotal;
+		$output['topik'] = $topik;
         
 		echo json_encode($output);
 	}

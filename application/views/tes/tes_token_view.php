@@ -19,7 +19,7 @@
                     <h4>Perhatian</h4>
                     <p>Silahkan klik Generate Token untuk mendapatkan token yang akan diberikan ke user. Masa aktif Token berlaku selama satu hari.</p>
                 </div>
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Generate Token</div>
                     </div><!-- /.box-header -->
@@ -63,7 +63,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Daftar Token Hari Ini</div>
                     </div><!-- /.box-header -->

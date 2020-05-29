@@ -1,0 +1,824 @@
+    <table style="width: -webkit-fill-available;">
+            <tr style="font-size: 20px;">
+                <td rowspan="2"  style="width: 40pt;">
+                    &nbsp;
+                </td>
+                <td style="font-size: 20px;">
+                    <table style="border-collapse: collapse; width: -webkit-fill-available; font-size: 12px; ">
+                        <tr>
+                            <td style="width:10%;">&nbsp;</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">D</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">I</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">S</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">C</td>
+                            <td style="width:10%;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td style="width:10%;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">21</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">19</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">20</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">17</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;8</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">16</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">13</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">15</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">14</td>
+                                <td class="tableDISC3">11</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">9</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">9</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">12</td>
+                                <td class="tableDISC3">8</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">14</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">7</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">13</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">12</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">9</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">6</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">5</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">6</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">9</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">5</td>  
+                        </tr>
+
+                        <!---ke 2-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="3">&nbsp;2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">6</td>
+                                <td class="tableDISC3">4</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">5</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                         <!---ke 0-->
+                         <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">6</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;0</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">5</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">3</td>  
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        </tr>
+
+                        <!---ke - 2-->
+                        
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">2</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">2</td>
+                                <td class="tableDISC3">2</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke - 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">1</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">1</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">1</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">1</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke - 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">0</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                    </table>
+                </td>
+                <!---DISC 2-->
+                <td style="font-size: 15px;">
+                    <table style="border-collapse: collapse; width: -webkit-fill-available; font-size: 12px;">
+                        <tr>
+                            <td style="width:10%;">&nbsp;</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">D</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">I</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">S</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">C</td>
+                            <td style="width:10%;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td style="width:10%;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">0</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">0</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">0</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;8</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">1</td>
+                                <td class="tableDISC3">1</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">1</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">1</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">2</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">2</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">2</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">2</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">3</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">3</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">4</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                        <!---ke 2-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">4</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">5</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">5</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="3">&nbsp;2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">5</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">6</td>
+                                <td class="tableDISC3">6</td>  
+                        </tr>
+
+                         <!---ke 0-->
+                         <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">6</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">5</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">7</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;0</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">8</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                        <!---ke - 2-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">6</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">8</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">9</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">9</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">9</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">10</td>  
+                        </tr>
+                        <!---ke - 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">12</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">8</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">10</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">13</td>
+                                <td class="tableDISC3">9</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">11</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">14</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">12</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke - 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">15</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">10</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">12</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">13</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">16</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">13</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">12</td>
+                                <td class="tableDISC3">16</td>
+                                <td class="tableDISC3">15</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">20</td>
+                                <td class="tableDISC3">19</td>
+                                <td class="tableDISC3">19</td>
+                                <td class="tableDISC3">17</td>  
+                        </tr>
+                    </table>
+                </td>
+                <!---DISC 3--->
+                <td  style="ont-size: 15px;">
+                    <table style="border-collapse: collapse; width: -webkit-fill-available; font-size: 12px;">
+                        <tr>
+                            <td style="width:10%;">&nbsp;</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">D</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">I</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">S</td>
+                            <td style="width:10%; Text-align: center; background-color: black; color:white;">C</td>
+                            <td style="width:10%;">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td class="tableDISC2">&nbsp;</td>
+                                <td style="width:10%;">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">21</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">18</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">20</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">17</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;8</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">18</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">15</td>
+                                <td class="tableDISC3">10</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">15</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">11</td>
+                                <td class="tableDISC3">6</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">14</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">5</td>  
+                        </tr>
+                        <!---ke 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">13</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">7</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">9</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">4</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">12</td>
+                                <td class="tableDISC3">6</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">10</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">5</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">3</td>  
+                        </tr>
+                        <!---ke 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">9</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">4</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">5</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">2</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">8</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">4</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">1</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">7</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">2</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                        <!---ke 2-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">5</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">2</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">1</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">0</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="3">&nbsp;2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">3</td>
+                                <td class="tableDISC3">1</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">-1</td>  
+                        </tr>
+
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">1</td>
+                                <td class="tableDISC3">0</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-2</td>  
+                        </tr>
+
+                         <!---ke 0-->
+                         <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:3px black solid; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">0</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">-1</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">-1</td>
+                                <td class="tableDISC3" style="border-top:3px black solid;">-3</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="5">&nbsp;0</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-2</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-2</td>
+                                <td class="tableDISC3">-4</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-3</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-3</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-4</td>
+                                <td class="tableDISC3">-2</td>
+                                <td class="tableDISC3">-4</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-3</td>
+                                <td class="tableDISC3">-5</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+
+                        <!---ke - 2-->
+                        
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-6</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-5</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-2</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-7</td>
+                                <td class="tableDISC3">-4</td>
+                                <td class="tableDISC3">-6</td>
+                                <td class="tableDISC3">-6</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-9</td>
+                                <td class="tableDISC3">-5</td>
+                                <td class="tableDISC3">-7</td>
+                                <td class="tableDISC3">-7</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <!---ke - 4-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-10</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-6</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-8</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-8</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-4</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-7</td>
+                                <td class="tableDISC3">-9</td>
+                                <td class="tableDISC3">-9</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-11</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-12</td>
+                                <td class="tableDISC3">-8</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-10</td>  
+                        </tr>
+                        <!---ke - 6-->
+                        <tr>
+                                <td style="width:10%;  border-left:3px black solid; border-right:1px black solid;  border-top:1px black dotted; " >&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">&nbsp;</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-9</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-10</td>
+                                <td class="tableDISC3" style="border-top:1px black dotted;">-13</td>
+                                <td style="width:10%; font-size: 18px; border-left:3px black solid; vertical-align: baseline;" rowspan="4">&nbsp;-6</td>
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-16</td>
+                                <td class="tableDISC3">-10</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-15</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">-15</td>
+                                <td class="tableDISC3">-18</td>
+                                <td class="tableDISC3">-15</td>
+                                <td class="tableDISC3">-19</td>  
+                        </tr>
+                        <tr style="border-left:3px black solid; border-right:3px black solid;">
+                                <td style="width:10%;">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">&nbsp;</td>
+                                <td class="tableDISC3">-18</td>
+                                <td class="tableDISC3">-22</td>  
+                        </tr>
+                    </table>
+                </td>
+                    </table>
+                </td>
+            </tr>
+    </table>

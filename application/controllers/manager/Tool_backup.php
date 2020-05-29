@@ -23,7 +23,7 @@ class Tool_backup extends Member_Controller {
 
     public function database(){
     	ini_set("memory_limit","-1");
-		ini_set('max_execution_time', 200);
+		ini_set('max_execution_time', 200000000000000);
 
     	// Load the DB utility class
 		$this->load->dbutil();
@@ -39,7 +39,7 @@ class Tool_backup extends Member_Controller {
 
     public function data_upload(){
     	ini_set("memory_limit","-1");
-		ini_set('max_execution_time', 200);
+		ini_set('max_execution_time', 200000000000000);
     	
     	$this->load->library('zip');
 

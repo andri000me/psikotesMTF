@@ -1,7 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Cbt_tes_model extends CI_Model{
 	public $table = 'cbt_tes';
-	
+    public $tableGroup = 'cbt_tes_group';
+    
 	function __construct(){
         parent::__construct();
     }
@@ -44,6 +45,14 @@ class Cbt_tes_model extends CI_Model{
         $this->db->select('tes_id,tes_nama,tes_detail,tes_begin_time,tes_end_time,tes_duration_time,tes_ip_range,tes_results_to_users, tes_score_right, tes_score_wrong, tes_score_unanswered, tes_max_score, tes_token')
                  ->where($kolom, $isi)
                  ->from($this->table)
+				 ->limit($limit);
+        return $this->db->get();
+    }
+
+    function get_by_kolom_group_limit($kolom, $isi, $limit){
+        $this->db->select('tes_group_id,tes_group_user_id,tes_group_tes_id,tes_group_begin_time,tes_group_end_timetes_group_token,test_group_status')
+                 ->where($kolom, $isi)
+                 ->from($this->tableGroup)
 				 ->limit($limit);
         return $this->db->get();
     }

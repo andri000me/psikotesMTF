@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="box-title">Informasi Pendukung</div>
                     </div><!-- /.box-header -->
@@ -51,7 +51,7 @@
     </div>
 	<div class="row">
 		<div class="col-md-6">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Export Data Soal</div>
                     </div><!-- /.box-header -->
@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-6">
             <?php echo form_open_multipart($url.'/importsoal','id="form-import"'); ?>
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
     					<div class="box-title">Import Data Soal</div>
                     </div><!-- /.box-header -->

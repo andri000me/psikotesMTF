@@ -55,7 +55,7 @@ class Welcome extends CI_Controller {
             $status['error'] = validation_errors();
         }
         echo json_encode($status);
-    }
+	}
     
     function logout(){
 		$this->access_tes->logout();

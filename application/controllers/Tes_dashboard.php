@@ -24,7 +24,10 @@ class Tes_dashboard extends Tes_Controller {
         $data['nama'] = $this->access_tes->get_nama();
         $data['group'] = $this->access_tes->get_group();
         $data['url'] = $this->url;
-        $data['timestamp'] = strtotime(date('Y-m-d H:i:s'));
+		$data['timestamp'] = strtotime(date('Y-m-d H:i:s'));
+		
+		$data['sql'] = '';
+
 
         $username = $this->access_tes->get_username();
         $user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
@@ -34,15 +37,57 @@ class Tes_dashboard extends Tes_Controller {
         	$tanggal = new DateTime();
         	foreach ($query_tes as $tes) {
         		// Cek apakah tes sudah melebihi batas waktu
-            	$tanggal_tes = new DateTime($tes->tesuser_creation_time);
+				$tanggal_tes = new DateTime($tes->tesuser_creation_time);
+
+				$instruksi_duration = 0;
+				$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
+				$sqlCheckDuration = "
+                SELECT  cbt_topik.topik_subtest as topik_subtest, 
+                        cbt_topik.topik_id as topik_id,
+                        cbt_tes_user.tesuser_subtes as tesuser_subtes,
+                        cbt_subtest_instruksi.instruksi_duration as instruksi_duration
+                FROM    cbt_topik, cbt_tes_user, 
+                        cbt_tes_topik_set ,
+                        cbt_subtest_instruksi
+                WHERE   cbt_topik.topik_id = cbt_tes_topik_set.tset_topik_id 
+                AND     cbt_tes_user.tesuser_tes_id = cbt_tes_topik_set.tset_tes_id 
+                AND     cbt_tes_user.tesuser_tes_id = ".$tes->tesuser_id."
+                AND     cbt_tes_user.tesuser_id = ".$user_id."
+                AND     cbt_subtest_instruksi.instruksi_topik_id = cbt_topik.topik_id";
+
+                if($result = mysqli_query($mysqli, $sqlCheckDuration)){
+                    while($row = mysqli_fetch_array($result)){
+                        $instruksi_duration = $row['instruksi_duration'];
+                    }
+				}
+				
+				// $data['sql'] = $sqlCheckDuration;
+
+				// $tanggal_tes->modify('+'.$instruksi_duration.' minutes');
             	$tanggal_tes->modify('+'.$tes->tes_duration_time.' minutes');
             	if($tanggal>$tanggal_tes){
-            		// jika waktu sudah melebihi waktu ketentuan, maka status tes diubah menjadi 4
-            		$data_tes['tesuser_status']=4;
-            		$this->cbt_tes_user_model->update('tesuser_id', $tes->tesuser_id, $data_tes);
+					// jika waktu sudah melebihi waktu ketentuan, maka status tes diubah menjadi 4
+					$sqlCheckStatus = "
+						SELECT 	tesuser_status
+						FROM	cbt_tes_user
+						WHERE	tesuser_id = ".$tes->tesuser_id."
+					";
+					if($result = mysqli_query($mysqli, $sqlCheckStatus)){
+						while($rows = mysqli_fetch_array($result)){
+							$tesuser_status = $rows['tesuser_status'];
+						}
+					}
+
+					if($tesuser_status !=4){
+            			$data_tes['tesuser_status']=5;
+						$this->cbt_tes_user_model->update('tesuser_id', $tes->tesuser_id, $data_tes);
+					}
             	}
         	}
-        }
+		}
+		
+		
+            
 
 
         $this->template->display_tes($this->kelompok.'/tes_dashboard_view', 'Dashboard', $data);
@@ -53,28 +98,127 @@ class Tes_dashboard extends Tes_Controller {
      *
      * @param      <type>  $tes_id  The tes identifier
      */
-    function konfirmasi_test($tes_id=null){
+    // function konfirmasi_test($tes_id=null){
+    // 	if(!empty($tes_id)){
+    // 		$query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1);
+    // 		if($query_tes->num_rows()>0){
+    // 			$query_tes = $query_tes->row();
+
+    // 			$tanggal = new DateTime();
+    // 			$tanggal_tes = new DateTime($query_tes->tes_end_time);
+    // 			if($tanggal<$tanggal_tes){
+    // 				// Cek terlebih dahulu, apakah sudah pernah memulai tes
+    // 				$username = $this->access_tes->get_username();
+    //     			$user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
+
+    // 				if($this->cbt_tes_user_model->count_by_user_tes($user_id, $query_tes->tes_id)->row()->hasil==0){
+    // 					// Menampilkan konfirmasi Tes
+    // 					$data['tes_id'] = $query_tes->tes_id;
+	//     				$data['nama'] = $this->access_tes->get_nama();
+	// 			        $data['group'] = $this->access_tes->get_group();
+	// 			        $data['timestamp'] = strtotime(date('Y-m-d H:i:s'));
+	// 			        $data['url'] = $this->url;
+	// 			        $data['tes_nama'] = $query_tes->tes_nama;
+	// 			        $data['tes_waktu'] = $query_tes->tes_duration_time.' menit';
+	// 			        $data['tes_poin'] = $query_tes->tes_score_right;
+	// 			        $data['tes_max_score'] = $query_tes->tes_max_score;
+	// 			        if($query_tes->tes_token==1){
+	// 			        	$data['tes_token'] = '
+	// 			        		<tr style="height: 45px;">
+	// 	                            <td></td>
+	// 	                            <td style="vertical-align: middle;text-align: right;">Token : </td>
+	// 	                            <td style="vertical-align: middle;"><input type="text" name="token" id="token" autocomplete="off"></td>
+	// 	                            <td></td>
+	// 	                        </tr>
+	// 			        	';
+	// 			        }else{
+	// 			        	$data['tes_token'] = '<input type="hidden" name="token" id="token">';
+	// 			        }
+
+	// 			        if($data['tes_max_score']>0){
+	// 			        	$this->template->display_tes($this->kelompok.'/tes_start_view', 'Mulai Tes', $data);	
+	// 			        }else{
+	// 			        	redirect('tes_dashboard');
+	// 			        }
+	// 	            }else{
+	// 	            	redirect('tes_dashboard');	
+	// 	            }
+    // 			}else{
+    // 				redirect('tes_dashboard');	
+    // 			}
+    // 		}else{
+    // 			redirect('tes_dashboard');
+    // 		}
+    // 	}else{
+    // 		redirect('tes_dashboard');
+    // 	}
+	// }
+	
+	function konfirmasi_test($tes_id=null){
     	if(!empty($tes_id)){
-    		$query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1);
+			$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
+
+			$query_tes = $this->cbt_tes_model->get_by_kolom_limit('tes_id', $tes_id, 1);
+			$username = $this->access_tes->get_username();
+			$user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
+			$query_group = $this->cbt_tes_user_model->get_by_user_group_tes($user_id, $tes_id);
     		if($query_tes->num_rows()>0){
-    			$query_tes = $query_tes->row();
+				$query_tes = $query_tes->row();
+				$tanggal_tesss = '';
 
-    			$tanggal = new DateTime();
-    			$tanggal_tes = new DateTime($query_tes->tes_end_time);
-    			if($tanggal<$tanggal_tes){
-    				// Cek terlebih dahulu, apakah sudah pernah memulai tes
-    				$username = $this->access_tes->get_username();
-        			$user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
+				$sqlInstruksissssss = "
+				SELECT  cbt_tes_group.tes_group_end_time as end_time
+				FROM    cbt_tes_group
+				WHERE	tes_group_user_id = ".$user_id."
+				AND		tes_group_tes_id = ".$tes_id." ";
 
+				if($result = mysqli_query($mysqli, $sqlInstruksissssss)){
+					while($row = mysqli_fetch_array($result)){
+						$tanggal_tesss = new DateTime($row['end_time']);
+					}
+				}
+
+				// $tanggalsss = new DateTime($tanggal_tesss);
+				$tanggal = new DateTime();
+
+				// $tanggal_tes = new DateTime($query_tes->tes_end_time);
+				$tanggal_tes = new DateTime($query_tes->tes_end_time);
+    			if($tanggal<$tanggal_tesss){ // error
+					// Cek terlebih dahulu, apakah sudah pernah memulai tes
+					
+        			// $user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
     				if($this->cbt_tes_user_model->count_by_user_tes($user_id, $query_tes->tes_id)->row()->hasil==0){
+					
+						$topik_id = $this->cbt_tes_topik_set_model->get_by_kolom('tset_tes_id', $tes_id)->row()->tset_topik_id;
+
+						
+						$instruksi = $topik_id;
+						$sqlInstruksi = "
+						SELECT  cbt_subtest_instruksi.instruksi_text as instruksi,
+								cbt_subtest_instruksi.instruksi_duration as instruksi_duration
+						FROM    cbt_subtest_instruksi
+						WHERE	instruksi_topik_id = ".$topik_id."
+						AND		instruksi_subtes = 1
+						";
+
+						if($result = mysqli_query($mysqli, $sqlInstruksi)){
+							while($row = mysqli_fetch_array($result)){
+								$instruksi = $row['instruksi'];
+								$instruksi_duration = $row['instruksi_duration'];
+							}
+						}
+						$instruksi = str_replace("[base_url]", base_url(), $instruksi);
+
     					// Menampilkan konfirmasi Tes
     					$data['tes_id'] = $query_tes->tes_id;
-	    				$data['nama'] = $this->access_tes->get_nama();
+						$data['nama'] = $this->access_tes->get_nama();
+						$data['instruksi'] = $instruksi;
 				        $data['group'] = $this->access_tes->get_group();
 				        $data['timestamp'] = strtotime(date('Y-m-d H:i:s'));
 				        $data['url'] = $this->url;
 				        $data['tes_nama'] = $query_tes->tes_nama;
-				        $data['tes_waktu'] = $query_tes->tes_duration_time.' menit';
+						// $data['tes_waktu'] = $query_tes->tes_duration_time.' menit';
+						$data['tes_waktu'] = $instruksi_duration.' menit';
 				        $data['tes_poin'] = $query_tes->tes_score_right;
 				        $data['tes_max_score'] = $query_tes->tes_max_score;
 				        if($query_tes->tes_token==1){
@@ -167,7 +311,9 @@ class Tes_dashboard extends Tes_Controller {
 							$data_tes['tesuser_tes_id'] = $tes_id;
 							$data_tes['tesuser_user_id'] = $user_id;
 							$data_tes['tesuser_status'] = 1;
+							$data_tes['tesuser_subtes'] = '1';
 							$data_tes['tesuser_creation_time'] = date('Y-m-d H:i:s');
+							$data_tes['tesuser_nomor_terakhir'] = 0;
 
 							$tests_users_id = $this->cbt_tes_user_model->save($data_tes);
 
@@ -180,9 +326,9 @@ class Tes_dashboard extends Tes_Controller {
 								// Mengecek apakah soal diacak atau tidak
 								// Soal yang tidak diacak, diurutkan berdasarkan soal_id
 								if($subject_set->tset_acak_soal==1){
-									$query_soal = $this->cbt_soal_model->get_by_topik_tipe_kesulitan_select_limit($subject_set->tset_topik_id, $subject_set->tset_tipe, $subject_set->tset_difficulty, 'soal_id,soal_topik_id,soal_tipe,soal_audio', $subject_set->tset_jumlah);
+									$query_soal = $this->cbt_soal_model->get_by_topik_tipe_kesulitan_select_limit($subject_set->tset_topik_id, $subject_set->tset_tipe, $subject_set->tset_difficulty, 'soal_id,soal_topik_id,soal_tipe,soal_audio,soal_subtest', $subject_set->tset_jumlah);
 								}else{
-									$query_soal = $this->cbt_soal_model->get_by_topik_tipe_kesulitan_select_limit_tanpa_acak($subject_set->tset_topik_id, $subject_set->tset_tipe, $subject_set->tset_difficulty, 'soal_id,soal_topik_id,soal_tipe,soal_audio', $subject_set->tset_jumlah);
+									$query_soal = $this->cbt_soal_model->get_by_topik_tipe_kesulitan_select_limit_tanpa_acak($subject_set->tset_topik_id, $subject_set->tset_tipe, $subject_set->tset_difficulty, 'soal_id,soal_topik_id,soal_tipe,soal_audio,soal_subtest', $subject_set->tset_jumlah);
 								}
 								if($query_soal->num_rows()>0){
 									$query_soal = $query_soal->result();
@@ -195,7 +341,7 @@ class Tes_dashboard extends Tes_Controller {
 										$data_soal['tessoal_nilai'] = $query_tes->tes_score_unanswered;
 										$data_soal['tessoal_creation_time'] = date('Y-m-d H:i:s');
 										$data_soal['tessoal_order'] = ++$i_soal;
-
+										$data_soal['tessoal_subtes'] = $soal->soal_subtest;
 										$insert_soal[] = $data_soal;
 									}
 									// menggunakan batch query langsung untuk mengehemat waktu dan memory
@@ -355,10 +501,10 @@ class Tes_dashboard extends Tes_Controller {
 		$rows = $this->get_rows();
 
 		// run query to get user listing
-		$query = $this->cbt_tesgrup_model->get_datatable($start, $rows, $grup_id);
+		$query = $this->cbt_tesgrup_model->get_datatablegroup($start, $rows, $user_id);
 		$iFilteredTotal = $query->num_rows();
 		
-		$iTotal= $this->cbt_tesgrup_model->get_datatable_count($grup_id)->row()->hasil;
+		$iTotal= $this->cbt_tesgrup_model->get_datatablegroup_count($user_id)->row()->hasil;
 	    
 		$output = array(
 			"sEcho" => intval($_GET['sEcho']),
@@ -375,29 +521,91 @@ class Tes_dashboard extends Tes_Controller {
 
 			// Cek apakah tes yang terdaftar pada group memiliki soal sesuai topik yang ada
 			if($this->cbt_tes_topik_set_model->count_by_kolom('tset_tes_id', $temp->tes_id)->row()->hasil>0){
+				$mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
 				$record[] = ++$i;
-	            $record[] = $temp->tes_nama;
-	            $record[] = $temp->tes_begin_time;
-	            $record[] = $temp->tes_end_time;
+				$record[] = $temp->tes_detail;
 
-	            // Cek apakah sudah mengikuti tes tetapi belum selesai
+				$tanggalSelesaiTes = '';
+				$instruksi_duration_tes = '';
+				$tesuser_creation_time = '';
+				$sqlCheckDurationTes = "
+					SELECT  cbt_tes_user.tesuser_creation_time as tesuser_creation_time,
+							cbt_tes.tes_duration_time as instruksi_duration_tes
+					FROM    cbt_tes_user,
+							cbt_tes
+					WHERE   cbt_tes_user.tesuser_tes_id = ".$temp->tes_id."
+					AND		cbt_tes_user.tesuser_user_id = ".$user_id."
+					AND		cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id
+					";
+
+				if($result = mysqli_query($mysqli, $sqlCheckDurationTes)){
+					while($row = mysqli_fetch_array($result)){
+						$tesuser_creation_time = $row['tesuser_creation_time'];
+						$instruksi_duration_tes = $row['instruksi_duration_tes'];
+						if($instruksi_duration_tes == ''){
+							// $tanggalSelesaiTes = $row['tesuser_creation_time']+$instruksi_duration_tes;
+							$tanggalSelesaiTes = date('Y-m-d H:i',strtotime('+24 hour +20 minutes',strtotime($row['tesuser_creation_time'])));
+						}else{
+							// $tanggalSelesaiTes = $row['tesuser_creation_time']+instruksi_duration_tes;
+							$tanggalSelesaiTes = date('Y-m-d H:i',strtotime('+'.$instruksi_duration_tes.' minutes',strtotime($row['tesuser_creation_time'])));
+						}
+					}
+				}
+
+
+				$record[] = $tanggalSelesaiTes;
+	            $record[] = $temp->tes_group_begin_time;
+				$record[] = $temp->tes_group_end_time;
+				
+
+					$instruksi_duration = 0;
+					$sqlCheckDuration = "
+						SELECT  cbt_topik.topik_subtest as topik_subtest, 
+								cbt_topik.topik_id as topik_id,
+								cbt_subtest_instruksi.instruksi_duration as instruksi_duration
+						FROM    cbt_topik, 
+								cbt_tes_topik_set ,
+								cbt_subtest_instruksi
+						WHERE   cbt_topik.topik_id = cbt_tes_topik_set.tset_topik_id 
+						AND     cbt_tes_topik_set.tset_tes_id = ".$temp->tes_id."
+						AND     cbt_subtest_instruksi.instruksi_topik_id = cbt_topik.topik_id";
+
+						if($result = mysqli_query($mysqli, $sqlCheckDuration)){
+							while($row = mysqli_fetch_array($result)){
+								$instruksi_duration = $row['instruksi_duration']+$instruksi_duration;
+							}
+						}
+
+						$record[] = $instruksi_duration.' Menit';
+	            // Cek apakah sudah mengikuti tes tetapi belum selesai 
 	            if($this->cbt_tes_user_model->count_by_user_tes($user_id, $temp->tes_id)->row()->hasil>0){
 	            	// Cek apakah sudah selesai atau belum, jika blum selesai maka tes bisa dilanjutkan
 	            	$tanggal = new DateTime();
-	            	$query_test_user = $this->cbt_tes_user_model->get_by_user_tes($user_id, $temp->tes_id)->row();
-	            	$tanggal_tes = new DateTime($query_test_user->tesuser_creation_time);
-	            	$tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
-
-	            	if($tanggal<$tanggal_tes AND $query_test_user->tesuser_status!=4){
+					$query_test_user = $this->cbt_tes_user_model->get_by_user_tes($user_id, $temp->tes_id)->row();
+					
+					$tanggal_tes = new DateTime($query_test_user->tesuser_creation_time);
+					// $tanggal_tes = new DateTime($query_test_user->tesuser_creation_time);
+					// $tanggal_tes = new DateTime('2011-01-01T15:03:01.012345Z');
+					
+					$tanggal_tes->modify('+'.$instruksi_duration.' minutes');
+					// $tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
+					// $record[] = $instruksi_duration.' Menit';
+	            	if($tanggal<$tanggal_tes AND $query_test_user->tesuser_status<4){
 	            		// nilai kosong karena masih dalam pengerjaan
-	            		$record[] = '';
+	            		$record[] = 'Inprogress';
 	            		// Jika masih dalam waktu pengerjaan, maka tes dilanjutkan
 	            		$record[] = '<a href="'.site_url().'/tes_kerjakan/index/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lanjutkan</a>';
+	            	}else if($query_test_user->tesuser_status==5){
+	            		// nilai kosong karena waktu habis
+	            		$record[] = 'Time Out';
+	            		// kosong karena waktu habis
+						$record[] = '';
 	            	}else{
 	            		// menampilkan nilai
 	            		// Cek apakah tes yang selesai ditampilkan nilainya
 		            	if($temp->tes_results_to_users==1){
-		            		$record[] = $this->cbt_tes_soal_model->get_nilai($query_test_user->tesuser_id)->row()->hasil;
+							// $record[] = $this->cbt_tes_soal_model->get_nilai($query_test_user->tesuser_id)->row()->hasil;
+							$record[] = 'Sudah dikerjakan';
 		            	}else{
 		            		$record[] = '';
 		            	}
@@ -410,7 +618,7 @@ class Tes_dashboard extends Tes_Controller {
 	            		}
 	            	}
 	            }else{
-	            	$record[] = '';
+	            	$record[] = 'Belum dikerjakan';
 	            	$record[] = '<a href="'.site_url().'/'.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
 	            }
 
@@ -421,6 +629,94 @@ class Tes_dashboard extends Tes_Controller {
         
 		echo json_encode($output);
 	}
+
+	// function get_datatable(){
+	// 	// variable initialization
+	// 	$search = "";
+	// 	$start = 0;
+	// 	$rows = 10;
+
+	// 	$group = $this->access_tes->get_group();
+	// 	$grup_id = $this->cbt_user_grup_model->get_by_kolom_limit('grup_nama', $group, 1)->row()->grup_id;
+	// 	$username = $this->access_tes->get_username();
+	// 	$user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
+
+	// 	// get search value (if any)
+	// 	if (isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
+	// 		$search = $_GET['sSearch'];
+	// 	}
+
+	// 	// limit
+	// 	$start = $this->get_start();
+	// 	$rows = $this->get_rows();
+
+	// 	// run query to get user listing
+	// 	$query = $this->cbt_tesgrup_model->get_datatable($start, $rows, $grup_id);
+	// 	$iFilteredTotal = $query->num_rows();
+		
+	// 	$iTotal= $this->cbt_tesgrup_model->get_datatable_count($grup_id)->row()->hasil;
+	    
+	// 	$output = array(
+	// 		"sEcho" => intval($_GET['sEcho']),
+	//         "iTotalRecords" => $iTotal,
+	//         "iTotalDisplayRecords" => $iTotal,
+	//         "aaData" => array()
+	//     );
+
+	//     // get result after running query and put it in array
+	// 	$i=$start;
+	// 	$query = $query->result();
+	//     foreach ($query as $temp) {			
+	// 		$record = array();
+
+	// 		// Cek apakah tes yang terdaftar pada group memiliki soal sesuai topik yang ada
+	// 		if($this->cbt_tes_topik_set_model->count_by_kolom('tset_tes_id', $temp->tes_id)->row()->hasil>0){
+	// 			$record[] = ++$i;
+	//             $record[] = $temp->tes_nama;
+	//             $record[] = $temp->tes_begin_time;
+	//             $record[] = $temp->tes_end_time;
+
+	//             // Cek apakah sudah mengikuti tes tetapi belum selesai
+	//             if($this->cbt_tes_user_model->count_by_user_tes($user_id, $temp->tes_id)->row()->hasil>0){
+	//             	// Cek apakah sudah selesai atau belum, jika blum selesai maka tes bisa dilanjutkan
+	//             	$tanggal = new DateTime();
+	//             	$query_test_user = $this->cbt_tes_user_model->get_by_user_tes($user_id, $temp->tes_id)->row();
+	//             	$tanggal_tes = new DateTime($query_test_user->tesuser_creation_time);
+	//             	$tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
+
+	//             	if($tanggal<$tanggal_tes AND $query_test_user->tesuser_status!=4){
+	//             		// nilai kosong karena masih dalam pengerjaan
+	//             		$record[] = '';
+	//             		// Jika masih dalam waktu pengerjaan, maka tes dilanjutkan
+	//             		$record[] = '<a href="'.site_url().'/tes_kerjakan/index/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lanjutkan</a>';
+	//             	}else{
+	//             		// menampilkan nilai
+	//             		// Cek apakah tes yang selesai ditampilkan nilainya
+	// 	            	if($temp->tes_results_to_users==1){
+	// 	            		$record[] = $this->cbt_tes_soal_model->get_nilai($query_test_user->tesuser_id)->row()->hasil;
+	// 	            	}else{
+	// 	            		$record[] = '';
+	// 	            	}
+
+	//             		// mengecek apakah detail tes ditampilkan
+	//             		if($temp->tes_detail_to_users==1){
+	//             			$record[] = '<a href="'.site_url().'/tes_hasil_detail/index/'.$query_test_user->tesuser_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lihat Detail</a>';
+	//             		}else{
+	//             			$record[] = '';
+	//             		}
+	//             	}
+	//             }else{
+	//             	$record[] = '';
+	//             	$record[] = '<a href="'.site_url().'/'.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
+	//             }
+
+	// 			$output['aaData'][] = $record;
+	// 		}
+	// 	}
+	// 	// format it to JSON, this output will be displayed in datatable
+        
+	// 	echo json_encode($output);
+	// }
 
 	/**
 	* funsi tambahan 

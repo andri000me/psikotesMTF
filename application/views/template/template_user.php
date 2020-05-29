@@ -43,7 +43,7 @@
   <body class="skin-green layout-top-nav">
     <div class="wrapper">
 
-      <header class="main-header">               
+      <!-- <header class="main-header">               
         <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">
@@ -54,9 +54,9 @@
                 <li><a href="#"><span id="timestamp"></span></a></li>
               </ul>
             </div>
-          </div><!-- /.container-fluid -->
+          </div>
         </nav>
-      </header>
+      </header> -->
       <!-- Full Width Column -->
       <div class="content-wrapper">
             <?php 
@@ -65,26 +65,26 @@
             }
             ?>
       </div><!-- /.content-wrapper -->
-      <footer class="main-footer no-print">
-        <div class="pull-right hidden-xs">
+      <!-- <footer class="main-footer no-print">
+        <div class="pull-right hidden-xs"> -->
 			<?php
 				if(!empty($link_login_operator)){
 					if($link_login_operator=='ya'){
 						?>
-							<strong> <a href="<?php echo site_url(); ?>/manager/" >Log In Operator</a></strong>
+							<!-- <strong> <a href="<?php echo site_url(); ?>/manager/" >Log In Operator</a></strong> -->
 						<?php
 					}
 				}else{
 					?>
-						<strong> <a href="<?php echo site_url(); ?>/manager/" >Log In Operator</a></strong>
+						<!-- <strong> <a href="<?php echo site_url(); ?>/manager/" >Log In Operator</a></strong> -->
 					<?php
 				}
 			?>
-        </div>
+        <!-- </div>
         <div class="container" style="text-align: center;">
           <strong>&copy; 2020 Mandiri Tunas Finance</strong>
         </div><!-- /.container -->
-      </footer>
+      </footer> -->
     </div><!-- ./wrapper -->
 
     <div class="modal" id="modal-proses" data-backdrop="static">

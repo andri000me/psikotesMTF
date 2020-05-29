@@ -14,7 +14,7 @@
 <section class="content">
 	<div class="row">
         <div class="col-xs-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
 						<div class="box-title">Daftar Tes</div>
     					<div class="box-tools pull-right">
@@ -29,19 +29,20 @@
                         <input type="hidden" name="check" id="check" value="0">
                         <input type="hidden" name="centang" id="centang" value="0">
                         <div id="form-pesan"><?php if(!empty($pesan_hapus)){ echo $pesan_hapus; } ?></div>
-                        <table id="table-tes" class="table table-bordered table-hover">
+                        
+                        <table id="table-tes" class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th class="all">Nama Tes</th>
-                                    <th>Max Score</th>
-                                    <th class="all">Waktu Mulai</th>
+                                    <th>Deskripsi</th>
+                                    <th class="all">Waktu Test</th>
                                     <th>Waktu Selesai</th>
                                     <th class="none">Waktu Tes</th>
                                     <th class="none">Poin Dasar</th>
                                     <th class="none">Tunjukkan Hasil</th>
                                     <th class="none">Token</th>
-                                    <th class="all"></th>
+                                    <th class="all">Action</th>
                                     <th class="all"></th>
                                 </tr>
                             </thead>

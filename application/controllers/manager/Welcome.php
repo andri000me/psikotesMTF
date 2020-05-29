@@ -24,8 +24,8 @@ class Welcome extends CI_Controller {
     function login(){
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('username', 'Username','required|strip_tags');
-        $this->form_validation->set_rules('password', 'Password','required|strip_tags');
+        $this->form_validation->set_rules('username-admin', 'Username','required|strip_tags');
+        $this->form_validation->set_rules('password-admin', 'Password','required|strip_tags');
         if($this->form_validation->run() == TRUE){
             $this->form_validation->set_rules('token','token','callback_check_login');
 			if($this->form_validation->run() == FALSE){
@@ -45,12 +45,12 @@ class Welcome extends CI_Controller {
     
     function logout(){
 		$this->access->logout();
-		redirect('manager/welcome');
+		redirect('welcome');
 	}
 	
 	function check_login(){		
-		$username = $this->input->post('username',TRUE);
-		$password = $this->input->post('password',TRUE);
+		$username = $this->input->post('username-admin',TRUE);
+		$password = $this->input->post('password-admin',TRUE);
 		
 		$login = $this->access->login($username, $password, $this->input->ip_address());
 		if($login==1){

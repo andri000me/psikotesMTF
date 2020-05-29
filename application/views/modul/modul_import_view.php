@@ -7,7 +7,7 @@
 	<ol class="breadcrumb">
 		<li><a href="<?php echo site_url() ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Import Soal</li>
-	</ol>
+    </ol>
 </section>
 
 <!-- Main content -->
@@ -15,7 +15,7 @@
     <div class="row">
 		<?php echo form_open_multipart($url.'/import','id="form-importsoal"'); ?>
         <div class="col-md-5">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Pilih Topik</div>
                 </div><!-- /.box-header -->
@@ -34,7 +34,7 @@
             </div>
         </div>
 		<div class="col-md-7">
-			<div class="box">
+			<div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-title">Import Soal</div>
 					<div class="box-tools pull-right">
@@ -56,9 +56,65 @@
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right" id="import">Import</button>
+                    <a id="templateDISC" href="<?php echo site_url().'/'.$url; ?>/export/9">Form Excel Soal Pilihan Ganda DISC</a>
+                    <a id="templatePAPI" href="<?php echo site_url().'/'.$url; ?>/export/10">Form Excel Soal Pilihan Ganda PAPI</a>
+                    <a id="templateEPPS" href="<?php echo site_url().'/'.$url; ?>/export/11">Form Excel Soal Pilihan Ganda EPPS</a>
+                    <a id="templateMBTI" href="<?php echo site_url().'/'.$url; ?>/export/12">Form Excel Soal Pilihan Ganda MBTI</a>
                 </div>
             </div>
         </div>
+        
+            <?php
+
+                // echo "<table style='border: 1px solid black'>
+                //         <tr>
+                //             <td>Soal Nomor</td>
+                //             <td>Jenis</td>
+                //             <td>Id</td>
+                //             <td>Isi</td>
+                //             <td>Jawaban</td>
+                //         </tr>";
+                // $mysqli = new mysqli("localhost","root", "","celestia_dbmtfpsikotes");
+                // $sql = "
+                //         SELECT  soal_id, cbt_soal.soal_nomor, soal_detail 
+                //         FROM    cbt_soal 
+                //         WHERE   soal_topik_id = 10
+                //         ORDER BY soal_nomor ASC";
+
+
+                // if($result = mysqli_query($mysqli, $sql)){
+                //     while($row = mysqli_fetch_array($result)){
+
+                //         $kolom3 = str_replace("\r","<br />",$row['soal_detail']);
+                //     echo "<tr>
+                //                 <td>".$row['soal_nomor']."</td>
+                //                 <td>Q</td>
+                //                 <td>".$row['soal_id']."</td>
+                //                 <td>".$kolom3."</td>
+                //                 <td>&nbsp;</td>
+                //         </tr>";
+                //         $sql = " 
+                //                 SELECT jawaban_id, jawaban_detail, jawaban_benar
+                //                 FROM `cbt_jawaban`
+                //                 WHERE jawaban_soal_id = ".$row['soal_id']."";
+                                
+                //                 if($result = mysqli_query($mysqli, $sql)){
+                //                     while($rowJawaban = mysqli_fetch_array($result)){
+                //                         echo "<tr>
+                //                                 <td>".$row['soal_nomor']."</td>
+                //                                 <td>A</td>
+                //                                 <td>".$rowJawaban['jawaban_id']."</td>
+                //                                 <td>".$rowJawaban['jawaban_detail']."</td>
+                //                                 <td>".$rowJawaban['jawaban_benar']."</td>
+                //                             </tr>";
+                //                     }
+                //                 }
+
+                //     }
+                // }
+                // echo "</table>";
+            ?>
+        
 		</form>
     </div>
 </section><!-- /.content -->
@@ -66,6 +122,42 @@
 
 
 <script lang="javascript">
+
+    $(function() {
+        $("#templateDISC").show();
+        $("#templatePAPI").hide();
+        $("#templateEPPS").hide();
+        $("#templateMBTI").hide();
+    });
+
+    $(function(){
+        
+        $("#topik").change(function(){
+            if(this.value == '9'){
+                $("#templateDISC").show();
+                $("#templatePAPI").hide();
+                $("#templateEPPS").hide();
+                $("#templateMBTI").hide();
+            }else if(this.value == '10'){
+                $("#templatePAPI").show();
+                $("#templateDISC").hide();
+                $("#templateEPPS").hide();
+                $("#templateMBTI").hide();
+            }else if(this.value == '11'){
+                $("#templateEPPS").show();
+                $("#templateDISC").hide();
+                $("#templatePAPI").hide();
+                $("#templateMBTI").hide();
+            }else if(this.value == '12'){
+                $("#templateMBTI").show();
+                $("#templateDISC").hide();
+                $("#templatePAPI").hide();
+                $("#templateEPPS").hide();
+            }
+
+        });
+    });
+
 
     function batal_tambah(){
         $("#form-pesan").html('');
